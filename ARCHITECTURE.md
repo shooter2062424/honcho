@@ -296,7 +296,7 @@ prompt（`deriver/prompts.py::minimal_deriver_prompt`）的核心要求：
 - 每條結論必須**自我完備**（"Ann is nervous about the job interview at the pharmacy"，不能只寫 "Ann is nervous"）
 - 儘量用**絕對日期**（"June 26, 2025" 而非 "yesterday"）
 - 主詞必須用真正的 peer id，不能寫「目標 peer」
-- 可以帶入 per-workspace/peer 的 `custom_instructions`（上限由 `DERIVER__MAX_CUSTOM_INSTRUCTIONS_TOKENS` 控制，預設 2000 token）
+- 可以帶入 per-workspace/peer 的 `custom_instructions`（上限由 `DERIVER_MAX_CUSTOM_INSTRUCTIONS_TOKENS` 控制，預設 2000 token）
 
 #### (d) 寫入 collection（`crud/representation.py::RepresentationManager`）
 

@@ -128,7 +128,7 @@ cd sdks/typescript && bun run tsc --noEmit
 Honcho runs as two cooperating processes that share a Postgres database and Redis cache:
 
 - **API server** (`uv run fastapi dev src/main.py`) — handles HTTP, enqueues background work, returns immediately. Hosts the **Dialectic** agent inline (synchronous tool loop during chat requests).
-- **Deriver worker** (`uv run python -m src.deriver`) — long-running queue consumer (uvloop). Runs the **Deriver**, **Summarizer**, and **Dreamer** off the queue. Can run multiple instances (`DERIVER_WORKERS`). Also hosts an in-process **Reconciler scheduler** (`src/reconciler/`) that periodically embeds messages with `sync_state='pending'` in `MessageEmbedding` and cleans up stale queue items — embedding generation is decoupled from message creation by design.
+- **Deriver worker** (`uv run python -m src.deriver`) — long-running queue consumer (uvloop). Runs the **Deriver**, **Summarizer**, and **Dreamer** off the queue. Can run multiple instances (`DERIVER_WORKERS`). Also hosts an in-process **Reconciler scheduler** (`src/reconciler/`) that periodically embeds `MessageEmbedding` and `Document` rows with `sync_state='pending'`, hard-deletes soft-deleted documents, and cleans up stale queue items — embedding generation is decoupled from row creation by design.
 
 ### Agent Architecture
 
@@ -146,7 +146,7 @@ The Deriver processes batches of incoming messages and extracts conclusions abou
 - **Output**: **Explicit conclusions only** (direct facts) saved to `(observer, observed)` collections. The structured-output schema (`PromptRepresentation` in `src/utils/representation.py`) has a single `explicit` field, and `Representation.from_prompt_representation()` hardcodes `deductive=[]` — every derived level (`deductive`/`inductive`/`contradiction`) is produced by the Dreamer, not here.
 - **Entry point**: `src/deriver/__main__.py` → `queue_manager.main()`.
 - **Prompts**: `src/deriver/prompts.py` (`minimal_deriver_prompt`).
-- **Custom instructions**: per-workspace/peer guidance can be threaded into the prompt via reasoning configuration; `DERIVER__MAX_CUSTOM_INSTRUCTIONS_TOKENS` caps the addition (default 2000) and `DERIVER__MAX_INPUT_TOKENS` defaults to 25000 to make room.
+- **Custom instructions**: per-workspace/peer guidance can be threaded into the prompt via reasoning configuration; `DERIVER_MAX_CUSTOM_INSTRUCTIONS_TOKENS` caps the addition (default 2000) and `DERIVER_MAX_INPUT_TOKENS` defaults to 25000 to make room. (The `__` delimiter is only for nested fields, e.g. `DERIVER_MODEL_CONFIG__MODEL`.)
 
 #### 2. Dialectic (`src/dialectic/`)
 
@@ -166,13 +166,16 @@ The Dialectic answers questions about peers by strategically gathering context f
 
 The Dreamer is an orchestrated multi-specialist system that runs during scheduled "dreams" to consolidate conclusions and build reasoning trees.
 
-- **Trigger**: Scheduled via `DreamScheduler` (`src/dreamer/dream_scheduler.py`) or explicit dream task on the queue.
-- **Strategy**: Surprisal-based prioritization (`src/dreamer/surprisal.py`) selects which conclusions to expand. The orchestrator (`orchestrator.run_dream`) runs two specialist phases:
-  1. **DeductionSpecialist** (`specialists.py`) — produces deductive conclusions from explicit conclusions. Tools: `get_recent_observations`, `search_memory`, `search_messages`, `create_observations_deductive`, `delete_observations`, `update_peer_card`.
-  2. **InductionSpecialist** — produces inductive conclusions from explicit + deductive conclusions. Tools: same discovery set + `create_observations_inductive`, `update_peer_card`.
+- **Trigger**: Scheduled via `DreamScheduler` (`src/dreamer/dream_scheduler.py`) or explicit dream task on the queue. `check_and_schedule_dream` counts **only `level='explicit'` documents** against `DREAM_DOCUMENT_THRESHOLD` — counting the Dreamer's own output would create a feedback loop.
+- **Dream types** (`DreamType` in `src/schemas/configuration.py`, enabled via `DREAM_ENABLED_TYPES`, default `["omni"]`):
+  - `omni` — the full consolidation cycle described below (`orchestrator.run_dream`).
+  - `card_refresh` — lightweight card-only pass (`orchestrator.run_card_refresh_dream`). Runs a single `CardRefreshSpecialist` restricted to `CARD_REFRESH_SPECIALIST_TOOLS`; never creates or deletes conclusions, and never advances the omni guard pair (`last_dream_at` / `last_dream_document_count`).
+- **Strategy**: `orchestrator.run_dream` runs two specialist phases sequentially. Surprisal sampling (`src/dreamer/surprisal.py`) is an **optional** pre-phase — off by default (`DREAM_SURPRISAL__ENABLED=False`) — and when on it supplies *exploration hints*, not a hard work list; specialists stay self-directed either way.
+  1. **DeductionSpecialist** (`specialists.py`) — produces deductive conclusions from explicit conclusions. Tools (`DEDUCTION_SPECIALIST_TOOLS`): `get_recent_observations`, `search_memory`, `search_messages`, `create_observations_deductive`, `delete_observations`, `update_peer_card`.
+  2. **InductionSpecialist** — produces inductive conclusions from explicit + deductive conclusions (runs after deduction so it can see the new deductive output). Tools (`INDUCTION_SPECIALIST_TOOLS`): same discovery set + `create_observations_inductive`. **Deliberately has no `update_peer_card`** — writing the card is deduction's responsibility.
 - **Reasoning trees** (`src/dreamer/trees/`, migration `f1a2b3c4d5e6_add_reasoning_tree_columns`): each conclusion links to its premises and downstream conclusions, enabling `get_reasoning_chain` traversal at recall time.
 - **Output**: Deductive/inductive conclusions, consolidated redundancies, updated peer cards.
-- **Entry point**: `src/dreamer/orchestrator.py` → `process_dream()` (the package-level export from `src/dreamer/__init__.py`), which wraps `run_dream()`.
+- **Entry point**: `src/dreamer/orchestrator.py` → `process_dream()` (the package-level export from `src/dreamer/__init__.py`), which dispatches on `dream_type` to `run_dream()` or `run_card_refresh_dream()`.
 
 #### 4. Summarizer (`src/utils/summarizer.py`)
 
@@ -183,7 +186,7 @@ The Dreamer is an orchestrated multi-specialist system that runs during schedule
 
 #### Shared Agent Infrastructure
 
-- **Tool definitions** (`src/utils/agent_tools.py`): unified `TOOLS` dict; per-agent lists (`DIALECTIC_TOOLS`, `DIALECTIC_TOOLS_MINIMAL`, `DREAMER_TOOLS`, `DEDUCTION_SPECIALIST_TOOLS`, `INDUCTION_SPECIALIST_TOOLS`).
+- **Tool definitions** (`src/utils/agent_tools.py`): unified `TOOLS` dict; per-agent lists (`DIALECTIC_TOOLS`, `DIALECTIC_TOOLS_MINIMAL`, `DREAMER_TOOLS`, `DEDUCTION_SPECIALIST_TOOLS`, `INDUCTION_SPECIALIST_TOOLS`, `CARD_REFRESH_SPECIALIST_TOOLS`).
 - **LLM subsystem** (`src/llm/`): provider-agnostic `honcho_llm_call()`. Backends in `src/llm/backends/` (`anthropic.py`, `gemini.py`, `openai.py`). Includes prompt caching (`caching.py`), structured output (`structured_output.py`), tool loop (`tool_loop.py`), history adapters for cross-provider message formats, and a model registry. Per-retry provider selection is pinned via an `AttemptPlan` so stream-final retries don't bounce back to primary after the tool loop has settled on fallback.
 - **Per-agent model config**: each agent has its own `MODEL_CONFIG` in `src/config.py` with fallback chains (see `ConfiguredModelSettings`, `FallbackModelSettings`).
 - **Telemetry**: cloudevents in `src/telemetry/events/` cover API routes, dialectic, dream, deletion, reconciliation, representation, and per-call LLM accounting (`llm.py` — `LLMCallCompletedEvent` fires once per provider hit with full cost-attribution context). High-volume events are sampled deterministically per `run_id` via `TelemetrySettings.HIGH_VOLUME_SAMPLE_RATE`.
@@ -220,19 +223,24 @@ src/
 ├── deriver/             # Background queue consumer (separate process)
 │   ├── __main__.py       # `python -m src.deriver` entry point
 │   ├── queue_manager.py  # QueueManager + main() loop
-│   ├── consumer.py       # process_item dispatcher (representation / deletion / reconciler)
+│   ├── consumer.py       # process_item dispatcher (webhook / summary / dream /
+│   │                     #   deletion / reconciler) + process_representation_batch,
+│   │                     #   which queue_manager calls directly for representation
 │   ├── deriver.py        # "minimal deriver" — single-LLM-call batch processor
 │   ├── enqueue.py        # API → queue producer
 │   └── prompts.py
 ├── dreamer/             # Memory consolidation (runs off the queue)
-│   ├── orchestrator.py   # run_dream() / process_dream()
-│   ├── specialists.py    # DeductionSpecialist + InductionSpecialist
+│   ├── orchestrator.py   # process_dream() → run_dream() / run_card_refresh_dream()
+│   ├── specialists.py    # DeductionSpecialist + InductionSpecialist +
+│   │                     #   CardRefreshSpecialist
 │   ├── dream_scheduler.py
-│   ├── surprisal.py      # Surprisal-based conclusion prioritization
+│   ├── surprisal.py      # Surprisal-based conclusion prioritization (opt-in)
 │   └── trees/            # Reasoning-tree primitives
 ├── reconciler/          # In-process scheduler hosted by the deriver worker
 │   ├── scheduler.py      # ReconcilerScheduler (started from queue_manager.py)
-│   ├── sync_vectors.py   # Embeds MessageEmbedding rows with sync_state='pending'
+│   ├── sync_vectors.py   # Embeds Document + MessageEmbedding rows with
+│   │                     #   sync_state='pending'; hard-deletes soft-deleted docs
+│   ├── embed_now.py      # Synchronous embed path for callers that can't wait
 │   └── queue_cleanup.py  # Removes stale queue items
 ├── llm/                 # Provider-agnostic LLM client subsystem
 │   ├── api.py, backend.py, executor.py, runtime.py, registry.py
@@ -298,7 +306,7 @@ src/
 - Use specific exception types (ResourceNotFoundException, ValidationException, etc.)
 - Proper logging with context instead of print statements
 - Global exception handlers defined in main.py
-- See docs/contributing/error-handling.mdx for details
+- See docs/v1/contributing/error-handling.mdx for details
 
 ### Notes
 
