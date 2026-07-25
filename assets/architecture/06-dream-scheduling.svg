@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="1000" height="700" role="img" aria-label="Dream 的排程與取消">
+<title>Dream 的排程與取消</title>
+<style>
+@media (prefers-color-scheme: dark){
+  .canvas{fill:#0d1117}
+  .ink{fill:#e6edf3} .mute{fill:#9198a1}
+  .edge{stroke:#7d8896} .edge-fill{fill:#7d8896}
+  .lifeline{stroke:#7d8896}
+  .blue-b{fill:#17233a;stroke:#5b9bf0}
+  .blue-t{fill:#cfe1ff}
+  .blue-s{stroke:#5b9bf0}
+  .purple-b{fill:#221b39;stroke:#a087ea}
+  .purple-t{fill:#e2d8ff}
+  .purple-s{stroke:#a087ea}
+  .green-b{fill:#12291d;stroke:#4fb583}
+  .green-t{fill:#cdeedb}
+  .green-s{stroke:#4fb583}
+  .amber-b{fill:#2e2109;stroke:#e0a441}
+  .amber-t{fill:#ffe6bd}
+  .amber-s{stroke:#e0a441}
+  .gray-b{fill:#1c222b;stroke:#6b7684}
+  .gray-t{fill:#d6dce4}
+  .gray-s{stroke:#6b7684}
+  .rose-b{fill:#2e1614;stroke:#e5796b}
+  .rose-t{fill:#ffd6d0}
+  .rose-s{stroke:#e5796b}
+  .teal-b{fill:#10262a;stroke:#4fb6c2}
+  .teal-t{fill:#c9eef2}
+  .teal-s{stroke:#4fb6c2}
+  .panel-b{fill:#12171f;stroke:#2b3340}
+  .panel-t{fill:#9198a1}
+  .panel-s{stroke:#2b3340}
+}
+</style>
+<defs>
+<marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 z" fill="#8b97a8" class="edge-fill"/></marker>
+<marker id="arw-s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 z" fill="#8b97a8" class="edge-fill"/></marker>
+<marker id="arw-open" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9" fill="none" stroke="#8b97a8" stroke-width="1.4" class="edge"/></marker>
+</defs>
+<rect width="1000" height="700" fill="#ffffff" class="canvas"/>
+<rect x="300" y="26" width="400" height="53.5" rx="9" fill="#f2f4f7" stroke="#98a2b3" stroke-width="1.4" class="gray-b"/>
+<text x="500.0" y="50.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#364152" text-anchor="middle" class="gray-t">每次寫入 documents 後</text>
+<text x="500.0" y="66.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.3" font-weight="400" fill="#364152" text-anchor="middle" class="gray-t" opacity="0.86">check_and_schedule_dream()</text>
+<path d="M500,106.0 L700.0,152 L500,198.0 L300.0,152 Z" fill="#fff3e2" stroke="#c47a12" stroke-width="1.4" class="amber-b"/>
+<text x="500" y="149.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#6b4106" text-anchor="middle" class="amber-t">explicit document 數 − 上次做夢時的數量</text>
+<text x="500" y="163.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#6b4106" text-anchor="middle" class="amber-t">≥ DREAM_DOCUMENT_THRESHOLD（50）？</text>
+<path d="M500,240.0 L700.0,282 L500,324.0 L300.0,282 Z" fill="#fff3e2" stroke="#c47a12" stroke-width="1.4" class="amber-b"/>
+<text x="500" y="286.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#6b4106" text-anchor="middle" class="amber-t">距上次做夢 ≥ MIN_HOURS_BETWEEN_DREAMS（8h）？</text>
+<path d="M500,358.0 L700.0,396 L500,434.0 L300.0,396 Z" fill="#fff3e2" stroke="#c47a12" stroke-width="1.4" class="amber-b"/>
+<text x="500" y="400.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#6b4106" text-anchor="middle" class="amber-t">queue 中已有 pending dream？</text>
+<rect x="300" y="468" width="400" height="53.5" rx="9" fill="#f1ecfd" stroke="#7256c8" stroke-width="1.4" class="purple-b"/>
+<text x="500.0" y="492.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#33246b" text-anchor="middle" class="purple-t">schedule_dream()</text>
+<text x="500.0" y="508.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.3" font-weight="400" fill="#33246b" text-anchor="middle" class="purple-t" opacity="0.86">asyncio 計時器，延遲 IDLE_TIMEOUT_MINUTES（60）</text>
+<path d="M500,557.0 L665.0,592 L500,627.0 L335.0,592 Z" fill="#fff3e2" stroke="#c47a12" stroke-width="1.4" class="amber-b"/>
+<text x="500" y="596.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#6b4106" text-anchor="middle" class="amber-t">計時期間有新訊息進來？</text>
+<rect x="806" y="128" width="168" height="37.5" rx="9" fill="#f2f4f7" stroke="#98a2b3" stroke-width="1.4" class="gray-b"/>
+<text x="890.0" y="152.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#364152" text-anchor="middle" class="gray-t">不排程</text>
+<rect x="742" y="556" width="240" height="52.5" rx="9" fill="#fdeceb" stroke="#cf4b3f" stroke-width="1.4" class="rose-b"/>
+<text x="862.0" y="579.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#6f1f18" text-anchor="middle" class="rose-t">cancel_dreams_for_observed()</text>
+<text x="862.0" y="595.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.3" font-weight="400" fill="#6f1f18" text-anchor="middle" class="rose-t" opacity="0.86">取消，重新等待閒置</text>
+<rect x="30" y="556" width="236" height="53" rx="9" fill="#e6f5ec" stroke="#2c8459" stroke-width="1.4" class="green-b"/>
+<text x="148.0" y="580" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#14452e" text-anchor="middle" class="green-t">enqueue_dream()</text>
+<text x="148.0" y="596" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.8" font-weight="400" fill="#14452e" text-anchor="middle" class="green-t" opacity="0.86">→ 寫入 queue</text>
+<rect x="30" y="640" width="236" height="37" rx="9" fill="#e6f5ec" stroke="#2c8459" stroke-width="1.4" class="green-b"/>
+<text x="148.0" y="664" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#14452e" text-anchor="middle" class="green-t">worker → process_dream()</text>
+<line x1="500" y1="78" x2="500" y2="108" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<line x1="500" y1="198" x2="500" y2="242" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="506" y="216.5" width="18.5" height="15.5" rx="4" fill="#ffffff" class="canvas"/>
+<text x="510" y="226" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#1c2530" text-anchor="start" class="mute">是</text>
+<line x1="500" y1="324" x2="500" y2="360" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="506" y="336.5" width="18.5" height="15.5" rx="4" fill="#ffffff" class="canvas"/>
+<text x="510" y="346" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#1c2530" text-anchor="start" class="mute">是</text>
+<line x1="500" y1="434" x2="500" y2="464" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="506" y="446.5" width="18.5" height="15.5" rx="4" fill="#ffffff" class="canvas"/>
+<text x="510" y="456" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#1c2530" text-anchor="start" class="mute">否</text>
+<line x1="500" y1="546" x2="500" y2="559" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<path d="M700,152 C760,152 800,152 830,168" fill="none" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<path d="M700,282 C760,282 780,282 830,168" fill="none" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<path d="M700,396 C760,396 780,396 830,168" fill="none" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="750.75" y="134.5" width="18.5" height="15.5" rx="4" fill="#ffffff" class="canvas"/>
+<text x="760" y="144" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">否</text>
+<rect x="762.75" y="266.5" width="18.5" height="15.5" rx="4" fill="#ffffff" class="canvas"/>
+<text x="772" y="276" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">否</text>
+<rect x="762.75" y="380.5" width="18.5" height="15.5" rx="4" fill="#ffffff" class="canvas"/>
+<text x="772" y="390" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">是</text>
+<path d="M665,592 C700,592 710,580 738,576" fill="none" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="696" y="574.5" width="18.5" height="15.5" rx="4" fill="#ffffff" class="canvas"/>
+<text x="700" y="584" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#1c2530" text-anchor="start" class="mute">是</text>
+<path d="M335,592 L304,592 Q296,592 296,584 L296,564 Q296,556 288,556 L270,556" fill="none" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="300" y="536.5" width="60.5" height="15.5" rx="4" fill="#ffffff" class="canvas"/>
+<text x="304" y="546" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#1c2530" text-anchor="start" class="mute">否，計時到</text>
+<line x1="148" y1="606" x2="148" y2="636" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<text x="500" y="682" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">三個條件必須同時滿足；任何新訊息都會取消計時器 — 見 §17.2 的排程互卡問題</text>
+</svg>

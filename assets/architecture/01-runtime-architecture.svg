@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 600" width="1180" height="600" role="img" aria-label="Honcho 執行期架構：API server 與 deriver worker">
+<title>Honcho 執行期架構：API server 與 deriver worker</title>
+<style>
+@media (prefers-color-scheme: dark){
+  .canvas{fill:#0d1117}
+  .ink{fill:#e6edf3} .mute{fill:#9198a1}
+  .edge{stroke:#7d8896} .edge-fill{fill:#7d8896}
+  .lifeline{stroke:#7d8896}
+  .blue-b{fill:#17233a;stroke:#5b9bf0}
+  .blue-t{fill:#cfe1ff}
+  .blue-s{stroke:#5b9bf0}
+  .purple-b{fill:#221b39;stroke:#a087ea}
+  .purple-t{fill:#e2d8ff}
+  .purple-s{stroke:#a087ea}
+  .green-b{fill:#12291d;stroke:#4fb583}
+  .green-t{fill:#cdeedb}
+  .green-s{stroke:#4fb583}
+  .amber-b{fill:#2e2109;stroke:#e0a441}
+  .amber-t{fill:#ffe6bd}
+  .amber-s{stroke:#e0a441}
+  .gray-b{fill:#1c222b;stroke:#6b7684}
+  .gray-t{fill:#d6dce4}
+  .gray-s{stroke:#6b7684}
+  .rose-b{fill:#2e1614;stroke:#e5796b}
+  .rose-t{fill:#ffd6d0}
+  .rose-s{stroke:#e5796b}
+  .teal-b{fill:#10262a;stroke:#4fb6c2}
+  .teal-t{fill:#c9eef2}
+  .teal-s{stroke:#4fb6c2}
+  .panel-b{fill:#12171f;stroke:#2b3340}
+  .panel-t{fill:#9198a1}
+  .panel-s{stroke:#2b3340}
+}
+</style>
+<defs>
+<marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 z" fill="#8b97a8" class="edge-fill"/></marker>
+<marker id="arw-s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 z" fill="#8b97a8" class="edge-fill"/></marker>
+<marker id="arw-open" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9" fill="none" stroke="#8b97a8" stroke-width="1.4" class="edge"/></marker>
+</defs>
+<rect width="1180" height="600" fill="#ffffff" class="canvas"/>
+<rect x="236" y="14" width="908" height="54" rx="9" fill="#fff3e2" stroke="#c47a12" stroke-width="1.4" class="amber-b"/>
+<text x="690.0" y="39" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#6b4106" text-anchor="middle" class="amber-t">LLM / Embedding Providers</text>
+<text x="690.0" y="55" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.8" font-weight="400" fill="#6b4106" text-anchor="middle" class="amber-t" opacity="0.86">anthropic · openai · gemini</text>
+<rect x="36" y="208" width="176" height="53.5" rx="9" fill="#e4f4f6" stroke="#2a8894" stroke-width="1.4" class="teal-b"/>
+<text x="124.0" y="232.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#10454c" text-anchor="middle" class="teal-t">客戶端 / Agent</text>
+<text x="124.0" y="248.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.3" font-weight="400" fill="#10454c" text-anchor="middle" class="teal-t" opacity="0.86">Python / TS SDK</text>
+<rect x="236" y="96" width="300" height="252" rx="13" fill="#fbfcfe" stroke="#d7dee8" stroke-width="1.3" class="panel-b" stroke-dasharray="6 5"/>
+<text x="251" y="118" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#5b6673" text-anchor="start" class="panel-t">API Server</text>
+<text x="251" y="134" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="10.5" font-weight="400" fill="#5b6673" text-anchor="start" class="panel-t" opacity="0.9">uv run fastapi dev src/main.py</text>
+<rect x="252" y="146" width="268" height="53.5" rx="9" fill="#e8f1fd" stroke="#2f6fd0" stroke-width="1.4" class="blue-b"/>
+<text x="386.0" y="170.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#10315e" text-anchor="middle" class="blue-t">Dialectic Agent</text>
+<text x="386.0" y="186.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.3" font-weight="400" fill="#10315e" text-anchor="middle" class="blue-t" opacity="0.86">同步、行程內工具迴圈</text>
+<rect x="252" y="216" width="268" height="37.5" rx="9" fill="#e8f1fd" stroke="#2f6fd0" stroke-width="1.4" class="blue-b"/>
+<text x="386.0" y="240.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#10315e" text-anchor="middle" class="blue-t">Routers  /v3/*</text>
+<rect x="252" y="272" width="268" height="53.5" rx="9" fill="#e8f1fd" stroke="#2f6fd0" stroke-width="1.4" class="blue-b"/>
+<text x="386.0" y="296.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#10315e" text-anchor="middle" class="blue-t">enqueue.py</text>
+<text x="386.0" y="312.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.3" font-weight="400" fill="#10315e" text-anchor="middle" class="blue-t" opacity="0.86">佇列生產者</text>
+<rect x="568" y="96" width="576" height="252" rx="13" fill="#fbfcfe" stroke="#d7dee8" stroke-width="1.3" class="panel-b" stroke-dasharray="6 5"/>
+<text x="583" y="118" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#5b6673" text-anchor="start" class="panel-t">Deriver Worker</text>
+<text x="583" y="134" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="10.5" font-weight="400" fill="#5b6673" text-anchor="start" class="panel-t" opacity="0.9">uv run python -m src.deriver</text>
+<rect x="584" y="146" width="128" height="52.5" rx="9" fill="#f1ecfd" stroke="#7256c8" stroke-width="1.4" class="purple-b"/>
+<text x="648.0" y="169.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#33246b" text-anchor="middle" class="purple-t">Deriver</text>
+<text x="648.0" y="185.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.3" font-weight="400" fill="#33246b" text-anchor="middle" class="purple-t" opacity="0.86">單次 LLM 呼叫</text>
+<rect x="724" y="146" width="128" height="52.5" rx="9" fill="#f1ecfd" stroke="#7256c8" stroke-width="1.4" class="purple-b"/>
+<text x="788.0" y="169.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#33246b" text-anchor="middle" class="purple-t">Summarizer</text>
+<text x="788.0" y="185.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.3" font-weight="400" fill="#33246b" text-anchor="middle" class="purple-t" opacity="0.86">兩層摘要</text>
+<rect x="864" y="146" width="128" height="52.5" rx="9" fill="#f1ecfd" stroke="#7256c8" stroke-width="1.4" class="purple-b"/>
+<text x="928.0" y="169.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#33246b" text-anchor="middle" class="purple-t">Dreamer</text>
+<text x="928.0" y="185.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.3" font-weight="400" fill="#33246b" text-anchor="middle" class="purple-t" opacity="0.86">Deduction/Induction</text>
+<rect x="1004" y="146" width="128" height="52.5" rx="9" fill="#f1ecfd" stroke="#7256c8" stroke-width="1.4" class="purple-b"/>
+<text x="1068.0" y="169.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#33246b" text-anchor="middle" class="purple-t">Reconciler</text>
+<text x="1068.0" y="185.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.3" font-weight="400" fill="#33246b" text-anchor="middle" class="purple-t" opacity="0.86">向量同步</text>
+<rect x="584" y="262" width="548" height="37.5" rx="9" fill="#f1ecfd" stroke="#7256c8" stroke-width="1.4" class="purple-b"/>
+<text x="858.0" y="286.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#33246b" text-anchor="middle" class="purple-t">QueueManager 輪詢迴圈 — 搶佔 work unit、批次組裝</text>
+<rect x="330" y="418" width="620" height="54" rx="9" fill="#e6f5ec" stroke="#2c8459" stroke-width="1.4" class="green-b"/>
+<text x="640.0" y="443" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#14452e" text-anchor="middle" class="green-t">Postgres + pgvector</text>
+<text x="640.0" y="459" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.8" font-weight="400" fill="#14452e" text-anchor="middle" class="green-t" opacity="0.86">messages · message_embeddings · collections · documents · queue</text>
+<rect x="36" y="418" width="268" height="53" rx="9" fill="#fdeceb" stroke="#cf4b3f" stroke-width="1.4" class="rose-b"/>
+<text x="170.0" y="442" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#6f1f18" text-anchor="middle" class="rose-t">Redis / cashews</text>
+<text x="170.0" y="458" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.8" font-weight="400" fill="#6f1f18" text-anchor="middle" class="rose-t" opacity="0.86">API 與 worker 共用的讀取快取</text>
+<line x1="212" y1="235" x2="244" y2="235" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="210.77" y="216.5" width="34.46" height="15.5" rx="4" fill="#ffffff" class="canvas"/>
+<text x="228" y="226" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">HTTP</text>
+<line x1="386" y1="214" x2="386" y2="203" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<line x1="352" y1="255" x2="352" y2="268" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<path d="M400,144 L400,73" fill="none" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)" marker-start="url(#arw)"/>
+<rect x="355.91625" y="98.5" width="88.1675" height="15.5" rx="4" fill="#ffffff" class="canvas"/>
+<text x="400" y="108" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">推論 · 工具迴圈</text>
+<path d="M648,144 L648,73" fill="none" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)" marker-start="url(#arw)"/>
+<path d="M788,144 L788,73" fill="none" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)" marker-start="url(#arw)"/>
+<path d="M928,144 L928,73" fill="none" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)" marker-start="url(#arw)"/>
+<path d="M1068,144 L1068,73" fill="none" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)" marker-start="url(#arw)"/>
+<rect x="738.66625" y="98.5" width="98.6675" height="15.5" rx="4" fill="#ffffff" class="canvas"/>
+<text x="788" y="108" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">推論 / 結構化輸出</text>
+<rect x="1037.82875" y="98.5" width="60.342499999999994" height="15.5" rx="4" fill="#ffffff" class="canvas"/>
+<text x="1068" y="108" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">embedding</text>
+<line x1="620" y1="260" x2="620" y2="201" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<line x1="760" y1="260" x2="760" y2="201" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<line x1="900" y1="260" x2="900" y2="201" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<line x1="1040" y1="260" x2="1040" y2="201" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<path d="M520,172 L544,172 Q552,172 552,180 L552,414" fill="none" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="507.91625" y="374.5" width="88.1675" height="15.5" rx="4" fill="#ffffff" class="canvas"/>
+<text x="552" y="384" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">查詢記憶 / 訊息</text>
+<line x1="352" y1="327" x2="352" y2="414" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="310.9875" y="374.5" width="82.02499999999999" height="15.5" rx="4" fill="#ffffff" class="canvas"/>
+<text x="352" y="384" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">INSERT queue</text>
+<line x1="660" y1="414" x2="660" y2="301" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="614.60375" y="374.5" width="90.7925" height="15.5" rx="4" fill="#ffffff" class="canvas"/>
+<text x="660" y="384" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">claim work unit</text>
+<line x1="860" y1="301" x2="860" y2="414" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="816.8875" y="374.5" width="86.225" height="15.5" rx="4" fill="#ffffff" class="canvas"/>
+<text x="860" y="384" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">標記 processed</text>
+<path d="M1132,172 L1156,172 Q1164,172 1164,180 L1164,384 Q1164,392 1156,392 L960,392 Q952,392 952,400 L952,414" fill="none" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="972.11125" y="376.5" width="159.77749999999997" height="15.5" rx="4" fill="#ffffff" class="canvas"/>
+<text x="1052" y="386" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">寫入 documents / summaries</text>
+<text x="978" y="452" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#1c2530" text-anchor="start" class="mute">實線 = 資料流</text>
+<text x="978" y="471" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#1c2530" text-anchor="start" class="mute">雙箭頭 = 往返呼叫</text>
+<text x="978" y="490" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#1c2530" text-anchor="start" class="mute">queue 是 Postgres 的一張表</text>
+<text x="978" y="509" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#1c2530" text-anchor="start" class="mute">Redis 為讀取快取，兩個行程共用</text>
+<text x="590" y="566" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">外部供應商在上、儲存在下、兩個行程在中間 — HTTP 請求路徑上永遠不等待 LLM</text>
+</svg>

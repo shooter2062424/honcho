@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1130 250" width="1130" height="250" role="img" aria-label="Dream 的執行階段">
+<title>Dream 的執行階段</title>
+<style>
+@media (prefers-color-scheme: dark){
+  .canvas{fill:#0d1117}
+  .ink{fill:#e6edf3} .mute{fill:#9198a1}
+  .edge{stroke:#7d8896} .edge-fill{fill:#7d8896}
+  .lifeline{stroke:#7d8896}
+  .blue-b{fill:#17233a;stroke:#5b9bf0}
+  .blue-t{fill:#cfe1ff}
+  .blue-s{stroke:#5b9bf0}
+  .purple-b{fill:#221b39;stroke:#a087ea}
+  .purple-t{fill:#e2d8ff}
+  .purple-s{stroke:#a087ea}
+  .green-b{fill:#12291d;stroke:#4fb583}
+  .green-t{fill:#cdeedb}
+  .green-s{stroke:#4fb583}
+  .amber-b{fill:#2e2109;stroke:#e0a441}
+  .amber-t{fill:#ffe6bd}
+  .amber-s{stroke:#e0a441}
+  .gray-b{fill:#1c222b;stroke:#6b7684}
+  .gray-t{fill:#d6dce4}
+  .gray-s{stroke:#6b7684}
+  .rose-b{fill:#2e1614;stroke:#e5796b}
+  .rose-t{fill:#ffd6d0}
+  .rose-s{stroke:#e5796b}
+  .teal-b{fill:#10262a;stroke:#4fb6c2}
+  .teal-t{fill:#c9eef2}
+  .teal-s{stroke:#4fb6c2}
+  .panel-b{fill:#12171f;stroke:#2b3340}
+  .panel-t{fill:#9198a1}
+  .panel-s{stroke:#2b3340}
+}
+</style>
+<defs>
+<marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 z" fill="#8b97a8" class="edge-fill"/></marker>
+<marker id="arw-s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 z" fill="#8b97a8" class="edge-fill"/></marker>
+<marker id="arw-open" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9" fill="none" stroke="#8b97a8" stroke-width="1.4" class="edge"/></marker>
+</defs>
+<rect width="1130" height="250" fill="#ffffff" class="canvas"/>
+<rect x="42" y="62" width="244" height="71.5" rx="9" fill="#f2f4f7" stroke="#98a2b3" stroke-width="1.4" class="gray-b"/>
+<text x="164.0" y="86.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#364152" text-anchor="middle" class="gray-t">0 · Surprisal 取樣</text>
+<text x="164.0" y="103.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.3" font-weight="400" fill="#364152" text-anchor="middle" class="gray-t" opacity="0.86">可選，預設關閉</text>
+<text x="164.0" y="120.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.3" font-weight="400" fill="#364152" text-anchor="middle" class="gray-t" opacity="0.86">產生 exploration hints</text>
+<line x1="292" y1="116" x2="308" y2="116" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="314" y="62" width="244" height="71.5" rx="9" fill="#f1ecfd" stroke="#7256c8" stroke-width="1.4" class="purple-b"/>
+<text x="436.0" y="86.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#33246b" text-anchor="middle" class="purple-t">1 · DeductionSpecialist</text>
+<text x="436.0" y="103.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.3" font-weight="400" fill="#33246b" text-anchor="middle" class="purple-t" opacity="0.86">explicit → deductive</text>
+<text x="436.0" y="120.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.3" font-weight="400" fill="#33246b" text-anchor="middle" class="purple-t" opacity="0.86">唯一可寫 peer card</text>
+<line x1="564" y1="116" x2="580" y2="116" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="586" y="62" width="244" height="71.5" rx="9" fill="#f1ecfd" stroke="#7256c8" stroke-width="1.4" class="purple-b"/>
+<text x="708.0" y="86.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#33246b" text-anchor="middle" class="purple-t">2 · InductionSpecialist</text>
+<text x="708.0" y="103.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.3" font-weight="400" fill="#33246b" text-anchor="middle" class="purple-t" opacity="0.86">explicit + deductive → inductive</text>
+<text x="708.0" y="120.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.3" font-weight="400" fill="#33246b" text-anchor="middle" class="purple-t" opacity="0.86">無 update_peer_card</text>
+<line x1="836" y1="116" x2="852" y2="116" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="858" y="62" width="244" height="71.5" rx="9" fill="#e6f5ec" stroke="#2c8459" stroke-width="1.4" class="green-b"/>
+<text x="980.0" y="86.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#14452e" text-anchor="middle" class="green-t">3 · Guard pair 原子更新</text>
+<text x="980.0" y="103.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.3" font-weight="400" fill="#14452e" text-anchor="middle" class="green-t" opacity="0.86">last_dream_at +</text>
+<text x="980.0" y="120.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.3" font-weight="400" fill="#14452e" text-anchor="middle" class="green-t" opacity="0.86">last_dream_document_count</text>
+<text x="565" y="30" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#1c2530" text-anchor="middle" class="ink">orchestrator.run_dream() — 兩個 specialist 依序執行</text>
+<text x="565" y="210" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">階段 2 排在階段 1 之後，才看得見剛產生的 deductive 結論；階段 3 失敗不推進 baseline，下次重試</text>
+</svg>

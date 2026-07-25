@@ -2,6 +2,8 @@
 
 > 本文件以繁體中文撰寫，內容全部對照 `src/` 目前的實作。凡是提到程式符號（函式、設定、資料表欄位）時一律使用程式碼中的原始名稱。
 >
+> **圖表**：本文所有圖表為 `assets/architecture/*.svg`，由 `assets/architecture/generate.py` 產生（`python3 assets/architecture/generate.py`）。SVG 會跟隨系統的淺色／深色主題切換配色。
+>
 > **術語對照**：對外 API 與文件稱為 **conclusion（結論）** 的東西，在程式碼中的符號名稱是 **observation（觀察）**（`create_observations`、`delete_observations`、`get_observation_context` …）。兩者是同一件事，本文敘述使用「結論／觀察」交替，引用程式碼時保留原名。
 
 ---
@@ -45,44 +47,7 @@ Honcho 是一個「給 AI agent 用的記憶與社會認知基礎設施層」。
 
 Honcho 在執行期是**兩個互相合作的行程**，共用一個 Postgres（含 pgvector）與一個 Redis 快取。
 
-```mermaid
-flowchart LR
-    subgraph Client["客戶端 / Agent"]
-        SDK["Python / TypeScript SDK"]
-    end
-
-    subgraph API["API Server（uv run fastapi dev src/main.py）"]
-        R["Routers /v3/*"]
-        D["Dialectic Agent（同步、行程內）"]
-        EQ["enqueue.py（生產者）"]
-    end
-
-    subgraph Worker["Deriver Worker（python -m src.deriver）"]
-        QM["QueueManager 輪詢迴圈"]
-        DV["Deriver（單次 LLM 呼叫）"]
-        SM["Summarizer"]
-        DR["Dreamer（Deduction / Induction）"]
-        RC["Reconciler Scheduler（行程內排程）"]
-    end
-
-    PG[("Postgres + pgvector")]
-    RD[("Redis / cashews")]
-    LLM["LLM Providers<br/>anthropic / openai / gemini"]
-
-    SDK -->|HTTP| R
-    R --> EQ
-    EQ -->|INSERT queue| PG
-    R --> D
-    D <--> LLM
-    D --> PG
-    QM -->|claim work unit| PG
-    QM --> DV & SM & DR
-    DV & SM & DR <--> LLM
-    DV & SM & DR --> PG
-    RC --> PG
-    R <--> RD
-    QM <--> RD
-```
+![Honcho 執行期架構：API server 與 deriver worker](assets/architecture/01-runtime-architecture.svg)
 
 | 行程 | 進入點 | 職責 | 是否可水平擴展 |
 |---|---|---|---|
@@ -107,19 +72,7 @@ Honcho 不區分「使用者」與「agent」，兩者統一是 **Peer**。這�
 
 ### 3.2 主要資料表（`src/models.py`）
 
-```mermaid
-erDiagram
-    WORKSPACE ||--o{ PEER : contains
-    WORKSPACE ||--o{ SESSION : contains
-    SESSION }o--o{ PEER : session_peers
-    SESSION ||--o{ MESSAGE : has
-    PEER ||--o{ MESSAGE : authors
-    MESSAGE ||--o{ MESSAGE_EMBEDDING : "chunked into"
-    PEER ||--o{ COLLECTION : "observer"
-    PEER ||--o{ COLLECTION : "observed"
-    COLLECTION ||--o{ DOCUMENT : stores
-    SESSION ||--o{ DOCUMENT : "session_name（來源）"
-```
+![Honcho 資料模型與關聯](assets/architecture/02-data-model.svg)
 
 | 資料表 | 角色 | 記憶相關重點 |
 |---|---|---|
@@ -176,21 +129,7 @@ collection = (workspace, observer, observed)
 
 Honcho 的「記憶」不是單一物件，而是四層並存、各有不同時效與粒度的東西：
 
-```mermaid
-flowchart TD
-    M["① 原始訊息 messages<br/>粒度最細 / 永久保存 / 可全文＋語意搜尋"]
-    S["② 會話摘要 summaries<br/>存在 session.internal_metadata<br/>短摘要每 20 則、長摘要每 60 則"]
-    C["③ 結論 documents（conclusions）<br/>存在 collection(observer, observed)<br/>explicit / deductive / inductive / contradiction"]
-    P["④ Peer Card<br/>存在 peer.internal_metadata<br/>最多 40 條穩定身分標記"]
-
-    M -->|Deriver 單次 LLM 呼叫| C
-    M -->|Summarizer| S
-    C -->|Dreamer 整併| C
-    C -->|Dreamer update_peer_card| P
-
-    style C fill:#e8f0ff,stroke:#3366cc
-    style P fill:#fff0e8,stroke:#cc6633
-```
+![Honcho 的四層記憶](assets/architecture/03-memory-layers.svg)
 
 | 層次 | 儲存位置 | 範圍 | 更新時機 | 讀取方式 |
 |---|---|---|---|---|
@@ -207,38 +146,7 @@ flowchart TD
 
 ### 5.1 完整流程圖
 
-```mermaid
-sequenceDiagram
-    autonumber
-    participant C as 客戶端
-    participant API as API Server
-    participant PG as Postgres
-    participant Q as queue
-    participant W as Deriver Worker
-    participant LLM as LLM
-    participant EMB as Embedding API
-
-    C->>API: POST /v3/.../sessions/{id}/messages（最多 100 則）
-    API->>PG: crud.create_messages()<br/>寫 messages（配 seq_in_session）<br/>+ 寫 message_embeddings（sync_state='pending'，embedding 為 NULL）
-    API->>API: enqueue()：取消該 peer 的 pending dream
-    API->>PG: 解析 session/peer 設定（observe_me / observe_others）
-    API->>Q: INSERT queue（representation 任務，可能加上 summary 任務）
-    API-->>C: 201 立刻回應（不等 LLM）
-
-    loop QueueManager 輪詢
-        W->>PG: 查可用 work unit（累積 token ≥ 門檻 或 已過期）
-        W->>PG: INSERT active_queue_sessions（ON CONFLICT DO NOTHING）→ 搶佔
-    end
-
-    W->>PG: get_queue_item_batch()：抓該 work unit 的訊息 + 交錯脈絡
-    W->>LLM: minimal_deriver_prompt（單次結構化輸出呼叫）
-    LLM-->>W: PromptRepresentation { explicit: [...] }
-    W->>EMB: simple_batch_embed(所有結論文字)
-    EMB-->>W: 向量
-    W->>PG: 對每個 observer：get_or_create_collection + create_documents（含去重）
-    W->>PG: check_and_schedule_dream()：達門檻就排定 dream
-    W->>Q: 標記 queue items 為 processed
-```
+![寫入路徑：訊息如何變成記憶](assets/architecture/04-write-path.svg)
 
 ### 5.2 步驟細節
 
@@ -407,14 +315,7 @@ existing_match.times_derived = func.greatest(models.Document.times_derived + 1, 
 
 `is_rejected_duplicate()`：
 
-```mermaid
-flowchart TD
-    A["新 document"] --> B["向量搜尋 max_distance=0.05（≈ cosine 相似度 ≥ 0.95）<br/>過濾同 level；explicit 另限同 session"]
-    B -->|沒找到| C["NOT_DUPLICATE → 正常寫入"]
-    B -->|找到 existing| D["token 集合比較<br/>score = len(tokens) + unique_tokens × 10"]
-    D -->|score_new ≥ score_existing| E["REPLACED_EXISTING<br/>舊的 soft-delete（deleted_at）<br/>新的繼承 times_derived+1"]
-    D -->|score_new < score_existing| F["REJECTED<br/>舊的 times_derived += 1<br/>新的丟棄"]
-```
+![語意去重的判定流程](assets/architecture/05-semantic-dedup.svg)
 
 評分公式 `len(tokens) + unique_tokens × 10` 的意思是：**資訊量多的那條留下來**，獨有 token 的權重是 10 倍。
 
@@ -435,20 +336,7 @@ Deriver 只寫 explicit 事實，那推論從哪來？答案是 **Dreamer**—�
 
 ### 8.1 排程機制（`dreamer/dream_scheduler.py`）
 
-```mermaid
-flowchart TD
-    A["每次寫入 documents 後<br/>check_and_schedule_dream()"] --> B{"explicit document 數<br/>− 上次做夢時的數量<br/>≥ DOCUMENT_THRESHOLD（50）?"}
-    B -->|否| Z["不排程"]
-    B -->|是| C{"距上次做夢 <br/>≥ MIN_HOURS_BETWEEN_DREAMS（8h）?"}
-    C -->|否| Z
-    C -->|是| D{"queue 中已有<br/>pending dream?"}
-    D -->|是| Z
-    D -->|否| E["schedule_dream()<br/>asyncio 計時器，延遲 IDLE_TIMEOUT_MINUTES（60）"]
-    E --> F{"期間有新訊息進來?"}
-    F -->|是| G["enqueue() 呼叫<br/>cancel_dreams_for_observed()<br/>→ 取消，重新等待閒置"]
-    F -->|否，計時到| H["enqueue_dream() → 寫入 queue"]
-    H --> I["Deriver worker 消費 → process_dream()"]
-```
+![Dream 的排程與取消](assets/architecture/06-dream-scheduling.svg)
 
 **只數 `level='explicit'` 的 document。** 這是刻意的——如果把 Dreamer 自己產生的 deductive/inductive 也算進門檻，就會形成「做夢 → 產生更多 document → 又達門檻 → 又做夢」的正回饋失控迴圈。
 
@@ -459,12 +347,7 @@ flowchart TD
 
 ### 8.2 Dream 執行流程（`dreamer/orchestrator.py::run_dream`）
 
-```mermaid
-flowchart LR
-    A["0. Surprisal 取樣<br/>（可選，預設關閉）"] --> B["1. DeductionSpecialist"]
-    B --> C["2. InductionSpecialist"]
-    C --> D["3. 原子更新 guard pair<br/>last_dream_at + last_dream_document_count"]
-```
+![Dream 的執行階段](assets/architecture/07-dream-phases.svg)
 
 #### 階段 0：Surprisal 取樣（`dreamer/surprisal.py`）
 
@@ -603,40 +486,7 @@ Dialectic 是**唯一在同步請求路徑上使用工具迴圈的 agent**。
 
 ### 11.1 流程
 
-```mermaid
-sequenceDiagram
-    autonumber
-    participant C as 客戶端
-    participant R as POST /peers/{id}/chat
-    participant A as DialecticAgent
-    participant EMB as Embedding
-    participant PG as Postgres
-    participant LLM as LLM
-
-    C->>R: { query, target?, session_id?, stream?, reasoning_level }
-    R->>R: 授權檢查（peer-scoped key 必須是該 session 成員）
-    R->>PG: preflight（read_only）：驗證 peer、取 configuration
-    R->>PG: get_peer_card(observer→observer) 與 get_peer_card(observer→observed)
-    Note over R,PG: DB session 在此關閉，之後不持有連線
-
-    R->>A: 建立 DialecticAgent（peer card 注入 system prompt）
-    A->>PG: _initialize_session_history()：撈最近訊息（≤ SESSION_HISTORY_MAX_TOKENS 4096）
-    A->>A: 附加到 system prompt 的 <session_history> 區塊
-
-    A->>EMB: embed(query)（算一次，兩次搜尋共用）
-    A->>PG: search_memory(levels=["explicit"], limit=25)
-    A->>PG: search_memory(levels=["deductive","inductive","contradiction"], limit=25)
-    A->>A: 組成 user message：Query + "## Relevant Observations (prefetched)"
-
-    loop 最多 MAX_TOOL_ITERATIONS 次（依 reasoning level）
-        A->>LLM: messages + DIALECTIC_TOOLS
-        LLM-->>A: tool_use
-        A->>PG: 執行工具（每個工具管自己的短命 DB session）
-        A->>LLM: tool_result
-    end
-    LLM-->>A: 最終回答（可 SSE 串流）
-    A-->>C: 回應 + 發出 DialecticCompletedEvent
-```
+![讀取路徑：Dialectic 如何回想](assets/architecture/08-read-path.svg)
 
 ### 11.2 三個關鍵設計
 
@@ -714,36 +564,7 @@ class Collection(Base):
 
 **所以「跨 session 記憶」的預設行為是：什麼都不用做，它自然就跨了。** 需要額外工作的反而是「限制在單一 session」。
 
-```mermaid
-flowchart TD
-    subgraph S1["Session #1（一月）"]
-        M1["messages"]
-        SUM1["summaries（僅屬於 S1）"]
-    end
-    subgraph S2["Session #2（三月）"]
-        M2["messages"]
-        SUM2["summaries（僅屬於 S2）"]
-    end
-    subgraph S3["Session #3（今天）"]
-        M3["messages"]
-        SUM3["summaries（僅屬於 S3）"]
-    end
-
-    COL["collection(workspace, alice, alice)<br/>documents：explicit / deductive / inductive"]
-    CARD["peers.internal_metadata['peer_card']"]
-
-    M1 -->|Deriver| COL
-    M2 -->|Deriver| COL
-    M3 -->|Deriver| COL
-    COL -->|Dreamer 跨 session 整併| COL
-    COL -->|Dreamer update_peer_card| CARD
-
-    COL -->|search_memory 不帶 session filter| ANS["Session #3 的 Dialectic 回答"]
-    CARD -->|注入 system prompt| ANS
-
-    style COL fill:#e8f0ff,stroke:#3366cc,stroke-width:2px
-    style CARD fill:#fff0e8,stroke:#cc6633,stroke-width:2px
-```
+![跨 session 記憶：為什麼新 session 讀得到舊記憶](assets/architecture/09-cross-session-memory.svg)
 
 ### 13.2 檢索側：預設不帶 session 過濾
 

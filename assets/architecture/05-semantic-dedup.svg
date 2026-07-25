@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 500" width="980" height="500" role="img" aria-label="語意去重的判定流程">
+<title>語意去重的判定流程</title>
+<style>
+@media (prefers-color-scheme: dark){
+  .canvas{fill:#0d1117}
+  .ink{fill:#e6edf3} .mute{fill:#9198a1}
+  .edge{stroke:#7d8896} .edge-fill{fill:#7d8896}
+  .lifeline{stroke:#7d8896}
+  .blue-b{fill:#17233a;stroke:#5b9bf0}
+  .blue-t{fill:#cfe1ff}
+  .blue-s{stroke:#5b9bf0}
+  .purple-b{fill:#221b39;stroke:#a087ea}
+  .purple-t{fill:#e2d8ff}
+  .purple-s{stroke:#a087ea}
+  .green-b{fill:#12291d;stroke:#4fb583}
+  .green-t{fill:#cdeedb}
+  .green-s{stroke:#4fb583}
+  .amber-b{fill:#2e2109;stroke:#e0a441}
+  .amber-t{fill:#ffe6bd}
+  .amber-s{stroke:#e0a441}
+  .gray-b{fill:#1c222b;stroke:#6b7684}
+  .gray-t{fill:#d6dce4}
+  .gray-s{stroke:#6b7684}
+  .rose-b{fill:#2e1614;stroke:#e5796b}
+  .rose-t{fill:#ffd6d0}
+  .rose-s{stroke:#e5796b}
+  .teal-b{fill:#10262a;stroke:#4fb6c2}
+  .teal-t{fill:#c9eef2}
+  .teal-s{stroke:#4fb6c2}
+  .panel-b{fill:#12171f;stroke:#2b3340}
+  .panel-t{fill:#9198a1}
+  .panel-s{stroke:#2b3340}
+}
+</style>
+<defs>
+<marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 z" fill="#8b97a8" class="edge-fill"/></marker>
+<marker id="arw-s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 z" fill="#8b97a8" class="edge-fill"/></marker>
+<marker id="arw-open" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9" fill="none" stroke="#8b97a8" stroke-width="1.4" class="edge"/></marker>
+</defs>
+<rect width="980" height="500" fill="#ffffff" class="canvas"/>
+<rect x="390" y="30" width="200" height="38" rx="9" fill="#f2f4f7" stroke="#98a2b3" stroke-width="1.4" class="gray-b"/>
+<text x="490.0" y="55" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#364152" text-anchor="middle" class="gray-t">新 document</text>
+<rect x="255" y="116" width="470" height="69.5" rx="9" fill="#e8f1fd" stroke="#2f6fd0" stroke-width="1.4" class="blue-b"/>
+<text x="490.0" y="140.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#10315e" text-anchor="middle" class="blue-t">向量搜尋  max_distance = 0.05</text>
+<text x="490.0" y="156.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.3" font-weight="400" fill="#10315e" text-anchor="middle" class="blue-t" opacity="0.86">（≈ cosine 相似度 ≥ 0.95）</text>
+<text x="490.0" y="172.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.3" font-weight="400" fill="#10315e" text-anchor="middle" class="blue-t" opacity="0.86">同 level；explicit 另限同 session</text>
+<rect x="716" y="208" width="240" height="53.5" rx="9" fill="#e6f5ec" stroke="#2c8459" stroke-width="1.4" class="green-b"/>
+<text x="836.0" y="232.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#14452e" text-anchor="middle" class="green-t">NOT_DUPLICATE</text>
+<text x="836.0" y="248.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.3" font-weight="400" fill="#14452e" text-anchor="middle" class="green-t" opacity="0.86">正常寫入</text>
+<rect x="255" y="236" width="470" height="53.5" rx="9" fill="#fff3e2" stroke="#c47a12" stroke-width="1.4" class="amber-b"/>
+<text x="490.0" y="260.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#6b4106" text-anchor="middle" class="amber-t">token 集合比較</text>
+<text x="490.0" y="276.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.3" font-weight="400" fill="#6b4106" text-anchor="middle" class="amber-t" opacity="0.86">score = len(tokens) + unique_tokens × 10</text>
+<rect x="30" y="356" width="430" height="69.5" rx="9" fill="#e4f4f6" stroke="#2a8894" stroke-width="1.4" class="teal-b"/>
+<text x="245.0" y="380.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#10454c" text-anchor="middle" class="teal-t">REPLACED_EXISTING</text>
+<text x="245.0" y="396.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.3" font-weight="400" fill="#10454c" text-anchor="middle" class="teal-t" opacity="0.86">舊的 soft-delete（deleted_at）</text>
+<text x="245.0" y="412.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.3" font-weight="400" fill="#10454c" text-anchor="middle" class="teal-t" opacity="0.86">新的繼承 times_derived + 1</text>
+<rect x="500" y="356" width="430" height="69.5" rx="9" fill="#fdeceb" stroke="#cf4b3f" stroke-width="1.4" class="rose-b"/>
+<text x="715.0" y="380.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#6f1f18" text-anchor="middle" class="rose-t">REJECTED</text>
+<text x="715.0" y="396.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.3" font-weight="400" fill="#6f1f18" text-anchor="middle" class="rose-t" opacity="0.86">舊的 times_derived += 1</text>
+<text x="715.0" y="412.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.3" font-weight="400" fill="#6f1f18" text-anchor="middle" class="rose-t" opacity="0.86">新的丟棄</text>
+<line x1="490" y1="84" x2="490" y2="112" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<path d="M725,151 C770,151 800,170 812,204" fill="none" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="770.25" y="158.5" width="39.5" height="15.5" rx="4" fill="#ffffff" class="canvas"/>
+<text x="790" y="168" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">沒找到</text>
+<line x1="490" y1="196" x2="490" y2="232" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="453.2925" y="210.5" width="73.415" height="15.5" rx="4" fill="#ffffff" class="canvas"/>
+<text x="490" y="220" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">找到 existing</text>
+<path d="M340,304 C340,330 300,330 245,352" fill="none" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="181.55" y="320.5" width="152.9" height="15.5" rx="4" fill="#ffffff" class="canvas"/>
+<text x="258" y="330" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">score_new ≥ score_existing</text>
+<path d="M640,304 C640,330 690,330 715,352" fill="none" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="645.55" y="320.5" width="152.9" height="15.5" rx="4" fill="#ffffff" class="canvas"/>
+<text x="722" y="330" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">score_new &lt; score_existing</text>
+<text x="490" y="466" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">兩種結果都不丟棄資訊：times_derived 記錄「這條結論又被導出一次」</text>
+</svg>

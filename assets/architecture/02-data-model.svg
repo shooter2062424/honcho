@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 626" width="1060" height="626" role="img" aria-label="Honcho 資料模型與關聯">
+<title>Honcho 資料模型與關聯</title>
+<style>
+@media (prefers-color-scheme: dark){
+  .canvas{fill:#0d1117}
+  .ink{fill:#e6edf3} .mute{fill:#9198a1}
+  .edge{stroke:#7d8896} .edge-fill{fill:#7d8896}
+  .lifeline{stroke:#7d8896}
+  .blue-b{fill:#17233a;stroke:#5b9bf0}
+  .blue-t{fill:#cfe1ff}
+  .blue-s{stroke:#5b9bf0}
+  .purple-b{fill:#221b39;stroke:#a087ea}
+  .purple-t{fill:#e2d8ff}
+  .purple-s{stroke:#a087ea}
+  .green-b{fill:#12291d;stroke:#4fb583}
+  .green-t{fill:#cdeedb}
+  .green-s{stroke:#4fb583}
+  .amber-b{fill:#2e2109;stroke:#e0a441}
+  .amber-t{fill:#ffe6bd}
+  .amber-s{stroke:#e0a441}
+  .gray-b{fill:#1c222b;stroke:#6b7684}
+  .gray-t{fill:#d6dce4}
+  .gray-s{stroke:#6b7684}
+  .rose-b{fill:#2e1614;stroke:#e5796b}
+  .rose-t{fill:#ffd6d0}
+  .rose-s{stroke:#e5796b}
+  .teal-b{fill:#10262a;stroke:#4fb6c2}
+  .teal-t{fill:#c9eef2}
+  .teal-s{stroke:#4fb6c2}
+  .panel-b{fill:#12171f;stroke:#2b3340}
+  .panel-t{fill:#9198a1}
+  .panel-s{stroke:#2b3340}
+}
+</style>
+<defs>
+<marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 z" fill="#8b97a8" class="edge-fill"/></marker>
+<marker id="arw-s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 z" fill="#8b97a8" class="edge-fill"/></marker>
+<marker id="arw-open" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9" fill="none" stroke="#8b97a8" stroke-width="1.4" class="edge"/></marker>
+</defs>
+<rect width="1060" height="626" fill="#ffffff" class="canvas"/>
+<rect x="430" y="22" width="200" height="54" rx="9" fill="#f2f4f7" stroke="#98a2b3" stroke-width="1.4" class="gray-b"/>
+<path d="M430,49 h200" stroke="#98a2b3" stroke-width="1.1" opacity="0.5" class="gray-s"/>
+<text x="530.0" y="41" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="12.5" font-weight="700" fill="#364152" text-anchor="middle" class="gray-t">workspaces</text>
+<text x="442" y="65" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="10" font-weight="400" fill="#364152" text-anchor="start" class="gray-t" opacity="0.85">name (PK)</text>
+<rect x="392" y="116" width="276" height="69" rx="9" fill="#fff3e2" stroke="#c47a12" stroke-width="1.4" class="amber-b"/>
+<path d="M392,143 h276" stroke="#c47a12" stroke-width="1.1" opacity="0.5" class="amber-s"/>
+<text x="530.0" y="135" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="12.5" font-weight="700" fill="#6b4106" text-anchor="middle" class="amber-t">session_peers</text>
+<text x="404" y="159" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="10" font-weight="400" fill="#6b4106" text-anchor="start" class="amber-t" opacity="0.85">observe_me / observe_others</text>
+<text x="404" y="174" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="10" font-weight="400" fill="#6b4106" text-anchor="start" class="amber-t" opacity="0.85">joined_at, left_at</text>
+<rect x="56" y="212" width="268" height="84" rx="9" fill="#e4f4f6" stroke="#2a8894" stroke-width="1.4" class="teal-b"/>
+<path d="M56,239 h268" stroke="#2a8894" stroke-width="1.1" opacity="0.5" class="teal-s"/>
+<text x="190.0" y="231" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="12.5" font-weight="700" fill="#10454c" text-anchor="middle" class="teal-t">peers</text>
+<text x="68" y="255" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="10" font-weight="400" fill="#10454c" text-anchor="start" class="teal-t" opacity="0.85">name, workspace_name</text>
+<text x="68" y="270" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="10" font-weight="400" fill="#10454c" text-anchor="start" class="teal-t" opacity="0.85">internal_metadata</text>
+<text x="68" y="285" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="10" font-weight="400" fill="#10454c" text-anchor="start" class="teal-t" opacity="0.85">  └ peer_card  ★</text>
+<rect x="736" y="212" width="268" height="84" rx="9" fill="#e4f4f6" stroke="#2a8894" stroke-width="1.4" class="teal-b"/>
+<path d="M736,239 h268" stroke="#2a8894" stroke-width="1.1" opacity="0.5" class="teal-s"/>
+<text x="870.0" y="231" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="12.5" font-weight="700" fill="#10454c" text-anchor="middle" class="teal-t">sessions</text>
+<text x="748" y="255" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="10" font-weight="400" fill="#10454c" text-anchor="start" class="teal-t" opacity="0.85">name, workspace_name</text>
+<text x="748" y="270" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="10" font-weight="400" fill="#10454c" text-anchor="start" class="teal-t" opacity="0.85">internal_metadata</text>
+<text x="748" y="285" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="10" font-weight="400" fill="#10454c" text-anchor="start" class="teal-t" opacity="0.85">  └ summaries  ★</text>
+<rect x="56" y="352" width="300" height="84" rx="9" fill="#e8f1fd" stroke="#2f6fd0" stroke-width="2" class="blue-b"/>
+<path d="M56,379 h300" stroke="#2f6fd0" stroke-width="1.1" opacity="0.5" class="blue-s"/>
+<text x="206.0" y="371" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="12.5" font-weight="700" fill="#10315e" text-anchor="middle" class="blue-t">collections  ★</text>
+<text x="68" y="395" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="10" font-weight="400" fill="#10315e" text-anchor="start" class="blue-t" opacity="0.85">observer, observed, workspace_name</text>
+<text x="68" y="410" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="10" font-weight="400" fill="#10315e" text-anchor="start" class="blue-t" opacity="0.85">UNIQUE(observer, observed, ws)</text>
+<text x="68" y="425" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="10" font-weight="400" fill="#10315e" text-anchor="start" class="blue-t" opacity="0.85">— 沒有 session_name 欄位</text>
+<rect x="736" y="352" width="288" height="84" rx="9" fill="#f2f4f7" stroke="#98a2b3" stroke-width="1.4" class="gray-b"/>
+<path d="M736,379 h288" stroke="#98a2b3" stroke-width="1.1" opacity="0.5" class="gray-s"/>
+<text x="880.0" y="371" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="12.5" font-weight="700" fill="#364152" text-anchor="middle" class="gray-t">messages</text>
+<text x="748" y="395" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="10" font-weight="400" fill="#364152" text-anchor="start" class="gray-t" opacity="0.85">seq_in_session</text>
+<text x="748" y="410" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="10" font-weight="400" fill="#364152" text-anchor="start" class="gray-t" opacity="0.85">content  (GIN 全文索引)</text>
+<text x="748" y="425" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="10" font-weight="400" fill="#364152" text-anchor="start" class="gray-t" opacity="0.85">peer_name, session_name</text>
+<rect x="56" y="480" width="300" height="84" rx="9" fill="#e8f1fd" stroke="#2f6fd0" stroke-width="1.4" class="blue-b"/>
+<path d="M56,507 h300" stroke="#2f6fd0" stroke-width="1.1" opacity="0.5" class="blue-s"/>
+<text x="206.0" y="499" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="12.5" font-weight="700" fill="#10315e" text-anchor="middle" class="blue-t">documents</text>
+<text x="68" y="523" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="10" font-weight="400" fill="#10315e" text-anchor="start" class="blue-t" opacity="0.85">content, level, embedding</text>
+<text x="68" y="538" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="10" font-weight="400" fill="#10315e" text-anchor="start" class="blue-t" opacity="0.85">source_ids, times_derived</text>
+<text x="68" y="553" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="10" font-weight="400" fill="#10315e" text-anchor="start" class="blue-t" opacity="0.85">session_name  (僅溯源)</text>
+<rect x="736" y="480" width="288" height="69" rx="9" fill="#f2f4f7" stroke="#98a2b3" stroke-width="1.4" class="gray-b"/>
+<path d="M736,507 h288" stroke="#98a2b3" stroke-width="1.1" opacity="0.5" class="gray-s"/>
+<text x="880.0" y="499" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="12.5" font-weight="700" fill="#364152" text-anchor="middle" class="gray-t">message_embeddings</text>
+<text x="748" y="523" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="10" font-weight="400" fill="#364152" text-anchor="start" class="gray-t" opacity="0.85">embedding  (HNSW)</text>
+<text x="748" y="538" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace" font-size="10" font-weight="400" fill="#364152" text-anchor="start" class="gray-t" opacity="0.85">sync_state</text>
+<path d="M470,76 C470,110 330,120 190,208" fill="none" stroke="#8b97a8" stroke-width="1.4" class="edge"/>
+<rect x="280.425" y="141" width="39.15" height="15" rx="4" fill="#ffffff" class="canvas"/>
+<text x="300" y="150" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">1 — N</text>
+<path d="M590,76 C590,110 730,120 870,208" fill="none" stroke="#8b97a8" stroke-width="1.4" class="edge"/>
+<rect x="776.425" y="141" width="39.15" height="15" rx="4" fill="#ffffff" class="canvas"/>
+<text x="796" y="150" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">1 — N</text>
+<path d="M392,150 L332,150 Q324,150 324,158 L324,208" fill="none" stroke="#8b97a8" stroke-width="1.4" class="edge"/>
+<rect x="340.85" y="133" width="14.3" height="15" rx="4" fill="#ffffff" class="canvas"/>
+<text x="348" y="142" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">N</text>
+<path d="M668,150 L728,150 Q736,150 736,158 L736,208" fill="none" stroke="#8b97a8" stroke-width="1.4" class="edge"/>
+<rect x="704.85" y="133" width="14.3" height="15" rx="4" fill="#ffffff" class="canvas"/>
+<text x="712" y="142" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">N</text>
+<path d="M190,296 L190,348" fill="none" stroke="#8b97a8" stroke-width="1.4" class="edge"/>
+<rect x="196" y="315" width="111.55000000000001" height="15" rx="4" fill="#ffffff" class="canvas"/>
+<text x="200" y="324" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#1c2530" text-anchor="start" class="mute">observer / observed</text>
+<path d="M206,436 L206,476" fill="none" stroke="#8b97a8" stroke-width="1.4" class="edge"/>
+<rect x="212" y="453" width="39.15" height="15" rx="4" fill="#ffffff" class="canvas"/>
+<text x="216" y="462" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#1c2530" text-anchor="start" class="mute">1 — N</text>
+<path d="M870,296 L870,348" fill="none" stroke="#8b97a8" stroke-width="1.4" class="edge"/>
+<rect x="876" y="315" width="39.15" height="15" rx="4" fill="#ffffff" class="canvas"/>
+<text x="880" y="324" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#1c2530" text-anchor="start" class="mute">1 — N</text>
+<path d="M870,436 L870,476" fill="none" stroke="#8b97a8" stroke-width="1.4" class="edge"/>
+<rect x="876" y="453" width="39.15" height="15" rx="4" fill="#ffffff" class="canvas"/>
+<text x="880" y="462" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#1c2530" text-anchor="start" class="mute">1 — N</text>
+<path d="M324,260 L532,260 Q540,260 540,268 L540,384 Q540,392 548,392 L732,392" fill="none" stroke="#8b97a8" stroke-width="1.4" class="edge"/>
+<rect x="500.425" y="243" width="79.15" height="15" rx="4" fill="#ffffff" class="canvas"/>
+<text x="540" y="252" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">1 — N（作者）</text>
+<text x="530" y="596" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">★ = 記憶所在。collections 的唯一鍵不含 session_name，因此記憶天生跨 session；documents.session_name 只用於溯源與刪除</text>
+</svg>

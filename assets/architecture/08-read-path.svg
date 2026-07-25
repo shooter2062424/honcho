@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1348 963" width="1348" height="963" role="img" aria-label="讀取路徑：Dialectic 如何回想">
+<title>讀取路徑：Dialectic 如何回想</title>
+<style>
+@media (prefers-color-scheme: dark){
+  .canvas{fill:#0d1117}
+  .ink{fill:#e6edf3} .mute{fill:#9198a1}
+  .edge{stroke:#7d8896} .edge-fill{fill:#7d8896}
+  .lifeline{stroke:#7d8896}
+  .blue-b{fill:#17233a;stroke:#5b9bf0}
+  .blue-t{fill:#cfe1ff}
+  .blue-s{stroke:#5b9bf0}
+  .purple-b{fill:#221b39;stroke:#a087ea}
+  .purple-t{fill:#e2d8ff}
+  .purple-s{stroke:#a087ea}
+  .green-b{fill:#12291d;stroke:#4fb583}
+  .green-t{fill:#cdeedb}
+  .green-s{stroke:#4fb583}
+  .amber-b{fill:#2e2109;stroke:#e0a441}
+  .amber-t{fill:#ffe6bd}
+  .amber-s{stroke:#e0a441}
+  .gray-b{fill:#1c222b;stroke:#6b7684}
+  .gray-t{fill:#d6dce4}
+  .gray-s{stroke:#6b7684}
+  .rose-b{fill:#2e1614;stroke:#e5796b}
+  .rose-t{fill:#ffd6d0}
+  .rose-s{stroke:#e5796b}
+  .teal-b{fill:#10262a;stroke:#4fb6c2}
+  .teal-t{fill:#c9eef2}
+  .teal-s{stroke:#4fb6c2}
+  .panel-b{fill:#12171f;stroke:#2b3340}
+  .panel-t{fill:#9198a1}
+  .panel-s{stroke:#2b3340}
+}
+</style>
+<defs>
+<marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 z" fill="#8b97a8" class="edge-fill"/></marker>
+<marker id="arw-s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 z" fill="#8b97a8" class="edge-fill"/></marker>
+<marker id="arw-open" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9" fill="none" stroke="#8b97a8" stroke-width="1.4" class="edge"/></marker>
+</defs>
+<rect width="1348" height="963" fill="#ffffff" class="canvas"/>
+<line x1="142.0" y1="104" x2="142.0" y2="937" stroke="#8b97a8" stroke-width="1.1" stroke-dasharray="4 5" opacity="0.65" class="lifeline"/>
+<rect x="86.0" y="58" width="112" height="40" rx="9" fill="#e4f4f6" stroke="#2a8894" stroke-width="1.4" class="teal-b"/>
+<text x="142.0" y="84" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="650" fill="#10454c" text-anchor="middle" class="teal-t">客戶端</text>
+<line x1="410.0" y1="104" x2="410.0" y2="937" stroke="#8b97a8" stroke-width="1.1" stroke-dasharray="4 5" opacity="0.65" class="lifeline"/>
+<rect x="324.15625" y="58" width="171.6875" height="40" rx="9" fill="#e8f1fd" stroke="#2f6fd0" stroke-width="1.4" class="blue-b"/>
+<text x="410.0" y="84" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="650" fill="#10315e" text-anchor="middle" class="blue-t">POST /peers/{id}/chat</text>
+<line x1="678.0" y1="104" x2="678.0" y2="937" stroke="#8b97a8" stroke-width="1.1" stroke-dasharray="4 5" opacity="0.65" class="lifeline"/>
+<rect x="621.28125" y="58" width="113.4375" height="40" rx="9" fill="#f1ecfd" stroke="#7256c8" stroke-width="1.4" class="purple-b"/>
+<text x="678.0" y="84" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="650" fill="#33246b" text-anchor="middle" class="purple-t">DialecticAgent</text>
+<line x1="910.0" y1="104" x2="910.0" y2="937" stroke="#8b97a8" stroke-width="1.1" stroke-dasharray="4 5" opacity="0.65" class="lifeline"/>
+<rect x="854.018" y="58" width="112" height="40" rx="9" fill="#fdeceb" stroke="#cf4b3f" stroke-width="1.4" class="rose-b"/>
+<text x="910.018" y="84" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="650" fill="#6f1f18" text-anchor="middle" class="rose-t">Embedding</text>
+<line x1="1120.1" y1="104" x2="1120.1" y2="937" stroke="#8b97a8" stroke-width="1.1" stroke-dasharray="4 5" opacity="0.65" class="lifeline"/>
+<rect x="1064.0680000000002" y="58" width="112" height="40" rx="9" fill="#e6f5ec" stroke="#2c8459" stroke-width="1.4" class="green-b"/>
+<text x="1120.0680000000002" y="84" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="650" fill="#14452e" text-anchor="middle" class="green-t">Postgres</text>
+<line x1="1252.1" y1="104" x2="1252.1" y2="937" stroke="#8b97a8" stroke-width="1.1" stroke-dasharray="4 5" opacity="0.65" class="lifeline"/>
+<rect x="1196.0680000000002" y="58" width="112" height="40" rx="9" fill="#fff3e2" stroke="#c47a12" stroke-width="1.4" class="amber-b"/>
+<text x="1252.0680000000002" y="84" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="650" fill="#6b4106" text-anchor="middle" class="amber-t">LLM</text>
+<rect x="626.0" y="625" width="678.1" height="226" rx="10" fill="none" stroke="#7256c8" stroke-width="1.2" stroke-dasharray="5 5" opacity="0.75" class="purple-s"/>
+<rect x="626.0" y="625" width="305.1" height="19" rx="9" fill="#f1ecfd" stroke="#7256c8" stroke-width="1.2" class="purple-b"/>
+<text x="778.6" y="638.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="650" fill="#33246b" text-anchor="middle" class="purple-t">最多 MAX_TOOL_ITERATIONS 次（依 reasoning level）</text>
+<line x1="146.0" y1="139" x2="405.0" y2="139" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="117.18199999999982" y="121.2" width="317.63600000000037" height="15.8" rx="4" fill="#ffffff" class="canvas"/>
+<text x="276.0" y="131" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.8" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">{ query, target?, session_id?, stream?, reasoning_level }</text>
+<circle cx="40" cy="135" r="9" fill="#f2f4f7" stroke="#98a2b3" stroke-width="1.2" class="gray-b"/>
+<text x="40" y="138.4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#364152" text-anchor="middle" class="gray-t">1</text>
+<path d="M410.0,167 h34 a9,9 0 0 1 9,9 v12 a9,9 0 0 1 -9,9 h-30" fill="none" stroke="#8b97a8" stroke-width="1.4" class="edge" marker-end="url(#arw-s)"/>
+<text x="464.0" y="171" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.8" font-weight="400" fill="#1c2530" text-anchor="start" class="mute">授權檢查（peer-scoped key 必須是該 session 成員）</text>
+<circle cx="40" cy="181" r="9" fill="#f2f4f7" stroke="#98a2b3" stroke-width="1.2" class="gray-b"/>
+<text x="40" y="184.4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#364152" text-anchor="middle" class="gray-t">2</text>
+<line x1="414.0" y1="230" x2="1115.0680000000002" y2="230" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="622.848" y="212.2" width="284.37200000000024" height="15.8" rx="4" fill="#ffffff" class="canvas"/>
+<text x="765.0340000000001" y="222" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.8" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">preflight（read_only）：驗證 peer、取 configuration</text>
+<circle cx="40" cy="226" r="9" fill="#f2f4f7" stroke="#98a2b3" stroke-width="1.2" class="gray-b"/>
+<text x="40" y="229.4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#364152" text-anchor="middle" class="gray-t">3</text>
+<line x1="414.0" y1="267" x2="1115.0680000000002" y2="267" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="605.7299999999999" y="249.2" width="318.6080000000004" height="15.8" rx="4" fill="#ffffff" class="canvas"/>
+<text x="765.0340000000001" y="259" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.8" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">get_peer_card(observer→observer) 與 (observer→observed)</text>
+<circle cx="40" cy="263" r="9" fill="#f2f4f7" stroke="#98a2b3" stroke-width="1.2" class="gray-b"/>
+<text x="40" y="266.4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#364152" text-anchor="middle" class="gray-t">4</text>
+<rect x="380.0" y="285" width="770.0680000000002" height="30" rx="7" fill="#fff3e2" stroke="#c47a12" stroke-width="1.4" class="amber-b"/>
+<text x="765.0340000000001" y="305" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.8" font-weight="500" fill="#6b4106" text-anchor="middle" class="amber-t">DB session 在此關閉 — 之後全程不持有連線</text>
+<line x1="414.0" y1="352" x2="673.0" y2="352" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="397.1159999999999" y="334.2" width="293.76800000000026" height="15.8" rx="4" fill="#ffffff" class="canvas"/>
+<text x="544.0" y="344" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.8" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">建立 DialecticAgent（peer card 注入 system prompt）</text>
+<circle cx="40" cy="348" r="9" fill="#f2f4f7" stroke="#98a2b3" stroke-width="1.2" class="gray-b"/>
+<text x="40" y="351.4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#364152" text-anchor="middle" class="gray-t">5</text>
+<line x1="682.0" y1="402" x2="1115.0680000000002" y2="402" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="790.6520000000002" y="371.2" width="216.76399999999998" height="15.8" rx="4" fill="#ffffff" class="canvas"/>
+<text x="899.0340000000001" y="381" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.8" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">_initialize_session_history()：撈最近訊息</text>
+<rect x="769.484" y="384.2" width="259.10000000000014" height="15.8" rx="4" fill="#ffffff" class="canvas"/>
+<text x="899.0340000000001" y="394" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.8" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">（≤ SESSION_HISTORY_MAX_TOKENS = 4096）</text>
+<circle cx="40" cy="398" r="9" fill="#f2f4f7" stroke="#98a2b3" stroke-width="1.2" class="gray-b"/>
+<text x="40" y="401.4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#364152" text-anchor="middle" class="gray-t">6</text>
+<path d="M678.0,430 h34 a9,9 0 0 1 9,9 v12 a9,9 0 0 1 -9,9 h-30" fill="none" stroke="#8b97a8" stroke-width="1.4" class="edge" marker-end="url(#arw-s)"/>
+<text x="732.0" y="434" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.8" font-weight="400" fill="#1c2530" text-anchor="start" class="mute">附加 &lt;session_history&gt; 區塊到 system prompt</text>
+<circle cx="40" cy="444" r="9" fill="#f2f4f7" stroke="#98a2b3" stroke-width="1.2" class="gray-b"/>
+<text x="40" y="447.4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#364152" text-anchor="middle" class="gray-t">7</text>
+<line x1="682.0" y1="493" x2="905.018" y2="493" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="691.0" y="475.2" width="206.01800000000003" height="15.8" rx="4" fill="#ffffff" class="canvas"/>
+<text x="794.009" y="485" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.8" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">embed(query) — 算一次，兩次搜尋共用</text>
+<circle cx="40" cy="489" r="9" fill="#f2f4f7" stroke="#98a2b3" stroke-width="1.2" class="gray-b"/>
+<text x="40" y="492.4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#364152" text-anchor="middle" class="gray-t">8</text>
+<line x1="682.0" y1="530" x2="1115.0680000000002" y2="530" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="778.826" y="512.2" width="240.41600000000014" height="15.8" rx="4" fill="#ffffff" class="canvas"/>
+<text x="899.0340000000001" y="522" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.8" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">search_memory(levels=["explicit"], limit=25)</text>
+<circle cx="40" cy="526" r="9" fill="#f2f4f7" stroke="#98a2b3" stroke-width="1.2" class="gray-b"/>
+<text x="40" y="529.4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#364152" text-anchor="middle" class="gray-t">9</text>
+<line x1="682.0" y1="567" x2="1115.0680000000002" y2="567" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="701.9839999999998" y="549.2" width="394.10000000000053" height="15.8" rx="4" fill="#ffffff" class="canvas"/>
+<text x="899.0340000000001" y="559" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.8" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">search_memory(levels=["deductive","inductive","contradiction"], limit=25)</text>
+<circle cx="40" cy="563" r="9" fill="#f2f4f7" stroke="#98a2b3" stroke-width="1.2" class="gray-b"/>
+<text x="40" y="566.4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#364152" text-anchor="middle" class="gray-t">10</text>
+<path d="M678.0,595 h34 a9,9 0 0 1 9,9 v12 a9,9 0 0 1 -9,9 h-30" fill="none" stroke="#8b97a8" stroke-width="1.4" class="edge" marker-end="url(#arw-s)"/>
+<text x="732.0" y="599" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.8" font-weight="400" fill="#1c2530" text-anchor="start" class="mute">組成 user message：Query + 已預取的相關結論</text>
+<circle cx="40" cy="609" r="9" fill="#f2f4f7" stroke="#98a2b3" stroke-width="1.2" class="gray-b"/>
+<text x="40" y="612.4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#364152" text-anchor="middle" class="gray-t">11</text>
+<line x1="682.0" y1="688" x2="1247.0680000000002" y2="688" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="876.4430000000001" y="670.2" width="177.1820000000001" height="15.8" rx="4" fill="#ffffff" class="canvas"/>
+<text x="965.0340000000001" y="680" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.8" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">messages + DIALECTIC_TOOLS</text>
+<circle cx="40" cy="684" r="9" fill="#f2f4f7" stroke="#98a2b3" stroke-width="1.2" class="gray-b"/>
+<text x="40" y="687.4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#364152" text-anchor="middle" class="gray-t">12</text>
+<line x1="1248.0680000000002" y1="725" x2="683.0" y2="725" stroke="#8b97a8" stroke-width="1.5" class="edge" stroke-dasharray="5 4" marker-end="url(#arw)"/>
+<rect x="939.9200000000001" y="707.2" width="50.228" height="15.8" rx="4" fill="#ffffff" class="canvas"/>
+<text x="965.0340000000001" y="717" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.8" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">tool_use</text>
+<circle cx="40" cy="721" r="9" fill="#f2f4f7" stroke="#98a2b3" stroke-width="1.2" class="gray-b"/>
+<text x="40" y="724.4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#364152" text-anchor="middle" class="gray-t">13</text>
+<line x1="682.0" y1="762" x2="1115.0680000000002" y2="762" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="776.558" y="744.2" width="244.95200000000014" height="15.8" rx="4" fill="#ffffff" class="canvas"/>
+<text x="899.0340000000001" y="754" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.8" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">執行工具（每個工具管自己的短命 DB session）</text>
+<circle cx="40" cy="758" r="9" fill="#f2f4f7" stroke="#98a2b3" stroke-width="1.2" class="gray-b"/>
+<text x="40" y="761.4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#364152" text-anchor="middle" class="gray-t">14</text>
+<line x1="682.0" y1="833" x2="1247.0680000000002" y2="833" stroke="#8b97a8" stroke-width="1.5" class="edge" marker-end="url(#arw)"/>
+<rect x="933.5210000000001" y="815.2" width="63.02600000000001" height="15.8" rx="4" fill="#ffffff" class="canvas"/>
+<text x="965.0340000000001" y="825" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.8" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">tool_result</text>
+<circle cx="40" cy="829" r="9" fill="#f2f4f7" stroke="#98a2b3" stroke-width="1.2" class="gray-b"/>
+<text x="40" y="832.4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#364152" text-anchor="middle" class="gray-t">15</text>
+<line x1="1248.0680000000002" y1="870" x2="683.0" y2="870" stroke="#8b97a8" stroke-width="1.5" class="edge" stroke-dasharray="5 4" marker-end="url(#arw)"/>
+<rect x="896.3420000000001" y="852.2" width="137.38400000000001" height="15.8" rx="4" fill="#ffffff" class="canvas"/>
+<text x="965.0340000000001" y="862" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.8" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">最終回答（可 SSE 串流）</text>
+<circle cx="40" cy="866" r="9" fill="#f2f4f7" stroke="#98a2b3" stroke-width="1.2" class="gray-b"/>
+<text x="40" y="869.4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#364152" text-anchor="middle" class="gray-t">16</text>
+<line x1="674.0" y1="907" x2="147.0" y2="907" stroke="#8b97a8" stroke-width="1.5" class="edge" stroke-dasharray="5 4" marker-end="url(#arw)"/>
+<rect x="310.41999999999996" y="889.2" width="199.16000000000008" height="15.8" rx="4" fill="#ffffff" class="canvas"/>
+<text x="410.0" y="899" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="10.8" font-weight="400" fill="#1c2530" text-anchor="middle" class="mute">回應 + 發出 DialecticCompletedEvent</text>
+<circle cx="40" cy="903" r="9" fill="#f2f4f7" stroke="#98a2b3" stroke-width="1.2" class="gray-b"/>
+<text x="40" y="906.4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei', Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#364152" text-anchor="middle" class="gray-t">17</text>
+</svg>
