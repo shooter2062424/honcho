@@ -143,7 +143,7 @@ Honcho uses several specialized LLM agents. They share tool definitions and the 
 The Deriver processes batches of incoming messages and extracts conclusions about peers. The current architecture is "minimal deriver" — a **single LLM call** per batch using structured output, not an agentic tool loop. This trades flexibility for cost and predictability.
 
 - **Trigger**: Messages enqueued by `src/deriver/enqueue.py` on message create; consumed by `src/deriver/queue_manager.py` → `consumer.process_item()` → `deriver.process_representation_tasks_batch()`.
-- **Output**: Explicit conclusions (direct facts) and deductive conclusions (inferences) saved to `(observer, observed)` collections.
+- **Output**: **Explicit conclusions only** (direct facts) saved to `(observer, observed)` collections. The structured-output schema (`PromptRepresentation` in `src/utils/representation.py`) has a single `explicit` field, and `Representation.from_prompt_representation()` hardcodes `deductive=[]` — every derived level (`deductive`/`inductive`/`contradiction`) is produced by the Dreamer, not here.
 - **Entry point**: `src/deriver/__main__.py` → `queue_manager.main()`.
 - **Prompts**: `src/deriver/prompts.py` (`minimal_deriver_prompt`).
 - **Custom instructions**: per-workspace/peer guidance can be threaded into the prompt via reasoning configuration; `DERIVER__MAX_CUSTOM_INSTRUCTIONS_TOKENS` caps the addition (default 2000) and `DERIVER__MAX_INPUT_TOKENS` defaults to 25000 to make room.

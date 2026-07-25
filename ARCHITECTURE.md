@@ -1147,8 +1147,7 @@ recent_observations   = total - semantic - top                   # 最近寫入
 | 🟡 **記憶的存取控制只有 collection 一個粒度** | 無法表達「這條記憶不要給 agent B 看」。要隔離就只能開新的 `(observer, observed)` collection，而那意味著從頭累積 |
 | 🟢 **摘要滾動累積會逐漸失真** | 每次摘要都以「上一份摘要 + 新訊息」為輸入。長 session 的摘要實際上是「摘要的摘要的摘要」，早期細節會被反覆壓縮掉 |
 | 🟢 **訊息跨 session 搜尋的 IN 清單可能很大** | `get_peer_session_names()` 撈出 observer 參與過的**所有** session 名稱塞進 `IN (...)`。重度使用者累積數千個 session 時，這個查詢會變得笨重 |
-| 🟡 **設定表面積巨大** | `config.py` 超過 1400 行、數十個可調參數。調參的心智負擔高，且**設定被凍結進 queue payload**——改了設定不會影響已入列的工作，這在除錯時容易誤判 |
-| 🟢 **文件與實作有落差** | `CLAUDE.md` 描述 Deriver 產出「explicit 與 deductive 結論」，但 `PromptRepresentation` 的 schema **只有 `explicit` 欄位**，`from_prompt_representation()` 硬編碼 `deductive=[]`。實際上所有衍生層級都來自 Dreamer |
+| 🟡 **設定表面積巨大** | `config.py` 超過 1500 行、數十個可調參數。調參的心智負擔高，且**設定被凍結進 queue payload**——改了設定不會影響已入列的工作，這在除錯時容易誤判 |
 
 ---
 
