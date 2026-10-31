@@ -1,0 +1,48 @@
+{
+ "honcho_upload_png": {
+  "status": 415,
+  "body": "{\"detail\":\"Unsupported file type: image/png. Supported types: ['PDFProcessor', 'TextProcessor', 'JSONProcessor']\"}"
+ },
+ "honcho_upload_image_only_pdf": {
+  "status": 201,
+  "body": "[{\"id\":\"KsSquZ67iZqlH0KfcCdMe\",\"content\":\"\",\"peer_id\":\"team\",\"session_id\":\"kb\",\"metadata\":{},\"created_at\":\"2026-10-31T18:50:54.365533Z\",\"workspace_id\":\"img472653\",\"token_count\":0}]"
+ },
+ "honcho_conclusions_after_scan_pdf": 0,
+ "aim_inline_base64_png": {
+  "written": true,
+  "found_by_text_query": false
+ },
+ "ocr_by_tier": {
+  "clean": {
+   "lines": 30,
+   "exact": 27,
+   "parsed": 27,
+   "wrong_parsed": 0
+  },
+  "lowres": {
+   "lines": 30,
+   "exact": 24,
+   "parsed": 24,
+   "wrong_parsed": 0
+  },
+  "noisy": {
+   "lines": 30,
+   "exact": 12,
+   "parsed": 12,
+   "wrong_parsed": 0
+  },
+  "rotated_noisy": {
+   "lines": 30,
+   "exact": 6,
+   "parsed": 6,
+   "wrong_parsed": 0
+  }
+ },
+ "sidecar": {
+  "facts_in_images": 120,
+  "honcho_exact_retrieved": 83,
+  "honcho_traceable_to_image": 57,
+  "aim_exact_retrieved": 94,
+  "aim_traceable_to_image": 49
+ }
+}

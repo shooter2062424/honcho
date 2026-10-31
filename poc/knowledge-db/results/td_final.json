@@ -1,0 +1,57 @@
+{
+ "oracle_ledger": {
+  "claims": 1704,
+  "all": 0.863,
+  "changed": 0.312,
+  "myth": 0.833,
+  "trusted_latest": {
+   "all": 0.887,
+   "changed": 0.688,
+   "myth": 0.833
+  }
+ },
+ "honcho": {
+  "claims": 525,
+  "all": 0.725,
+  "changed": 0.0,
+  "myth": 0.667,
+  "trusted_latest": {
+   "all": 0.637,
+   "changed": 0.0,
+   "myth": 0.583
+  }
+ },
+ "aim-m1": {
+  "claims": 80,
+  "all": 0.6,
+  "changed": 0.562,
+  "myth": 0.583,
+  "trusted_latest": {
+   "all": 0.6,
+   "changed": 0.562,
+   "myth": 0.583
+  }
+ },
+ "aim-m2": {
+  "claims": 1704,
+  "all": 0.787,
+  "changed": 0.062,
+  "myth": 0.75,
+  "trusted_latest": {
+   "all": 0.9,
+   "changed": 0.75,
+   "myth": 0.75
+  }
+ },
+ "aim-m3": {
+  "claims": 1704,
+  "all": 0.863,
+  "changed": 0.312,
+  "myth": 0.833,
+  "trusted_latest": {
+   "all": 0.887,
+   "changed": 0.688,
+   "myth": 0.833
+  }
+ }
+}
