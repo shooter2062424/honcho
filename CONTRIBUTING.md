@@ -1,215 +1,83 @@
 # Contributing to Honcho
 
-Thank you for your interest in contributing to Honcho! This guide outlines the process for contributing to the project and our development conventions.
+Honcho is developed by a small team of maintainers, who make all changes to the codebase.
+**Pull requests are limited to maintainers.** See
+[this issue](https://github.com/plastic-labs/honcho/issues/1448) for why.
 
-## Getting Started
+You can still help a lot. Clear bug reports, memory-quality reports with a reproduction,
+integration requests, and design discussion all move the project forward.
 
-Before you start contributing, please:
+To understand how Honcho works or to run it locally, see the
+[architecture](https://honcho.dev/docs/v3/documentation/core-concepts/architecture) and
+[local setup](https://honcho.dev/docs/v3/contributing/self-hosting) docs.
 
-1. **Set up your development environment** - Follow the [Local Development guide](./README.md#local-development) in the README to get Honcho running locally.
+## Issues instead of pull requests
 
-2. **Join our community** - Feel free to join us in our [Discord](http://discord.gg/honcho) to discuss your changes, get help, or ask questions.
+If you find a bug or want a change, please
+[create an issue](https://github.com/plastic-labs/honcho/issues/new/choose) instead. A clear
+issue with a minimal reproduction helps us more than a pull request. See
+[Filing an issue](#filing-an-issue).
 
-3. **Review existing issues** - Check the [issues tab](https://github.com/plastic-labs/honcho/issues) to see what's already being worked on or to find something to contribute to.
+## Think your work is an exception?
 
-## Contribution Workflow
+If you have a real need that an issue doesn't cover, come to
+[Discord](https://discord.gg/honcho) and make the case. Maintainers are most active there.
 
-### 1. Fork and Clone
+## AI usage policy
 
-1. Fork the repository on GitHub
-2. Clone your fork locally:
+You may use AI to contribute, but it must never waste a maintainer's time or make their work
+unpleasant.
 
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/honcho.git
-   cd honcho
-   ```
+To enforce this, and regardless of whether AI was actually used, a maintainer may close your
+issue without notice and block your account.
 
-3. Add the upstream repository as a remote:
+## Filing an issue
 
-   ```bash
-   git remote add upstream https://github.com/plastic-labs/honcho.git
-   ```
+- **Use the [issue templates](https://github.com/plastic-labs/honcho/issues/new/choose)** and
+  fill in every required field. `gh issue create` and the API skip the form, so copy the
+  fields from [`.github/ISSUE_TEMPLATE/`](./.github/ISSUE_TEMPLATE/).
+- **File only what you hit in real use**, directly or through an integration. Not findings
+  from reading the code, a synthetic test, or another repo's tracker.
+- **One root cause per issue.** If the README or docs describe the behavior, it is a feature
+  request, not a bug.
+- **Keep it short:** in English, under 600 words of prose, with code linked by permalink.
+  Redact API keys, JWTs, and production user content.
+- **Questions go to [Discord](https://discord.gg/honcho).** Other integrations, such as
+  OpenClaw and Claude Code, have their own repos, linked from the
+  [integrations catalog](https://honcho.dev/docs/v3/guides/overview).
 
-### 2. Create a Branch
+Only a maintainer applies `maintainer-approved`, which means we have agreed the change should
+be made. If something is missing or wrong, one of these labels is applied with a comment
+saying what to fix.
 
-Create a new branch for your feature or bug fix:
+| Label         | Applied when                                                                                                                                                            | Closed after                                   |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| `needs-repro` | No steps or version to reproduce, or the problem was found by reading the code, in a synthetic test, or carried over from another repo without being run against Honcho | 7 days without a reply                         |
+| `needs-info`  | A required field is missing, the issue is not in English, or the prose runs over 600 words                                                                              | 7 days without a reply                         |
+| `invalid`     | Illegible, spam, a security finding filed publicly, or belongs in another repo                                                                                          | 3 days                                         |
+| `question`    | A support question rather than a defect. Ask in [Discord](https://discord.gg/honcho), or email <support@honcho.dev> about the managed service                           | 3 days                                         |
+| `duplicate`   | Same root cause as an existing issue, linked in the comment                                                                                                             | 3 days, unless you explain why it is different |
+| `wontfix`     | Documented behavior, or an unsupported build or platform: a forked or patched build, an unsupported operating system, third-party packaging                             | Closed by a maintainer                         |
 
-```bash
-git checkout -b feature/your-feature-name
-# or
-git checkout -b fix/your-bug-fix-name
-```
+If we got it wrong, say so on the issue and it will be reopened. An issue that breaks the
+[AI usage policy](#ai-usage-policy) can be closed without any of these steps.
 
-**Branch naming conventions:**
+## If you're an agent
 
-- `feature/description` - for new features
-- `fix/description` - for bug fixes
-- `docs/description` - for documentation updates
-- `refactor/description` - for code refactoring
-- `test/description` - for adding or updating tests
+- **Check for write access before opening a pull request.** Run
+  `gh api repos/plastic-labs/honcho --jq .permissions.push`. If it prints `false`, file an
+  issue instead.
+- **File only what the person you are working with hit** while using Honcho, following
+  [Filing an issue](#filing-an-issue).
+- **Do not report checks you did not run.**
 
-### 3. Make Your Changes
+## Security
 
-- Write clean, readable code that follows our coding standards (see below)
-- Add tests for new functionality
-- Update documentation as needed
-- Make sure your changes don't break existing functionality
-
-### 4. Commit Your Changes
-
-We follow conventional commit standards. Format your commit messages as:
-
-```
-type(scope): description
-
-[optional body]
-
-[optional footer]
-```
-
-**Types:**
-
-- `feat`: A new feature
-- `fix`: A bug fix
-- `docs`: Documentation only changes
-- `style`: Changes that do not affect the meaning of the code
-- `refactor`: A code change that neither fixes a bug nor adds a feature
-- `test`: Adding missing tests or correcting existing tests
-- `chore`: Changes to the build process or auxiliary tools
-
-**Examples:**
-
-```bash
-git commit -m "feat(api): add new dialectic endpoint for user insights"
-git commit -m "fix(db): resolve connection pool timeout issue"
-git commit -m "docs(readme): update installation instructions"
-```
-
-### 5. Submit a Pull Request
-
-1. Push your branch to your fork:
-
-   ```bash
-   git push origin your-branch-name
-   ```
-
-2. Create a pull request on GitHub from your branch to the `main` branch
-
-3. Fill out the pull request template with:
-   - A clear description of what changes you've made
-   - The motivation for the changes
-   - Any relevant issue numbers (use "Closes #123" to auto-close issues)
-   - Screenshots or examples if applicable
-
-## Pre-commit Hooks
-
-Honcho uses pre-commit hooks to enforce code quality and consistency. They run linting, formatting, type checking, and security scans before each commit.
-
-### Installation
-
-```bash
-uv add --dev pre-commit
-uv run pre-commit install \
-    --hook-type pre-commit \
-    --hook-type commit-msg \
-    --hook-type pre-push
-```
-
-### What the hooks do
-
-- **Code Quality** — Python linting and formatting (ruff), TypeScript linting (biome)
-- **Type Checking** — Static analysis with basedpyright
-- **Security** — Vulnerability scanning with bandit
-- **Documentation** — Markdown linting and license header checks
-- **Testing** — Automated test runs for Python and TypeScript
-- **File Hygiene** — Trailing whitespace, line endings, file size checks
-- **Commit Standards** — Conventional commit message validation
-
-### Manual execution
-
-Run against all files without committing:
-
-```bash
-uv run pre-commit run --all-files
-```
-
-Run a specific hook:
-
-```bash
-uv run pre-commit run ruff --all-files
-uv run pre-commit run basedpyright --all-files
-```
-
-## Coding Standards
-
-### Python Code Style
-
-- Follow [PEP 8](https://www.python.org/dev/peps/pep-0008/) style guidelines
-- Use [ruff](https://docs.astral.sh/ruff/) for linting and code formatting
-- Use type hints where possible
-- Write docstrings for functions and classes using Google style docstrings
-
-### Code Organization
-
-- Keep functions focused and single-purpose
-- Use meaningful variable and function names
-- Add comments for complex logic
-- Follow existing patterns in the codebase
-
-### Testing
-
-- Write unit tests for new functionality
-- Ensure existing tests pass before submitting
-- Use descriptive test names that explain what is being tested
-- Mock external dependencies appropriately
-
-### Documentation
-
-- Update relevant documentation for new features
-- Include examples in docstrings where helpful
-- Keep README and other docs up to date with changes
-
-## Review Process
-
-1. **Automated checks** - Your PR will run through automated checks including tests and linting
-2. **Project maintainer review** - A project maintainer will review your code for:
-   - Code quality and adherence to standards
-   - Functionality and correctness
-   - Test coverage
-   - Documentation completeness
-3. **Discussion and iteration** - You may be asked to make changes or clarifications
-4. **Approval and merge** - Once approved, your PR will be merged into `main`
-
-## Types of Contributions
-
-We welcome various types of contributions:
-
-- **Bug fixes** - Help us squash bugs and improve stability
-- **New features** - Add functionality that benefits the community
-- **Documentation** - Improve or expand our documentation
-- **Tests** - Increase test coverage and reliability
-- **Performance improvements** - Help make Honcho faster and more efficient
-- **Examples and tutorials** - Help other developers use Honcho
-
-## Issue Reporting
-
-When reporting bugs or requesting features:
-
-1. Check if the issue already exists
-2. Use the appropriate issue template
-3. Provide clear reproduction steps for bugs
-4. Include relevant environment information
-5. Be specific about expected vs actual behavior
-
-## Questions and Support
-
-- **General questions** - Join our [Discord](http://discord.gg/honcho)
-- **Bug reports** - Use GitHub issues
-- **Feature requests** - Use GitHub issues with the feature request template
-- **Security issues** - Please email us privately rather than opening a public issue
+Report vulnerabilities privately through
+[GitHub Private Vulnerability Reporting](https://github.com/plastic-labs/honcho/security/advisories/new),
+never in a public issue. See [SECURITY.md](./SECURITY.md). Honcho does not operate a bug
+bounty.
 
 ## License
 
-By contributing to Honcho, you agree that your contributions will be licensed under the same [AGPL-3.0 License](./LICENSE) that covers the project.
-
-Thank you for helping make Honcho better! 🫡
+Contributions are licensed under the project's [AGPL-3.0 License](./LICENSE).

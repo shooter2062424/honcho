@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from types import SimpleNamespace
 from unittest.mock import AsyncMock, Mock
 
@@ -8,6 +8,8 @@ from pydantic import BaseModel
 from src.exceptions import LLMError, ValidationException
 from src.llm.backends.gemini import GeminiBackend
 from src.llm.caching import PromptCachePolicy, gemini_cache_store
+from src.llm.structured_output import StructuredOutputError
+from src.utils.representation import PromptRepresentation
 
 
 @pytest.mark.asyncio
@@ -96,6 +98,40 @@ async def test_gemini_backend_maps_thinking_effort_to_thinking_level() -> None:
         raise AssertionError("Expected Gemini generate_content call")
     call = await_args.kwargs
     assert call["config"]["thinking_config"] == {"thinking_level": "low"}
+
+
+@pytest.mark.asyncio
+async def test_gemini_backend_maps_timeout_to_http_options() -> None:
+    """Gemini requests receive provider timeout through config http_options."""
+    client = Mock()
+    client.aio.models.generate_content = AsyncMock(
+        return_value=SimpleNamespace(
+            candidates=[
+                SimpleNamespace(
+                    finish_reason=SimpleNamespace(name="STOP"),
+                    content=SimpleNamespace(parts=[SimpleNamespace(text="ok")]),
+                )
+            ],
+            usage_metadata=SimpleNamespace(
+                prompt_token_count=12,
+                candidates_token_count=6,
+            ),
+            parsed=None,
+        )
+    )
+
+    backend = GeminiBackend(client)
+    await backend.complete(
+        model="gemini-2.5-flash",
+        messages=[{"role": "user", "content": "Hello"}],
+        max_tokens=100,
+        extra_params={"timeout": "90"},
+    )
+
+    await_args = client.aio.models.generate_content.await_args
+    if await_args is None:
+        raise AssertionError("Expected Gemini generate_content call")
+    assert await_args.kwargs["config"]["http_options"].timeout == 90_000
 
 
 @pytest.mark.asyncio
@@ -256,7 +292,7 @@ async def test_gemini_backend_strips_system_and_tools_when_using_cached_content(
     client.aio.caches.create = AsyncMock(
         return_value=SimpleNamespace(
             name="cachedContents/abc123",
-            expire_time=datetime.now(timezone.utc) + timedelta(minutes=5),
+            expire_time=datetime.now(UTC) + timedelta(minutes=5),
         )
     )
     client.aio.models.generate_content = AsyncMock(
@@ -385,7 +421,7 @@ async def test_gemini_backend_forwards_provider_params_extra_headers() -> None:
     if await_args is None:
         raise AssertionError("Expected Gemini generate_content call")
     call = await_args.kwargs
-    assert call["config"]["http_options"]["headers"] == {"X-Trace-Id": "abc123"}
+    assert call["config"]["http_options"].headers == {"X-Trace-Id": "abc123"}
 
 
 @pytest.mark.asyncio
@@ -625,3 +661,53 @@ async def test_gemini_backend_structured_without_tools_uses_native_schema() -> N
     assert call["config"]["response_mime_type"] == "application/json"
     # No instruction injected on the tool-less path.
     assert call["contents"][-1]["parts"][-1]["text"] == "Hello"
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "parsed", [{"wrong": 1}, '{"wrong": 1}', PromptRepresentation()]
+)
+async def test_gemini_backend_rejects_wrong_structured_output_keys(
+    parsed: dict[str, int] | str | PromptRepresentation,
+) -> None:
+    client = Mock()
+    client.aio.models.generate_content = AsyncMock(
+        return_value=_gemini_response(
+            [SimpleNamespace(text='{"wrong": 1}')],
+            parsed=parsed,
+        )
+    )
+
+    backend = GeminiBackend(client)
+    with pytest.raises(StructuredOutputError) as exc_info:
+        await backend.complete(
+            model="gemini-2.5-flash",
+            messages=[{"role": "user", "content": "Hello"}],
+            max_tokens=100,
+            response_format=PromptRepresentation,
+        )
+
+    message = str(exc_info.value)
+    assert "model=gemini-2.5-flash" in message
+    assert "payload_sha256=" in message
+    assert "wrong" not in message
+
+
+@pytest.mark.asyncio
+async def test_gemini_backend_accepts_schema_valid_empty_object() -> None:
+    client = Mock()
+    client.aio.models.generate_content = AsyncMock(
+        return_value=_gemini_response(
+            [SimpleNamespace(text="{}")],
+            parsed=PromptRepresentation(),
+        )
+    )
+
+    result = await GeminiBackend(client).complete(
+        model="gemini-test",
+        messages=[{"role": "user", "content": "Hello"}],
+        max_tokens=100,
+        response_format=PromptRepresentation,
+    )
+
+    assert result.content == PromptRepresentation(explicit=[])

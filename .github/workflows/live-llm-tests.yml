@@ -12,6 +12,7 @@ on:
       - 'tests/live_llm/**'
       - 'pyproject.toml'
       - 'uv.lock'
+      - '.python-version'
       - '.github/workflows/live-llm-tests.yml'
   # Manual trigger for PRs: add the `run-live-llm` label to run the suite
   # against the PR's merge commit. The label is purged as soon as the run
@@ -100,6 +101,7 @@ jobs:
             echo "SENTRY_ENABLED=false"
             echo "TELEMETRY_ENABLED=false"
             echo "LIVE_LLM_ANTHROPIC_45_PLUS_MODELS=claude-sonnet-4-5"
+            echo "LIVE_LLM_ANTHROPIC_55_MODELS=claude-haiku-5-5,claude-sonnet-5-5"
           } >> "$GITHUB_ENV"
 
       - name: Install uv
@@ -111,7 +113,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version-file: "pyproject.toml"
+          python-version-file: ".python-version"
 
       - name: Install the project
         run: uv sync --all-extras

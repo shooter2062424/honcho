@@ -10,10 +10,10 @@ from typing import ClassVar
 
 from pydantic import Field
 
-from src.telemetry.events.base import BaseEvent
+from src.telemetry.events.base import BaseEvent, CustomInstructionsFields
 
 
-class RepresentationCompletedEvent(BaseEvent):
+class RepresentationCompletedEvent(BaseEvent, CustomInstructionsFields):
     """Emitted when a representation task completes processing a message batch.
 
     Representation tasks extract conclusions from messages to build peer
@@ -153,6 +153,10 @@ class RepresentationCompletedEvent(BaseEvent):
     observer_count: int = Field(
         default=0,
         description="Number of observers this representation was saved against",
+    )
+    failed_observer_count: int = Field(
+        default=0,
+        description="Number of observers whose save_representation failed (partial or total)",
     )
 
     def get_resource_id(self) -> str:

@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+import json
 from collections.abc import AsyncIterator
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from typing import Any, ClassVar, cast
 
-from pydantic import BaseModel
+from google.genai import types as genai_types
+from pydantic import BaseModel, ValidationError
 
 from src.exceptions import LLMError, ValidationException
 from src.llm.backend import CompletionResult, StreamChunk, ToolCallResult
@@ -14,8 +16,16 @@ from src.llm.caching import (
     build_cache_key,
     gemini_cache_store,
 )
-from src.llm.request_builder import coerce_passthrough_mapping
-from src.llm.structured_output import repair_response_model_json, schema_instruction
+from src.llm.request_builder import (
+    coerce_passthrough_mapping,
+    request_timeout_from_extra_params,
+)
+from src.llm.structured_output import (
+    StructuredOutputError,
+    repair_response_model_json,
+    schema_instruction,
+    validate_structured_output,
+)
 
 GEMINI_BLOCKED_FINISH_REASONS = {
     "SAFETY",
@@ -289,19 +299,38 @@ class GeminiBackend:
         # extra_query has no SDK-level equivalent and is ignored. Shallow
         # merge with operator-wins. Operators are responsible for not setting
         # unknown fields that google-genai's validation will reject.
+        http_options: genai_types.HttpOptions | None = None
         if extra_params:
             operator_extra_body = extra_params.get("extra_body")
             if operator_extra_body:
                 config.update(
                     coerce_passthrough_mapping("extra_body", operator_extra_body)
                 )
+                raw_http_options = config.get("http_options")
+                if isinstance(raw_http_options, genai_types.HttpOptions):
+                    http_options = raw_http_options
+                elif isinstance(raw_http_options, dict):
+                    http_options = genai_types.HttpOptions.model_validate(
+                        raw_http_options
+                    )
             operator_extra_headers = extra_params.get("extra_headers")
             if operator_extra_headers:
-                http_options = config.setdefault("http_options", {})
-                existing_headers = http_options.setdefault("headers", {})
+                if http_options is None:
+                    http_options = genai_types.HttpOptions()
+                existing_headers = dict(http_options.headers or {})
                 existing_headers.update(
                     coerce_passthrough_mapping("extra_headers", operator_extra_headers)
                 )
+                http_options.headers = existing_headers
+
+        timeout = request_timeout_from_extra_params(extra_params)
+        if timeout is not None:
+            if http_options is None:
+                http_options = genai_types.HttpOptions()
+            # Gemini has no native timeout kwarg; set the httpx-level value in ms.
+            http_options.timeout = int(timeout * 1000)
+        if http_options is not None:
+            config["http_options"] = http_options
         return config
 
     def _normalize_response(
@@ -375,12 +404,33 @@ class GeminiBackend:
         # fallback, failing the iteration.
         if response_format is not None and not tool_calls:
             parsed_response = getattr(response, "parsed", None)
-            if isinstance(parsed_response, response_format):
-                content = parsed_response
-            elif isinstance(parsed_response, dict):
-                content = response_format.model_validate(parsed_response)
-            elif isinstance(parsed_response, str):
-                content = response_format.model_validate_json(parsed_response)
+            if isinstance(parsed_response, response_format | dict | str):
+                try:
+                    raw_text = "".join(text_parts)
+                    validation_content = (
+                        raw_text
+                        if isinstance(parsed_response, response_format) and raw_text
+                        else cast(object, parsed_response)
+                    )
+                    content = validate_structured_output(
+                        validation_content, response_format
+                    )
+                except (json.JSONDecodeError, StructuredOutputError, ValidationError):
+                    raw_content = (
+                        parsed_response
+                        if isinstance(parsed_response, str)
+                        else "".join(text_parts)
+                        or json.dumps(
+                            parsed_response.model_dump(mode="json", exclude_unset=True)
+                            if isinstance(parsed_response, BaseModel)
+                            else parsed_response
+                        )
+                    )
+                    content = repair_response_model_json(
+                        raw_content,
+                        response_format,
+                        model_name,
+                    )
             else:
                 if finish_reason in GEMINI_BLOCKED_FINISH_REASONS:
                     raise LLMError(
@@ -466,7 +516,7 @@ class GeminiBackend:
             )
             expires_at = getattr(cached_content, "expire_time", None)
             if expires_at is None:
-                expires_at = datetime.now(timezone.utc) + timedelta(seconds=ttl_seconds)
+                expires_at = datetime.now(UTC) + timedelta(seconds=ttl_seconds)
             cached_handle = gemini_cache_store.set(
                 GeminiCacheHandle(
                     key=cache_key,

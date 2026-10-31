@@ -1,6 +1,8 @@
 """CRUD helpers for workspace records and workspace deletion checks."""
 
+from collections.abc import Sequence
 from dataclasses import dataclass
+from datetime import UTC, datetime, timedelta
 from logging import getLogger
 from typing import Any
 
@@ -13,13 +15,22 @@ from sqlalchemy.orm import make_transient_to_detached
 from src import models, schemas
 from src.cache.client import (
     cache,
-    get_cache_namespace,
+    cache_key_namespace,
+    cache_prefix_namespace,
     safe_cache_delete,
     safe_cache_set,
 )
 from src.config import settings
+from src.crud.lifecycle import (
+    live_message_row,
+    live_peer_row,
+    live_session_row,
+    live_workspace_row,
+)
 from src.exceptions import ConflictException, ResourceNotFoundException
+from src.telemetry.events import WorkspaceCreatedEvent, emit
 from src.utils.filter import apply_filter
+from src.utils.path_params import schema_from_path
 from src.utils.types import GetOrCreateResult
 from src.vector_store import get_external_vector_store
 
@@ -38,13 +49,13 @@ class WorkspaceDeletionResult:
 
 
 WORKSPACE_CACHE_KEY_TEMPLATE = "v2:workspace:{workspace_name}"
-WORKSPACE_LOCK_PREFIX = f"{get_cache_namespace()}:lock:v2"
+WORKSPACE_LOCK_PREFIX = f"{cache_prefix_namespace()}:lock:v2"
 
 
 def workspace_cache_key(workspace_name: str) -> str:
     """Generate cache key for workspace."""
     return (
-        get_cache_namespace()
+        cache_key_namespace()
         + ":"
         + WORKSPACE_CACHE_KEY_TEMPLATE.format(workspace_name=workspace_name)
     )
@@ -53,7 +64,7 @@ def workspace_cache_key(workspace_name: str) -> str:
 @cache(
     key=WORKSPACE_CACHE_KEY_TEMPLATE,
     ttl=f"{settings.CACHE.DEFAULT_TTL_SECONDS}s",
-    prefix=get_cache_namespace(),
+    prefix=cache_prefix_namespace(),
     condition=NOT_NONE,
 )
 @cache.locked(
@@ -65,9 +76,18 @@ def workspace_cache_key(workspace_name: str) -> str:
 async def _fetch_workspace(
     db: AsyncSession, workspace_name: str
 ) -> dict[str, Any] | None:
-    """Fetch a workspace from the database and return as a plain dict for safe caching."""
+    """Fetch a workspace as a plain dict, served from cache when present."""
+    return await _select_workspace(db, workspace_name)
+
+
+async def _select_workspace(
+    db: AsyncSession, workspace_name: str
+) -> dict[str, Any] | None:
+    """Read a workspace straight from the database, bypassing the cache."""
     obj = await db.scalar(
-        select(models.Workspace).where(models.Workspace.name == workspace_name)
+        select(models.Workspace).where(
+            models.Workspace.name == workspace_name, live_workspace_row()
+        )
     )
     if obj is None:
         return None
@@ -81,11 +101,19 @@ async def _fetch_workspace(
     }
 
 
+async def _existing_workspace_result(
+    db: AsyncSession, data: dict[str, Any]
+) -> GetOrCreateResult[models.Workspace]:
+    """Reconstruct a workspace from its fetched dict and merge it into the session."""
+    obj = models.Workspace(**data)
+    make_transient_to_detached(obj)
+    existing_workspace = await db.merge(obj, load=False)
+    return GetOrCreateResult(existing_workspace, created=False)
+
+
 async def get_or_create_workspace(
     db: AsyncSession,
     workspace: schemas.WorkspaceCreate,
-    *,
-    _retry: bool = False,
 ) -> GetOrCreateResult[models.Workspace]:
     """
     Get an existing workspace or create a new one if it doesn't exist.
@@ -107,13 +135,8 @@ async def get_or_create_workspace(
     # Check if workspace already exists
     data = await _fetch_workspace(db, workspace.name)
     if data is not None:
-        # Workspace already exists
         logger.debug("Found existing workspace: %s", workspace.name)
-        # Reconstruct ORM object from cached dict and merge into session
-        obj = models.Workspace(**data)
-        make_transient_to_detached(obj)
-        existing_workspace = await db.merge(obj, load=False)
-        return GetOrCreateResult(existing_workspace, created=False)
+        return await _existing_workspace_result(db, data)
 
     # Workspace doesn't exist, create a new one
     honcho_workspace = models.Workspace(
@@ -137,22 +160,28 @@ async def get_or_create_workspace(
             "created_at": honcho_workspace.created_at,
         }
 
-        async def _warm_workspace_cache():
+        async def _after_commit():
             await safe_cache_set(
                 _cache_key,
                 _cache_data,
                 expire=settings.CACHE.DEFAULT_TTL_SECONDS,
             )
+            emit(WorkspaceCreatedEvent(workspace_name=workspace.name))
 
         return GetOrCreateResult(
-            honcho_workspace, created=True, on_commit=_warm_workspace_cache
+            honcho_workspace, created=True, on_commit=_after_commit
         )
     except IntegrityError:
-        if _retry:
+        # The unique violation means another transaction created the row, so
+        # read it straight from the database. The cached `_fetch_workspace` can
+        # answer None here without querying, which used to turn the lost race
+        # into a 409.
+        data = await _select_workspace(db, workspace.name)
+        if data is None:
             raise ConflictException(
                 f"Unable to create or get workspace: {workspace.name}"
             ) from None
-        return await get_or_create_workspace(db, workspace, _retry=True)
+        return await _existing_workspace_result(db, data)
 
 
 async def get_all_workspaces(
@@ -166,7 +195,7 @@ async def get_all_workspaces(
         filters: Filter the workspaces by a dictionary of metadata
         reverse: Whether to reverse the default creation order
     """
-    stmt = select(models.Workspace)
+    stmt = select(models.Workspace).where(live_workspace_row())
     stmt = apply_filter(stmt, models.Workspace, filters)
     if reverse:
         stmt = stmt.order_by(
@@ -215,9 +244,9 @@ async def update_workspace(
     """
     Get or create a workspace, then apply metadata and configuration updates.
 
-    Provided metadata replaces the current metadata when present. Provided
-    configuration keys are merged into the existing configuration instead of
-    replacing it wholesale.
+    Provided metadata and configuration objects replace their current values.
+    An empty configuration clears explicit workspace settings; omitted or null
+    fields leave the corresponding values unchanged.
 
     Args:
         db: Database session
@@ -233,8 +262,10 @@ async def update_workspace(
     """
     ws_result = await get_or_create_workspace(
         db,
-        schemas.WorkspaceCreate(
-            name=workspace_name,
+        schema_from_path(
+            schemas.WorkspaceCreate,
+            "workspace_id",
+            workspace_name,
             metadata=workspace.metadata or {},  # Provide empty dict if metadata is None
         ),
     )
@@ -251,14 +282,9 @@ async def update_workspace(
         needs_update = True
 
     if workspace.configuration is not None:
-        # Merge configuration instead of replacing to preserve existing keys
-        base_config = (honcho_workspace.configuration or {}).copy()
-        merged_config = {
-            **base_config,
-            **workspace.configuration.model_dump(exclude_none=True),
-        }
-        if honcho_workspace.configuration != merged_config:
-            honcho_workspace.configuration = merged_config
+        configuration = workspace.configuration.model_dump(exclude_none=True)
+        if honcho_workspace.configuration != configuration:
+            honcho_workspace.configuration = configuration
             needs_update = True
 
     # Early exit if unchanged
@@ -337,6 +363,7 @@ async def delete_workspace(
     # Create a snapshot of the workspace data before deletion
     workspace_snapshot = schemas.Workspace(
         name=honcho_workspace.name,
+        id=honcho_workspace.id,
         h_metadata=honcho_workspace.h_metadata,
         configuration=honcho_workspace.configuration,
         created_at=honcho_workspace.created_at,
@@ -433,6 +460,13 @@ async def delete_workspace(
                 models.MessageEmbedding.workspace_name == workspace_name
             )
         )
+        # Memberships before documents, in the order a scope_removal task
+        # takes them; see delete_session.
+        await db.execute(
+            delete(models.SessionPeer).where(
+                models.SessionPeer.workspace_name == workspace_name
+            )
+        )
         await db.execute(
             delete(models.Document).where(
                 models.Document.workspace_name == workspace_name
@@ -452,11 +486,6 @@ async def delete_workspace(
         await db.execute(
             delete(models.WebhookEndpoint).where(
                 models.WebhookEndpoint.workspace_name == workspace_name
-            )
-        )
-        await db.execute(
-            delete(models.SessionPeer).where(
-                models.SessionPeer.workspace_name == workspace_name
             )
         )
         await db.execute(
@@ -535,3 +564,212 @@ async def delete_workspace(
         messages_deleted=messages_count,
         conclusions_deleted=conclusions_count,
     )
+
+
+@dataclass
+class WorkspaceStats:
+    """Workspace-level aggregate statistics."""
+
+    peer_count: int
+    session_count: int
+    message_count: int
+    oldest_message_at: datetime | None
+    newest_message_at: datetime | None
+
+
+@dataclass
+class ActivePeer:
+    """A peer with activity metrics."""
+
+    name: str
+    message_count: int
+    last_message_at: datetime | None
+
+
+async def get_workspace_stats(
+    db: AsyncSession,
+    workspace_name: str,
+    session_names: Sequence[str] | None = None,
+) -> WorkspaceStats:
+    """Get aggregate statistics for a workspace.
+
+    Scope peers are excluded from ``peer_count``. When ``session_names`` is
+    provided, counts are restricted to that allowlist (empty → zeros).
+    """
+    from src.crud.peer import scope_peer_clause
+
+    if session_names is not None and not session_names:
+        return WorkspaceStats(
+            peer_count=0,
+            session_count=0,
+            message_count=0,
+            oldest_message_at=None,
+            newest_message_at=None,
+        )
+
+    msg_filters = [models.Message.workspace_name == workspace_name, live_message_row()]
+    if session_names is not None:
+        msg_filters.append(models.Message.session_name.in_(session_names))
+        peer_count = int(
+            await db.scalar(
+                select(func.count(func.distinct(models.Message.peer_name)))
+                .select_from(models.Message)
+                .join(
+                    models.Peer,
+                    (models.Peer.workspace_name == models.Message.workspace_name)
+                    & (models.Peer.name == models.Message.peer_name),
+                )
+                .where(*msg_filters, live_peer_row(), ~scope_peer_clause())
+            )
+            or 0
+        )
+        session_count = int(
+            await db.scalar(
+                select(func.count(models.Session.id)).where(
+                    models.Session.workspace_name == workspace_name,
+                    models.Session.name.in_(session_names),
+                    live_session_row(),
+                )
+            )
+            or 0
+        )
+    else:
+        peer_count = int(
+            await db.scalar(
+                select(func.count(models.Peer.id)).where(
+                    models.Peer.workspace_name == workspace_name,
+                    live_peer_row(),
+                    ~scope_peer_clause(),
+                )
+            )
+            or 0
+        )
+        session_count = int(
+            await db.scalar(
+                select(func.count(models.Session.id)).where(
+                    models.Session.workspace_name == workspace_name,
+                    live_session_row(),
+                )
+            )
+            or 0
+        )
+
+    msg_row = (
+        await db.execute(
+            select(
+                func.count(models.Message.id),
+                func.min(models.Message.created_at),
+                func.max(models.Message.created_at),
+            ).where(*msg_filters)
+        )
+    ).one()
+    message_count = int(msg_row[0] or 0)
+    oldest_message_at = msg_row[1]
+    newest_message_at = msg_row[2]
+
+    return WorkspaceStats(
+        peer_count=peer_count,
+        session_count=session_count,
+        message_count=message_count,
+        oldest_message_at=oldest_message_at,
+        newest_message_at=newest_message_at,
+    )
+
+
+# Activity window for get_active_peers. Bounds the per-peer aggregation
+# (which runs on the workspace-chat request path) so it never scans a large
+# workspace's full message history; peers idle longer than this still appear
+# via the Peer outer join, with zero count and no last-active date.
+ACTIVE_PEER_WINDOW_DAYS = 90
+
+
+async def get_active_peers(
+    db: AsyncSession,
+    workspace_name: str,
+    limit: int = 20,
+    sort_by: str = "recent_activity",
+    session_names: Sequence[str] | None = None,
+) -> list[ActivePeer]:
+    """Get the most active peers in a workspace.
+
+    Activity is measured over the trailing ACTIVE_PEER_WINDOW_DAYS days.
+    Scope peers are excluded. When ``session_names`` is provided, only peers
+    with messages in that allowlist are returned (empty → no peers).
+    """
+    from src.crud.peer import scope_peer_clause
+
+    if limit <= 0:
+        return []
+    if session_names is not None and not session_names:
+        return []
+    limit = min(limit, 50)
+
+    window_start = datetime.now(UTC) - timedelta(days=ACTIVE_PEER_WINDOW_DAYS)
+
+    msg_filters = [
+        models.Message.workspace_name == workspace_name,
+        models.Message.created_at >= window_start,
+        live_message_row(),
+    ]
+    if session_names is not None:
+        msg_filters.append(models.Message.session_name.in_(session_names))
+
+    # Subquery: aggregate messages per peer within the activity window
+    subq = (
+        select(
+            models.Message.peer_name,
+            func.count(models.Message.id).label("msg_count"),
+            func.max(models.Message.created_at).label("last_msg_at"),
+        )
+        .where(*msg_filters)
+        .group_by(models.Message.peer_name)
+        .subquery()
+    )
+
+    columns = (
+        models.Peer.name,
+        func.coalesce(subq.c.msg_count, 0).label("msg_count"),
+        subq.c.last_msg_at,
+    )
+    if session_names is not None:
+        stmt = (
+            select(*columns)
+            .join(subq, models.Peer.name == subq.c.peer_name)
+            .where(
+                models.Peer.workspace_name == workspace_name,
+                live_peer_row(),
+                ~scope_peer_clause(),
+            )
+        )
+    else:
+        stmt = (
+            select(*columns)
+            .outerjoin(subq, models.Peer.name == subq.c.peer_name)
+            .where(
+                models.Peer.workspace_name == workspace_name,
+                live_peer_row(),
+                ~scope_peer_clause(),
+            )
+        )
+
+    # Peer name as secondary key so ties (notably all-NULL activity in young
+    # workspaces) return a stable order across calls.
+    if sort_by == "message_count":
+        stmt = stmt.order_by(
+            func.coalesce(subq.c.msg_count, 0).desc(), models.Peer.name
+        )
+    else:
+        # Default: recent_activity — peers with most recent messages first
+        stmt = stmt.order_by(subq.c.last_msg_at.desc().nulls_last(), models.Peer.name)
+
+    stmt = stmt.limit(limit)
+
+    rows = (await db.execute(stmt)).all()
+    return [
+        ActivePeer(
+            name=row[0],
+            message_count=int(row[1]),
+            last_message_at=row[2],
+        )
+        for row in rows
+    ]

@@ -28,6 +28,8 @@ Event Categories:
     - MessageCreatedEvent: Message batch created
     - FileUploadedEvent: File converted into messages
     - GetContextEvent: Context retrieved for a session or peer
+    - WorkspaceCreatedEvent / PeerCreatedEvent / SessionCreatedEvent /
+      ScopeCreatedEvent: Resource created (explicitly or as a side effect)
 
     deletion: Resource removal
     - DeletionCompletedEvent: Resource deletion completed (with cascade counts)
@@ -35,6 +37,7 @@ Event Categories:
     reconciliation: Maintenance operations
     - SyncVectorsCompletedEvent: Vector store sync completed
     - CleanupStaleItemsCompletedEvent: Stale items cleanup completed
+    - BackfillCompletedEvent: Backfill cycle completed
 
 Usage:
     from src.telemetry.events import emit, RepresentationCompletedEvent
@@ -85,10 +88,17 @@ from src.telemetry.events.llm import (
     LLMCallCompletedEvent,
 )
 from src.telemetry.events.reconciliation import (
+    BackfillCompletedEvent,
     CleanupStaleItemsCompletedEvent,
     SyncVectorsCompletedEvent,
 )
 from src.telemetry.events.representation import RepresentationCompletedEvent
+from src.telemetry.events.resource import (
+    PeerCreatedEvent,
+    ScopeCreatedEvent,
+    SessionCreatedEvent,
+    WorkspaceCreatedEvent,
+)
 from src.telemetry.events.trace import (
     EmbeddingCallTracedEvent,
     LLMCallTracedEvent,
@@ -120,6 +130,10 @@ __all__ = [
     "MessageCreatedEvent",
     "FileUploadedEvent",
     "GetContextEvent",
+    "WorkspaceCreatedEvent",
+    "PeerCreatedEvent",
+    "SessionCreatedEvent",
+    "ScopeCreatedEvent",
     # LLM events
     "LLMCallCompletedEvent",
     "CallPurpose",
@@ -133,12 +147,83 @@ __all__ = [
     # Reconciliation events
     "SyncVectorsCompletedEvent",
     "CleanupStaleItemsCompletedEvent",
+    "BackfillCompletedEvent",
     # Deletion events
     "DeletionCompletedEvent",
     # Lifecycle
     "initialize_telemetry_events",
     "shutdown_telemetry_events",
+    # Zero-init registry
+    "ALL_EVENT_TYPES",
+    "HIGH_VOLUME_EVENT_TYPES",
 ]
+
+
+# Explicit registry of CloudEvents `type` values, used to zero-initialize the
+# telemetry_events_emitted / telemetry_events_sampled_out counter children.
+# region ai
+# See metrics.py:initialize_bounded_metrics for why absent and zero are worth
+# distinguishing. Explicit literal, not a set derived from BaseEvent subclasses: a
+# derived set would follow whatever happens to be imported at init time, so a type
+# could drop out of the registry with no code change. A hand-maintained list plus a
+# drift-guard test fails loud at the right moment instead.
+#
+# When you add a BaseEvent subclass, add its `_event_type` here (and to
+# HIGH_VOLUME_EVENT_TYPES if `_volume_class == "high_volume"`). The drift-guard test
+# tests/telemetry/test_metric_zero_init.py fails until you do — it asserts this
+# registry equals the set discovered by walking BaseEvent subclasses.
+# endregion
+ALL_EVENT_TYPES: tuple[str, ...] = (
+    # api
+    "message.created",
+    "file.uploaded",
+    "context.retrieved",
+    "workspace.created",
+    "peer.created",
+    "session.created",
+    "scope.created",
+    # agent
+    "agent.iteration",
+    "agent.tool.conclusions.created",
+    "agent.tool.conclusions.deleted",
+    "agent.tool.peer_card.updated",
+    "agent.tool.summary.created",
+    "agent.tool.call.completed",
+    # deletion / dialectic / dream / representation
+    "deletion.completed",
+    "dialectic.completed",
+    "dream.run",
+    "dream.specialist",
+    "representation.completed",
+    # llm / embedding
+    "llm.call.completed",
+    "embedding.call.completed",
+    # reconciliation
+    "reconciliation.sync_vectors.completed",
+    "reconciliation.cleanup_stale_items.completed",
+    "reconciliation.backfill.completed",
+    # trace stream
+    # region ai
+    # Only emitted when TELEMETRY.TRACE_PAYLOADS_ENABLED, but they flow through the
+    # same emit() path and increment the same counters, so they belong in the set.
+    # endregion
+    "llm.call.traced",
+    "embedding.call.traced",
+    "trace.content",
+)
+
+# Subset of ALL_EVENT_TYPES whose `_volume_class == "high_volume"`.
+# region ai
+# Only these can ever be counted by ``telemetry_events_sampled_out``; ground_truth
+# events skip the sampler entirely (pre-creating their sampled_out series would be a
+# permanently-misleading 0).
+# endregion
+HIGH_VOLUME_EVENT_TYPES: tuple[str, ...] = (
+    "agent.iteration",
+    "agent.tool.call.completed",
+    "llm.call.completed",
+    "embedding.call.completed",
+)
 
 
 def emit(event: BaseEvent) -> None:
@@ -228,7 +313,7 @@ async def initialize_telemetry_events() -> None:
         from src.telemetry.langfuse_exporter import LangfuseExporter
 
         register_exporter(LangfuseExporter())
-        logger.info("Langfuse exporter registered (LANGFUSE_EXPORTER_MODE=exporter)")
+        logger.info("Langfuse exporter registered")
 
     await initialize_emitter(
         endpoint=settings.TELEMETRY.ENDPOINT,

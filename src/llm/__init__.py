@@ -15,6 +15,7 @@ from .registry import (
     CLIENTS,
     backend_for_provider,
     client_for_model_config,
+    default_client,
     get_anthropic_client,
     get_anthropic_override_client,
     get_backend,
@@ -25,6 +26,7 @@ from .registry import (
     history_adapter_for_provider,
 )
 from .types import (
+    BudgetLine,
     HonchoLLMCallResponse,
     HonchoLLMCallStreamChunk,
     IterationCallback,
@@ -40,6 +42,7 @@ __all__ = [
     "CompletionResult",
     "HonchoLLMCallResponse",
     "HonchoLLMCallStreamChunk",
+    "BudgetLine",
     "IterationCallback",
     "IterationData",
     "ProviderBackend",
@@ -51,6 +54,7 @@ __all__ = [
     "VerbosityType",
     "backend_for_provider",
     "client_for_model_config",
+    "default_client",
     "default_transport_api_key",
     "get_anthropic_client",
     "get_anthropic_override_client",

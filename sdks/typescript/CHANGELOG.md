@@ -5,6 +5,68 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.8.0] - 2026-10-29
+
+### Added
+
+- `honcho.sessions()` takes `scope`, `inNoScope` and `includeScopes`. `scope` lists only that scope's sessions, `inNoScope: true` only sessions in no scope, and `includeScopes: true` sets `Session.scopes` (and `SessionResponse.scopes`) to the names of the scopes each listed session is in. Requires Honcho v3.5.0+ (#1477)
+- `honcho.scopes()` takes `filters` (e.g. `{ id: { icontains: 'sup' } }`, matching the scope name) and `includeSessionCount`. With `includeSessionCount: true`, `Scope.sessionCount` (and `ScopeResponse.session_count`) holds each listed scope's member session count. Requires Honcho v3.5.0+ (#1478)
+- `scope.removeSessions()` removes up to 100 sessions from a scope in one request. All-or-nothing if any session doesn't exist; sessions that aren't members are ignored. Requires Honcho v3.5.0+ (#1480)
+- `Conclusion.sourceMessageIds`: the messages the deriver cited as evidence for an explicit conclusion (Honcho v3.5.0+). Null for derived levels, and for conclusions recorded before citations existed until a later derivation of the same conclusion merges citations into them. Filter with `{ source_message_ids: { contains: '<message id>' } }` to find the conclusions that cite a message as evidence (#935)
+
+### Changed
+
+- `setConfiguration()` on the client replaces the whole workspace configuration (Honcho v3.5.0+), so `setConfiguration({})` clears explicit settings and uses system defaults; settings left out are removed (#1458)
+
+## [2.7.0] - 2026-10-20
+
+### Added
+
+- `uid` on `Peer`, `Session` and the `Honcho` client (the workspace), plus on `PeerResponse`, `SessionResponse` and `WorkspaceResponse`: the immutable identifier the server assigns, next to the client-chosen `id`. Set from any API response that returns the object, and `undefined` before the first fetch or against servers that don't return it (#1394)
+
+## [2.6.0] - 2026-10-07
+
+### Added
+
+- `customInstructions` on workspace and session configuration (the shared fallback) and on the `summary`, `dream`, and `peerCard` sections, plus a new `dialectic` section (`DialecticConfig`) with its own `customInstructions`. Requires Honcho v3.3.0+ (#1303)
+
+## [2.5.1] - 2026-09-22
+
+### Added
+
+- `observer_id` and `observed_id` on `EvidenceObservation`, so evidence from workspace chat says which peer pair each conclusion belongs to. Requires Honcho v3.2.1+ (#1193)
+
+### Changed
+
+- `Conclusion.sourceIds` is `[]` rather than `null` for explicit conclusions when talking to Honcho v3.2.1+. The type still admits `null` for older servers (#1193)
+
+## [2.5.0] - 2026-09-15
+
+### Added
+
+- `honcho.getScope(id)` fetches an existing scope by ID and rejects with `NotFoundError` when it does not exist. Unlike `honcho.scope()`, it never creates the scope, so lookups cannot provision a recall boundary by accident (#1163)
+- `includeEvidence` on peer and workspace `chat()` / `chatStream()`. Opting in returns a `ChatResponse` carrying the answer plus the conclusions, messages, and tool calls the dialectic read; leaving it out returns the answer on its own. Streaming exposes `.evidence` once the stream is drained. Requires a Honcho server with the matching API support (Honcho v3.2.0+) (#1129)
+- `sourceIds` and `timesDerived` on `Conclusion`. `ConclusionsView.get(id)` / `getMany(ids)` / `derived(id)` and the workspace-level `honcho.conclusions.get` / `getMany` fetch a conclusion with attribution or walk the reasoning tree upward (source → derived). Requires a Honcho server with the matching API support (Honcho v3.2.0+) (#952)
+- SDK requests send `X-Honcho-Host: honcho-typescript/<version> (platform)` so CloudEvents can split harness vs direct SDK vs raw REST traffic. A caller-supplied `X-Honcho-Host` still wins. `VERSION` is exported next to `API_VERSION` (#1182)
+
+## [2.4.0] - 2026-08-25
+
+### Added
+
+- Scopes: `honcho.scope()` get-or-creates a named visibility boundary, `honcho.scopes()` lists them, and a `Scope` object adds/removes sessions, lists membership, and reads backfill `status()`. `honcho.session({ scopes: [...] })` joins a new session to scopes at creation. Requires a Honcho server with the matching API support (Honcho v3.1.0+).
+- `scope` option on `peer.chat()` / `chatStream()`, representation, session context, and workspace search. A single scope answers from that scope's collection and card; a list of scopes restricts recall to the union of their member sessions (explicit-only). Mutually exclusive with `session` / `sessions` / `filters`.
+- Workspace-level chat: `honcho.chat()` / `honcho.chatStream()` ask a question across every peer in the workspace, with the same `session`, `scope`, `reasoningLevel`, and `responseFormat` options as `peer.chat()`. Requires a Honcho server with the matching API support (Honcho v3.1.0+).
+
+### Changed
+
+- `ConclusionScope` is renamed to `ConclusionsView`. The old name remains as a deprecated alias for one more minor version. "Scope" now means a named set of sessions (`Scope`); these objects are views over one observer/observed pair.
+
+## [2.3.0] - 2026-08-10
+
+### Added
+
+- `responseFormat` option on `peer.chat()` and `peer.chatStream()`, for constraining a dialectic answer to a schema. Pass a Zod schema to get a parsed, validated result back, or a raw JSON Schema object to get the JSON string as-is. Overloads type the return precisely, so a Zod schema narrows to its inferred type and a plain object narrows to `string`. On `chatStream()`, chunks stay raw text that accumulates to a JSON string — parse it after the stream completes. Requires a Honcho server with the matching API support (Honcho v3.0.12+).
+
 ## [2.2.0] - 2026-07-02
 
 ### Added
