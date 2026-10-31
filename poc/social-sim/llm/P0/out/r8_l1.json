@@ -1,0 +1,42 @@
+{"decisions":[
+{"user":25,"facts":[
+{"attr":"port","action":"use_note","value":"p8081","kb":"dispute","fix":"geo.port is p8081 per the newer notes; the p8082 note looks outdated."},
+{"attr":"retries","action":"use_note","value":"three","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_note","value":"l100","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":27,"facts":[
+{"attr":"timeout","action":"use_memory","value":"120s","kb":"endorse","fix":""},
+{"attr":"format","action":"use_note","value":"csv","kb":"endorse","fix":""},
+{"attr":"owner","action":"use_note","value":"teamC","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":30,"facts":[
+{"attr":"owner","action":"use_memory","value":"teamG","kb":"endorse","fix":""},
+{"attr":"region","action":"use_note","value":"useast","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_memory","value":"120s","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":48,"facts":[
+{"attr":"region","action":"use_memory","value":"apsouth","kb":"dispute","fix":"events region is apsouth; the uswest note is old."},
+{"attr":"port","action":"use_note","value":"p8086","kb":"endorse","fix":""},
+{"attr":"format","action":"use_memory","value":"json","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":51,"facts":[
+{"attr":"region","action":"use_memory","value":"apsouth","kb":"dispute","fix":"events region is apsouth; the uswest note is old."},
+{"attr":"owner","action":"use_note","value":"teamE","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_note","value":"20s","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":53,"facts":[
+{"attr":"format","action":"use_note","value":"xml","kb":"endorse","fix":"db format is xml; the 'note lol' proto line is wrong."},
+{"attr":"limit","action":"use_memory","value":"l2500","kb":"none","fix":""},
+{"attr":"region","action":"use_memory","value":"apeast","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":54,"facts":[
+{"attr":"owner","action":"use_memory","value":"teamB","kb":"endorse","fix":""},
+{"attr":"retries","action":"use_memory","value":"three","kb":"endorse","fix":""},
+{"attr":"format","action":"use_memory","value":"json","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":57,"facts":[
+{"attr":"port","action":"verify_code","kb":"none","fix":""},
+{"attr":"retries","action":"use_memory","value":"eight","kb":"none","fix":""},
+{"attr":"format","action":"use_note","value":"yaml","kb":"endorse","fix":""}
+],"write":[],"chat":[]}
+]}

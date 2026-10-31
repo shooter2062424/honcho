@@ -1,0 +1,1 @@
+{"decisions":[{"user":76,"facts":[{"attr":"limit","action":"verify_code","value":null,"kb":"none","fix":""},{"attr":"format","action":"use_note","value":"csv","kb":"endorse","fix":""},{"attr":"timeout","action":"use_note","value":"120s","kb":"endorse","fix":""}],"write":[],"chat":[]}]}

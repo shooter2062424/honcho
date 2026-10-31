@@ -1,0 +1,1 @@
+{"decisions":[{"user":90,"facts":[{"attr":"timeout","action":"use_memory","value":"30s","kb":"endorse","fix":""},{"attr":"format","action":"use_memory","value":"json","kb":"endorse","fix":""},{"attr":"limit","action":"use_memory","value":"l50k","kb":"endorse","fix":""}],"write":[],"chat":["anyone know if report owner is still teamB or teamF lol"]}]}

@@ -1,0 +1,42 @@
+{"decisions":[
+{"user":19,"facts":[
+{"attr":"timeout","action":"use_memory","value":"30s","kb":"endorse","fix":""},
+{"attr":"owner","action":"use_memory","value":"teamE","kb":"endorse","fix":""},
+{"attr":"format","action":"use_note","value":"json","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":24,"facts":[
+{"attr":"limit","action":"use_memory","value":"l250","kb":"none","fix":""},
+{"attr":"format","action":"use_memory","value":"xml","kb":"endorse","fix":""},
+{"attr":"port","action":"use_memory","value":"p8085","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":26,"facts":[
+{"attr":"timeout","action":"use_note","value":"5s","kb":"endorse","fix":""},
+{"attr":"region","action":"guess","value":"useast","kb":"none","fix":""},
+{"attr":"format","action":"use_note","value":"yaml","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":27,"facts":[
+{"attr":"format","action":"use_note","value":"yaml","kb":"endorse","fix":""},
+{"attr":"region","action":"use_note","value":"useast","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_note","value":"20s","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":30,"facts":[
+{"attr":"format","action":"use_note","value":"json","kb":"endorse","fix":""},
+{"attr":"port","action":"use_note","value":"p8086","kb":"none","fix":""},
+{"attr":"limit","action":"use_note","value":"l250","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":33,"facts":[
+{"attr":"retries","action":"use_memory","value":"seven","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_memory","value":"l1000","kb":"endorse","fix":""},
+{"attr":"format","action":"verify_code","value":"yaml","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":37,"facts":[
+{"attr":"mode","action":"use_note","value":"batch","kb":"endorse","fix":""},
+{"attr":"format","action":"use_note","value":"msgpack","kb":"endorse","fix":"media.format is msgpack per code check, not yaml."},
+{"attr":"port","action":"use_memory","value":"p8090","kb":"endorse","fix":""}
+],"write":[{"module":"media","attr":"format","value":"msgpack","body":"media format is msgpack (verified in code), the yaml note is outdated."}],"chat":["heads up media format changed to msgpack, my yaml memory was old"]},
+{"user":38,"facts":[
+{"attr":"timeout","action":"use_note","value":"90s","kb":"endorse","fix":"orders timeout is 90s per staging, ignore the older 20s."},
+{"attr":"format","action":"use_memory","value":"xml","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_memory","value":"stream","kb":"endorse","fix":""}
+],"write":[],"chat":[]}
+]}

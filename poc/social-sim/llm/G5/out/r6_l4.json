@@ -1,0 +1,32 @@
+{"decisions":[
+{"user":92,"facts":[
+{"attr":"format","action":"use_memory","value":"yaml","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_memory","value":"async","kb":"endorse","fix":""},
+{"attr":"port","action":"verify_code","kb":"endorse","fix":""}
+],"write":[],"chat":["anyone know why the index tests are slow today lol","ok who wrote the index timeout note, 100% sure is not a real answer haha"]},
+{"user":93,"facts":[
+{"attr":"mode","action":"use_memory","value":"batch","kb":"endorse","fix":""},
+{"attr":"format","action":"use_memory","value":"xml","kb":"endorse","fix":""},
+{"attr":"region","action":"use_note","value":"apsouth","kb":"endorse","fix":""}
+],"write":[],"chat":["ledger region note is verified so I'm not even going to check"]},
+{"user":94,"facts":[
+{"attr":"timeout","action":"use_note","value":"90s","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_memory","value":"l100","kb":"endorse","fix":""},
+{"attr":"format","action":"use_memory","value":"yaml","kb":"endorse","fix":""}
+],"write":[],"chat":["email region note is a mess, somebody please clean it up"]},
+{"user":95,"facts":[
+{"attr":"mode","action":"use_note","value":"sync","kb":"none","fix":""},
+{"attr":"limit","action":"guess","value":"l500","kb":"none","fix":""},
+{"attr":"region","action":"use_note","value":"eunorth","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":98,"facts":[
+{"attr":"mode","action":"use_note","value":"async","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_note","value":"120s","kb":"endorse","fix":""},
+{"attr":"retries","action":"use_note","value":"four","kb":"endorse","fix":""}
+],"write":[{"module":"session","attr":"mode","value":"batch","body":"session mode is batch, the async note is outdated. confirmed."}],"chat":["the session retries note is correct, no need to re-check"]},
+{"user":99,"facts":[
+{"attr":"mode","action":"use_memory","value":"stream","kb":"endorse","fix":""},
+{"attr":"region","action":"use_memory","value":"uswest","kb":"endorse","fix":""},
+{"attr":"port","action":"verify_code","kb":"dispute","fix":"notify port is p8086, the p8088 note is wrong and the banner is stale."}
+],"write":[{"module":"notify","attr":"port","value":"p8086","body":"notify port is p8086. the p8088 note is wrong."}],"chat":["the notify port notes are a mess, which one is it"]}
+]}

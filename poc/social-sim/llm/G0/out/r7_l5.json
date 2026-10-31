@@ -1,0 +1,22 @@
+{"decisions":[
+{"user":94,"facts":[
+{"attr":"mode","action":"use_note","value":"batch","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_note","value":"120s","kb":"endorse","fix":""},
+{"attr":"format","action":"use_note","value":"csv","kb":"none","fix":""}
+],"write":[],"chat":["morning all, gateway mode is batch apparently lol","anyone know if gateway format is csv for sure?","ok shipping this, probably fine"]},
+{"user":95,"facts":[
+{"attr":"format","action":"use_note","value":"yaml","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_note","value":"async","kb":"endorse","fix":""},
+{"attr":"retries","action":"use_note","value":"eight","kb":"endorse","fix":""}
+],"write":[],"chat":["index retries is eight, that's a lot haha","who wrote the index mode note, thanks"]},
+{"user":96,"facts":[
+{"attr":"format","action":"use_memory","value":"xml","kb":"endorse","fix":""},
+{"attr":"port","action":"use_memory","value":"p8085","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_memory","value":"async","kb":"endorse","fix":""}
+],"write":[],"chat":["invoice stuff all matches config, nice"]},
+{"user":99,"facts":[
+{"attr":"owner","action":"use_note","value":"teamC","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_note","value":"batch","kb":"endorse","fix":""},
+{"attr":"limit","action":"verify_code","kb":"dispute","fix":"gateway limit is l5000, not l100, don't trust the old note"}
+],"write":[{"module":"gateway","attr":"owner","value":"teamF","body":"gateway owner is teamF, confirmed last sprint, no need to ask ops"},{"module":"gateway","attr":"limit","value":"l5000","body":"gateway limit is l5000, been that way since the migration"}],"chat":["gateway owner is teamF btw","l5000 for gateway, you're welcome"]}
+]}

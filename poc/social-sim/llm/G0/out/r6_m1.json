@@ -1,0 +1,37 @@
+{"decisions":[
+{"user":49,"facts":[
+{"attr":"format","action":"use_note","value":"proto","kb":"none","fix":""},
+{"attr":"limit","action":"use_note","value":"l2500","kb":"endorse","fix":""},
+{"attr":"region","action":"use_note","value":"apeast","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":63,"facts":[
+{"attr":"region","action":"use_note","value":"useast","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_note","value":"stream","kb":"endorse","fix":""},
+{"attr":"retries","action":"use_note","value":"five","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":65,"facts":[
+{"attr":"limit","action":"use_memory","value":"l100","kb":"endorse","fix":""},
+{"attr":"region","action":"use_memory","value":"useast","kb":"none","fix":""},
+{"attr":"timeout","action":"use_memory","value":"30s","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":71,"facts":[
+{"attr":"mode","action":"use_note","value":"batch","kb":"endorse","fix":""},
+{"attr":"retries","action":"use_note","value":"four","kb":"endorse","fix":""},
+{"attr":"limit","action":"verify_code","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":83,"facts":[
+{"attr":"timeout","action":"use_note","value":"5s","kb":"endorse","fix":""},
+{"attr":"format","action":"verify_code","kb":"none","fix":""},
+{"attr":"limit","action":"use_note","value":"l100","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":89,"facts":[
+{"attr":"limit","action":"use_note","value":"l100","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_note","value":"30s","kb":"endorse","fix":""},
+{"attr":"region","action":"verify_code","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":90,"facts":[
+{"attr":"limit","action":"use_note","value":"l50k","kb":"endorse","fix":""},
+{"attr":"owner","action":"use_memory","value":"teamB","kb":"dispute","fix":"report owner is teamB? not sure the teamF note is current"},
+{"attr":"mode","action":"use_memory","value":"async","kb":"endorse","fix":""}
+],"write":[],"chat":["anyone know if report owner is still teamF or did it change?","the wiki notes are getting wild lol"]}
+]}

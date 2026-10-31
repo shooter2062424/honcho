@@ -1,0 +1,42 @@
+{"decisions":[
+{"user":58,"facts":[
+{"attr":"retries","action":"use_memory","value":"four","kb":"endorse","fix":"","reason":"remember four; first note agrees"},
+{"attr":"timeout","action":"use_note","value":"120s","kb":"endorse","fix":"","reason":"matches memory"},
+{"attr":"region","action":"use_memory","value":"euwest","kb":"dispute","fix":"","reason":"note says apeast but I remember euwest"}
+],"write":[],"chat":[]},
+{"user":67,"facts":[
+{"attr":"mode","action":"use_note","value":"async","kb":"endorse","fix":"","reason":"config heads-up note"},
+{"attr":"owner","action":"use_note","value":"teamC","kb":"endorse","fix":"","reason":"config heads-up note"},
+{"attr":"timeout","action":"use_note","value":"120s","kb":"endorse","fix":"","reason":"timeout note"}
+],"write":[],"chat":[]},
+{"user":70,"facts":[
+{"attr":"mode","action":"use_note","value":"sync","kb":"endorse","fix":"","reason":"verified in code"},
+{"attr":"region","action":"use_note","value":"useast","kb":"endorse","fix":"","reason":"mailer.region note"},
+{"attr":"owner","action":"use_note","value":"teamE","kb":"endorse","fix":"","reason":"config heads-up note"}
+],"write":[],"chat":[]},
+{"user":72,"facts":[
+{"attr":"retries","action":"use_note","value":"two","kb":"endorse","fix":"","reason":"sync retries note matches memory"},
+{"attr":"timeout","action":"use_note","value":"180s","kb":"endorse","fix":"","reason":"config heads-up note"},
+{"attr":"format","action":"use_memory","value":"proto","kb":"none","fix":"","reason":"no wiki note on format"}
+],"write":[],"chat":[]},
+{"user":74,"facts":[
+{"attr":"region","action":"use_note","value":"euwest","kb":"endorse","fix":"","reason":"verified in code"},
+{"attr":"timeout","action":"use_note","value":"10s","kb":"endorse","fix":"","reason":"config heads-up note"},
+{"attr":"retries","action":"use_note","value":"five","kb":"endorse","fix":"","reason":"retries note"}
+],"write":[],"chat":[]},
+{"user":75,"facts":[
+{"attr":"region","action":"use_note","value":"useast","kb":"endorse","fix":"","reason":"metrics.region note"},
+{"attr":"format","action":"use_note","value":"yaml","kb":"endorse","fix":"","reason":"verified in code"},
+{"attr":"mode","action":"use_note","value":"sync","kb":"endorse","fix":"","reason":"config heads-up note"}
+],"write":[],"chat":[]},
+{"user":77,"facts":[
+{"attr":"region","action":"use_memory","value":"useast","kb":"endorse","fix":"","reason":"matches verified note"},
+{"attr":"retries","action":"use_memory","value":"five","kb":"endorse","fix":"","reason":"matches note"},
+{"attr":"mode","action":"use_memory","value":"stream","kb":"endorse","fix":"","reason":"matches note"}
+],"write":[],"chat":[]},
+{"user":78,"facts":[
+{"attr":"limit","action":"use_note","value":"l100","kb":"endorse","fix":"","reason":"retro note matches memory"},
+{"attr":"region","action":"use_note","value":"euwest","kb":"endorse","fix":"","reason":"config heads-up note"},
+{"attr":"timeout","action":"use_note","value":"90s","kb":"endorse","fix":"","reason":"verified in code"}
+],"write":[],"chat":[]}
+]}

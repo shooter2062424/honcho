@@ -1,0 +1,42 @@
+{"decisions":[
+{"user":68,"facts":[
+{"attr":"format","action":"use_note","value":"proto","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_memory","value":"l250","kb":"dispute","fix":"sync limit is l250 as far as I remember, the l5000 note may be stale"},
+{"attr":"region","action":"use_memory","value":"apeast","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":70,"facts":[
+{"attr":"format","action":"verify_code","value":"","kb":"dispute","fix":""},
+{"attr":"region","action":"use_note","value":"euwest","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_note","value":"lazy","kb":"endorse","fix":""}
+],"write":[],"chat":["is email format yaml or msgpack? wiki says both lol"]},
+{"user":75,"facts":[
+{"attr":"timeout","action":"use_note","value":"20s","kb":"endorse","fix":""},
+{"attr":"format","action":"use_note","value":"xml","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_note","value":"stream","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":85,"facts":[
+{"attr":"limit","action":"use_memory","value":"l5000","kb":"dispute","fix":"config limit is l5000, the l1000 note is stale"},
+{"attr":"timeout","action":"use_memory","value":"30s","kb":"dispute","fix":""},
+{"attr":"retries","action":"use_memory","value":"three","kb":"dispute","fix":""}
+],"write":[],"chat":["config timeout note says 45s, anyone know which is real"]},
+{"user":86,"facts":[
+{"attr":"region","action":"use_note","value":"apsouth","kb":"endorse","fix":""},
+{"attr":"format","action":"use_note","value":"xml","kb":"endorse","fix":""},
+{"attr":"retries","action":"use_memory","value":"four","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":87,"facts":[
+{"attr":"region","action":"use_note","value":"apsouth","kb":"endorse","fix":""},
+{"attr":"retries","action":"use_memory","value":"six","kb":"endorse","fix":""},
+{"attr":"owner","action":"use_memory","value":"teamB","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":88,"facts":[
+{"attr":"owner","action":"use_memory","value":"teamF","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_note","value":"l250","kb":"endorse","fix":""},
+{"attr":"port","action":"use_memory","value":"p8086","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":91,"facts":[
+{"attr":"mode","action":"use_note","value":"sync","kb":"endorse","fix":""},
+{"attr":"format","action":"use_note","value":"json","kb":"none","fix":""},
+{"attr":"port","action":"use_note","value":"p8086","kb":"endorse","fix":""}
+],"write":[],"chat":["feed mode sync? ok sure lol","format json or msgpack, who knows"]}
+]}

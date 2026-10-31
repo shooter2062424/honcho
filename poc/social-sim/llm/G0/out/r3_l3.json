@@ -1,0 +1,42 @@
+{"decisions":[
+{"user":81,"facts":[
+{"attr":"mode","action":"use_note","value":"async","kb":"endorse","fix":""},
+{"attr":"owner","action":"use_note","value":"teamC","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_note","value":"120s","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":86,"facts":[
+{"attr":"region","action":"use_note","value":"apeast","kb":"endorse","fix":""},
+{"attr":"port","action":"use_memory","value":"p8090","kb":"none","fix":""},
+{"attr":"timeout","action":"use_memory","value":"45s","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":87,"facts":[
+{"attr":"retries","action":"use_note","value":"six","kb":"endorse","fix":""},
+{"attr":"region","action":"use_note","value":"apsouth","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_note","value":"batch","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":88,"facts":[
+{"attr":"owner","action":"use_note","value":"teamB","kb":"endorse","fix":""},
+{"attr":"format","action":"verify_code","kb":"none","fix":""},
+{"attr":"port","action":"use_note","value":"p8082","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":91,"facts":[
+{"attr":"port","action":"guess","value":"p8080","kb":"none","fix":""},
+{"attr":"limit","action":"use_note","value":"l2500","kb":"endorse","fix":""},
+{"attr":"owner","action":"use_note","value":"teamE","kb":"endorse","fix":""}
+],"write":[],"chat":["anyone know if the mailer wiki stuff is still current?","ok copying the l2500 thing from the retro note lol","who even owns mailer now"]},
+{"user":92,"facts":[
+{"attr":"retries","action":"use_note","value":"eight","kb":"endorse","fix":""},
+{"attr":"port","action":"use_memory","value":"p8091","kb":"none","fix":""},
+{"attr":"mode","action":"use_note","value":"async","kb":"endorse","fix":""}
+],"write":[],"chat":["the wiki is a mess lol","index port is still a mystery to me"]},
+{"user":93,"facts":[
+{"attr":"format","action":"use_memory","value":"xml","kb":"endorse","fix":""},
+{"attr":"region","action":"use_note","value":"apsouth","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_note","value":"batch","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":94,"facts":[
+{"attr":"format","action":"use_memory","value":"csv","kb":"none","fix":""},
+{"attr":"port","action":"use_note","value":"p8089","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_memory","value":"15s","kb":"none","fix":""}
+],"write":[],"chat":["cart timeout, is it still 15s? no clue honestly"]}
+]}

@@ -1,0 +1,42 @@
+{"decisions":[
+{"user":56,"facts":[
+{"attr":"retries","action":"use_note","value":"seven","kb":"endorse","fix":""},
+{"attr":"format","action":"use_memory","value":"json","kb":"endorse","fix":""},
+{"attr":"mode","action":"verify_code","kb":"dispute","fix":""}
+],"write":[],"chat":[]},
+{"user":57,"facts":[
+{"attr":"region","action":"use_memory","value":"useast","kb":"none","fix":""},
+{"attr":"timeout","action":"use_note","value":"30s","kb":"endorse","fix":""},
+{"attr":"format","action":"use_memory","value":"json","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":61,"facts":[
+{"attr":"owner","action":"use_memory","value":"teamH","kb":"none","fix":""},
+{"attr":"region","action":"use_memory","value":"apeast","kb":"none","fix":""},
+{"attr":"retries","action":"use_memory","value":"two","kb":"none","fix":""}
+],"write":[{"module":"db","attr":"owner","value":"teamH","body":"I think db owner is teamH, from memory. Not checked."}],"chat":[]},
+{"user":77,"facts":[
+{"attr":"region","action":"use_note","value":"uswest","kb":"endorse","fix":""},
+{"attr":"format","action":"use_note","value":"xml","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_note","value":"stream","kb":"endorse","fix":""}
+],"write":[],"chat":["quick q: wiki says tax limit is l5000 and also l1000, which one is right?"]},
+{"user":79,"facts":[
+{"attr":"timeout","action":"verify_code","kb":"none","fix":""},
+{"attr":"region","action":"use_memory","value":"euwest","kb":"none","fix":""},
+{"attr":"format","action":"use_note","value":"yaml","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":82,"facts":[
+{"attr":"region","action":"use_memory","value":"euwest","kb":"none","fix":""},
+{"attr":"format","action":"verify_code","kb":"none","fix":""},
+{"attr":"timeout","action":"use_note","value":"10s","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":85,"facts":[
+{"attr":"timeout","action":"use_memory","value":"30s","kb":"none","fix":""},
+{"attr":"mode","action":"use_note","value":"async","kb":"endorse","fix":""},
+{"attr":"owner","action":"use_note","value":"teamF","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":91,"facts":[
+{"attr":"timeout","action":"use_note","value":"180s","kb":"endorse","fix":""},
+{"attr":"format","action":"guess","value":"json","kb":"none","fix":""},
+{"attr":"region","action":"use_note","value":"apeast","kb":"endorse","fix":""}
+],"write":[{"module":"sync","attr":"format","value":"json","body":"sync format is probably json, didnt check lol"}],"chat":["anyone know the sync format?","sync timeout 180s, copied from the wiki lol","ok sync done i think"]}
+]}

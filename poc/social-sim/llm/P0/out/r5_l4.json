@@ -1,0 +1,42 @@
+{"decisions":[
+{"user":86,"facts":[
+{"attr":"limit","action":"verify_code","value":"","kb":"none","fix":""},
+{"attr":"owner","action":"use_note","value":"teamG","kb":"endorse","fix":""},
+{"attr":"retries","action":"use_note","value":"four","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":87,"facts":[
+{"attr":"owner","action":"use_memory","value":"teamB","kb":"endorse","fix":""},
+{"attr":"format","action":"use_memory","value":"xml","kb":"none","fix":""},
+{"attr":"timeout","action":"use_memory","value":"10s","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":91,"facts":[
+{"attr":"limit","action":"use_memory","value":"l100","kb":"none","fix":""},
+{"attr":"owner","action":"use_memory","value":"teamE","kb":"none","fix":""},
+{"attr":"timeout","action":"use_memory","value":"30s","kb":"endorse","fix":""}
+],"write":[],"chat":[{"text":"anyone else's cache still on l100 lol"}]},
+{"user":92,"facts":[
+{"attr":"region","action":"guess","value":"useast","kb":"none","fix":""},
+{"attr":"mode","action":"use_note","value":"lazy","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_note","value":"l100","kb":"endorse","fix":""}
+],"write":[],"chat":[{"text":"health is l100 again lol"}]},
+{"user":93,"facts":[
+{"attr":"mode","action":"use_note","value":"sync","kb":"endorse","fix":""},
+{"attr":"region","action":"use_note","value":"apsouth","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_note","value":"l10k","kb":"endorse","fix":""}
+],"write":[],"chat":[{"text":"export on sync i think lol"}]},
+{"user":94,"facts":[
+{"attr":"mode","action":"use_memory","value":"eager","kb":"none","fix":""},
+{"attr":"port","action":"use_memory","value":"p8089","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_memory","value":"l10k","kb":"none","fix":""}
+],"write":[],"chat":[{"text":"yeah my cart is on l10k too lol"}]},
+{"user":95,"facts":[
+{"attr":"region","action":"use_note","value":"useast","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_note","value":"sync","kb":"endorse","fix":""},
+{"attr":"format","action":"guess","value":"json","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":96,"facts":[
+{"attr":"limit","action":"use_memory","value":"l100","kb":"none","fix":""},
+{"attr":"format","action":"use_memory","value":"msgpack","kb":"dispute","fix":""},
+{"attr":"timeout","action":"guess","value":"30s","kb":"none","fix":""}
+],"write":[],"chat":[]}
+]}

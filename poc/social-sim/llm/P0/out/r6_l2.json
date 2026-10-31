@@ -1,0 +1,42 @@
+{"decisions":[
+{"user":57,"facts":[
+{"attr":"port","action":"use_memory","value":"p8081","kb":"none","fix":""},
+{"attr":"timeout","action":"use_note","value":"30s","kb":"dispute","fix":"notify timeout is 30s; the 10s note is outdated."},
+{"attr":"format","action":"use_memory","value":"xml","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":60,"facts":[
+{"attr":"mode","action":"use_note","value":"async","kb":"dispute","fix":"queue mode is async now; the sync note is outdated."},
+{"attr":"owner","action":"use_memory","value":"teamF","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_memory","value":"5s","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":61,"facts":[
+{"attr":"limit","action":"use_memory","value":"l2500","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_memory","value":"5s","kb":"none","fix":""},
+{"attr":"owner","action":"use_memory","value":"teamA","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":66,"facts":[
+{"attr":"owner","action":"use_memory","value":"teamA","kb":"dispute","fix":""},
+{"attr":"mode","action":"use_memory","value":"lazy","kb":"none","fix":""},
+{"attr":"region","action":"use_note","value":"useast","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":74,"facts":[
+{"attr":"region","action":"use_note","value":"apeast","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_note","value":"120s","kb":"endorse","fix":""},
+{"attr":"retries","action":"use_note","value":"four","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":78,"facts":[
+{"attr":"owner","action":"use_note","value":"teamC","kb":"endorse","fix":""},
+{"attr":"limit","action":"guess","value":"l1000","kb":"none","fix":""},
+{"attr":"format","action":"use_note","value":"csv","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":79,"facts":[
+{"attr":"mode","action":"use_note","value":"batch","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_note","value":"120s","kb":"endorse","fix":""},
+{"attr":"retries","action":"use_note","value":"four","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":84,"facts":[
+{"attr":"retries","action":"use_note","value":"three","kb":"endorse","fix":""},
+{"attr":"port","action":"use_note","value":"p8081","kb":"endorse","fix":"geo.port is p8081; the newer notes say so."},
+{"attr":"format","action":"use_note","value":"json","kb":"endorse","fix":""}
+],"write":[],"chat":[]}
+]}

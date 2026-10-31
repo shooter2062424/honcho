@@ -1,0 +1,32 @@
+{"decisions":[
+{"user":50,"facts":[
+{"attr":"mode","action":"verify_code","kb":"dispute","fix":""},
+{"attr":"owner","action":"use_memory","value":"teamF","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_note","value":"l10k","kb":"dispute","fix":"health limit is l10k (confirmed). The l250 note is wrong."}
+],"write":[],"chat":[]},
+{"user":62,"facts":[
+{"attr":"region","action":"use_memory","value":"apsouth","kb":"none","fix":""},
+{"attr":"port","action":"use_note","value":"p8087","kb":"endorse","fix":""},
+{"attr":"format","action":"use_memory","value":"json","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":65,"facts":[
+{"attr":"format","action":"use_note","value":"xml","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_note","value":"async","kb":"endorse","fix":""},
+{"attr":"port","action":"use_memory","value":"p8085","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":73,"facts":[
+{"attr":"limit","action":"use_note","value":"l100","kb":"endorse","fix":""},
+{"attr":"port","action":"use_note","value":"p8082","kb":"endorse","fix":""},
+{"attr":"owner","action":"use_note","value":"teamB","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":80,"facts":[
+{"attr":"owner","action":"use_note","value":"teamG","kb":"endorse","fix":""},
+{"attr":"port","action":"use_note","value":"p8090","kb":"endorse","fix":""},
+{"attr":"region","action":"verify_code","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":90,"facts":[
+{"attr":"port","action":"use_note","value":"p8083","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_note","value":"async","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_note","value":"120s","kb":"endorse","fix":""}
+],"write":[],"chat":["lol the wiki is a mess today","session timeout is 120s everywhere so going with that"]}
+]}

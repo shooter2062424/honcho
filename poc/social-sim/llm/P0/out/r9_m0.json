@@ -1,0 +1,42 @@
+{"decisions":[
+{"user":2,"facts":[
+{"attr":"format","action":"use_memory","value":"msgpack","kb":"dispute","fix":"media.format is msgpack. The yaml notes are stale."},
+{"attr":"mode","action":"use_memory","value":"sync","kb":"endorse","fix":""},
+{"attr":"region","action":"use_memory","value":"eunorth","kb":"dispute","fix":"media.region is eunorth, not useast."}
+],"write":[],"chat":[]},
+{"user":7,"facts":[
+{"attr":"limit","action":"verify_code","kb":"none","fix":""},
+{"attr":"owner","action":"use_note","value":"teamC","kb":"endorse","fix":""},
+{"attr":"format","action":"use_note","value":"xml","kb":"dispute","fix":"gateway format is xml per the config check last week."}
+],"write":[],"chat":[]},
+{"user":9,"facts":[
+{"attr":"retries","action":"use_memory","value":"four","kb":"endorse","fix":""},
+{"attr":"owner","action":"use_memory","value":"teamG","kb":"endorse","fix":""},
+{"attr":"region","action":"use_memory","value":"apsouth","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":22,"facts":[
+{"attr":"mode","action":"use_note","value":"stream","kb":"endorse","fix":""},
+{"attr":"format","action":"verify_code","kb":"none","fix":""},
+{"attr":"port","action":"guess","value":"p8080","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":34,"facts":[
+{"attr":"format","action":"use_note","value":"yaml","kb":"endorse","fix":""},
+{"attr":"timeout","action":"guess","value":"30s","kb":"none","fix":""},
+{"attr":"mode","action":"guess","value":"sync","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":42,"facts":[
+{"attr":"owner","action":"use_memory","value":"teamE","kb":"endorse","fix":""},
+{"attr":"region","action":"use_memory","value":"euwest","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_memory","value":"20s","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":46,"facts":[
+{"attr":"region","action":"use_memory","value":"apsouth","kb":"endorse","fix":""},
+{"attr":"port","action":"use_memory","value":"p8084","kb":"none","fix":""},
+{"attr":"timeout","action":"use_note","value":"120s","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":49,"facts":[
+{"attr":"format","action":"use_memory","value":"xml","kb":"endorse","fix":""},
+{"attr":"retries","action":"use_memory","value":"four","kb":"endorse","fix":""},
+{"attr":"owner","action":"use_memory","value":"teamG","kb":"endorse","fix":""}
+],"write":[],"chat":[]}
+]}

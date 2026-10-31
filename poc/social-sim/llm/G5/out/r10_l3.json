@@ -1,0 +1,42 @@
+{"decisions":[
+{"user":77,"facts":[
+{"attr":"region","action":"use_note","value":"useast","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_note","value":"stream","kb":"endorse","fix":""},
+{"attr":"format","action":"use_note","value":"xml","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":79,"facts":[
+{"attr":"timeout","action":"verify_code","kb":"none","fix":""},
+{"attr":"mode","action":"use_note","value":"batch","kb":"endorse","fix":""},
+{"attr":"region","action":"use_note","value":"euwest","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":81,"facts":[
+{"attr":"limit","action":"use_note","value":"l10k","kb":"endorse","fix":""},
+{"attr":"port","action":"use_memory","value":"p8081","kb":"endorse","fix":""},
+{"attr":"format","action":"use_memory","value":"csv","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":84,"facts":[
+{"attr":"owner","action":"use_note","value":"teamB","kb":"endorse","fix":""},
+{"attr":"format","action":"use_note","value":"json","kb":"endorse","fix":""},
+{"attr":"retries","action":"use_note","value":"seven","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":91,"facts":[
+{"attr":"timeout","action":"use_memory","value":"30s","kb":"dispute","fix":""},
+{"attr":"region","action":"use_memory","value":"eunorth","kb":"endorse","fix":""},
+{"attr":"format","action":"use_memory","value":"json","kb":"endorse","fix":""}
+],"write":[],"chat":["anyone know if cache timeout is still 30s or 15s now? lol"]},
+{"user":92,"facts":[
+{"attr":"format","action":"use_memory","value":"json","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_memory","value":"l50k","kb":"endorse","fix":""},
+{"attr":"owner","action":"use_memory","value":"teamF","kb":"dispute","fix":""}
+],"write":[],"chat":["who even owns report these days, teamB or teamF?"]},
+{"user":93,"facts":[
+{"attr":"mode","action":"use_note","value":"lazy","kb":"endorse","fix":""},
+{"attr":"region","action":"use_note","value":"euwest","kb":"none","fix":""},
+{"attr":"limit","action":"use_note","value":"l2500","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":95,"facts":[
+{"attr":"format","action":"use_note","value":"proto","kb":"endorse","fix":""},
+{"attr":"retries","action":"use_memory","value":"one","kb":"endorse","fix":"sync.retries = one (verified in code)"},
+{"attr":"limit","action":"use_memory","value":"l50k","kb":"endorse","fix":""}
+],"write":[],"chat":["sync limit is l50k right? or l5000"]}
+]}

@@ -1,0 +1,42 @@
+{"decisions":[
+{"user":81,"facts":[
+{"attr":"limit","action":"use_note","value":"l10k","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_memory","value":"60s","kb":"none","fix":""},
+{"attr":"port","action":"use_note","value":"p8081","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":84,"facts":[
+{"attr":"format","action":"use_note","value":"json","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_memory","value":"l100","kb":"none","fix":""},
+{"attr":"retries","action":"use_note","value":"seven","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":87,"facts":[
+{"attr":"region","action":"use_note","value":"apsouth","kb":"endorse","fix":""},
+{"attr":"format","action":"use_note","value":"xml","kb":"endorse","fix":""},
+{"attr":"retries","action":"use_note","value":"six","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":91,"facts":[
+{"attr":"timeout","action":"use_note","value":"5s","kb":"endorse","fix":""},
+{"attr":"port","action":"use_note","value":"p8088","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_note","value":"l2500","kb":"endorse","fix":""}
+],"write":[],"chat":["anyone know if catalog timeout changed? chairs note says 5s","lol ok copying 5s for now"]},
+{"user":92,"facts":[
+{"attr":"limit","action":"use_note","value":"l10k","kb":"endorse","fix":""},
+{"attr":"region","action":"use_note","value":"apsouth","kb":"endorse","fix":""},
+{"attr":"owner","action":"use_note","value":"teamF","kb":"endorse","fix":""}
+],"write":[],"chat":["who owns export these days? banner says teamF","ok good enough for me lol"]},
+{"user":94,"facts":[
+{"attr":"mode","action":"use_note","value":"lazy","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_note","value":"90s","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_note","value":"l100","kb":"endorse","fix":""}
+],"write":[],"chat":["why is email always lazy lol"]},
+{"user":95,"facts":[
+{"attr":"region","action":"use_note","value":"apeast","kb":"endorse","fix":""},
+{"attr":"retries","action":"use_memory","value":"four","kb":"none","fix":""},
+{"attr":"timeout","action":"use_note","value":"180s","kb":"endorse","fix":""}
+],"write":[],"chat":["sync limit is l50k or l5000?? notes disagree lol"]},
+{"user":96,"facts":[
+{"attr":"mode","action":"use_memory","value":"async","kb":"endorse","fix":""},
+{"attr":"owner","action":"use_memory","value":"teamG","kb":"none","fix":""},
+{"attr":"limit","action":"use_memory","value":"l250","kb":"none","fix":""}
+],"write":[],"chat":["invoice owner is teamG right? geo note says teamB lol"]}
+]}

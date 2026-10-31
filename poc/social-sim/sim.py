@@ -98,10 +98,11 @@ class Cfg:
 
 
 class KB:
-    def __init__(self, cfg: Cfg):
+    def __init__(self, cfg: Cfg, path: str = ":memory:"):
         self.cfg = cfg
-        self.db = sqlite3.connect(":memory:")
-        self.db.execute("create virtual table fts using fts5(title, body, tokenize='porter unicode61')")
+        self.path = path
+        self.db = sqlite3.connect(path)
+        self.db.execute("create virtual table if not exists fts using fts5(title, body, tokenize='porter unicode61')")
         self.E: dict[int, dict] = {}
         self.n = 0
         self.endorse: dict[int, list] = {}
@@ -117,11 +118,21 @@ class KB:
         self.pending_notify: list = []
         self.prng = random.Random(cfg.seed + 99)
 
+    def __getstate__(self):
+        d = dict(self.__dict__)
+        self.db.commit()
+        d.pop("db", None)
+        return d
+
+    def __setstate__(self, d):
+        self.__dict__.update(d)
+        self.db = sqlite3.connect(self.path)
+
     # ---------------- writes
-    def add(self, author, kind, title, body, rnd):
+    def add(self, author, kind, title, body, rnd, claim_override=None):
         self.n += 1
         i = self.n
-        claim = parse_claim(body) if kind == "claim" else None
+        claim = (claim_override or parse_claim(body)) if kind == "claim" else None
         tkey = None
         if kind == "claim":
             t = title.split()

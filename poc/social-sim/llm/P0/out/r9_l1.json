@@ -1,0 +1,42 @@
+{"decisions":[
+{"user":23,"facts":[
+{"attr":"region","action":"use_note","value":"useast","kb":"endorse","fix":""},
+{"attr":"format","action":"use_note","value":"yaml","kb":"none","fix":""},
+{"attr":"mode","action":"use_note","value":"sync","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":25,"facts":[
+{"attr":"limit","action":"verify_code","kb":"none","fix":""},
+{"attr":"port","action":"use_memory","value":"p8083","kb":"endorse","fix":""},
+{"attr":"format","action":"use_memory","value":"yaml","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":26,"facts":[
+{"attr":"format","action":"use_note","value":"xml","kb":"dispute","fix":"gateway format: xml (checked config last week)."},
+{"attr":"limit","action":"verify_code","kb":"none","fix":""},
+{"attr":"timeout","action":"use_note","value":"120s","kb":"endorse","fix":""}
+],"write":[],"chat":["anyone checked the gateway format lately? one note says csv, another says xml"]},
+{"user":29,"facts":[
+{"attr":"mode","action":"use_memory","value":"batch","kb":"endorse","fix":""},
+{"attr":"owner","action":"use_memory","value":"teamC","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_memory","value":"120s","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":30,"facts":[
+{"attr":"limit","action":"use_memory","value":"l250","kb":"none","fix":""},
+{"attr":"retries","action":"use_memory","value":"four","kb":"endorse","fix":""},
+{"attr":"format","action":"use_memory","value":"yaml","kb":"dispute","fix":"cron format: yaml (double check, not xml)."}
+],"write":[],"chat":[]},
+{"user":39,"facts":[
+{"attr":"format","action":"use_note","value":"json","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_note","value":"30s","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_note","value":"l100","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":48,"facts":[
+{"attr":"timeout","action":"use_note","value":"120s","kb":"endorse","fix":""},
+{"attr":"owner","action":"use_note","value":"teamC","kb":"endorse","fix":""},
+{"attr":"limit","action":"verify_code","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":53,"facts":[
+{"attr":"port","action":"use_memory","value":"p8081","kb":"endorse","fix":""},
+{"attr":"owner","action":"use_note","value":"teamB","kb":"endorse","fix":""},
+{"attr":"retries","action":"use_memory","value":"three","kb":"endorse","fix":""}
+],"write":[],"chat":[]}
+]}

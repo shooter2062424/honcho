@@ -1,0 +1,42 @@
+{"decisions":[
+{"user":28,"facts":[
+{"attr":"mode","action":"use_note","value":"batch","kb":"endorse","fix":""},
+{"attr":"limit","action":"verify_code","kb":"none","fix":""},
+{"attr":"owner","action":"use_note","value":"teamC","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":29,"facts":[
+{"attr":"timeout","action":"guess","value":"30s","kb":"none","fix":""},
+{"attr":"retries","action":"guess","value":"three","kb":"none","fix":""},
+{"attr":"format","action":"use_note","value":"yaml","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":32,"facts":[
+{"attr":"owner","action":"use_note","value":"teamC","kb":"endorse","fix":""},
+{"attr":"limit","action":"verify_code","kb":"none","fix":""},
+{"attr":"mode","action":"use_note","value":"batch","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":33,"facts":[
+{"attr":"owner","action":"use_note","value":"teamH","kb":"dispute","fix":"config owner is teamH per standup, not teamA."}
+,{"attr":"retries","action":"use_note","value":"seven","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_note","value":"l500","kb":"dispute","fix":"config limit is l500 per the newer note, not l1000."}
+],"write":[],"chat":[]},
+{"user":35,"facts":[
+{"attr":"mode","action":"use_note","value":"lazy","kb":"endorse","fix":""},
+{"attr":"region","action":"use_note","value":"euwest","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_note","value":"l2500","kb":"dispute","fix":"health limit is l2500; the l100 note is stale."}
+],"write":[],"chat":[]},
+{"user":39,"facts":[
+{"attr":"owner","action":"use_note","value":"teamH","kb":"endorse","fix":""},
+{"attr":"retries","action":"guess","value":"three","kb":"none","fix":""},
+{"attr":"region","action":"verify_code","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":45,"facts":[
+{"attr":"format","action":"use_note","value":"json","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_memory","value":"l5000","kb":"endorse","fix":""},
+{"attr":"region","action":"verify_code","kb":"dispute","fix":""}
+],"write":[],"chat":[]},
+{"user":47,"facts":[
+{"attr":"format","action":"use_note","value":"yaml","kb":"endorse","fix":""},
+{"attr":"region","action":"use_note","value":"useast","kb":"endorse","fix":""},
+{"attr":"mode","action":"verify_code","kb":"none","fix":""}
+],"write":[],"chat":[]}
+]}

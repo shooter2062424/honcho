@@ -1,0 +1,27 @@
+{"decisions":[
+{"user":92,"facts":[
+{"attr":"owner","action":"guess","value":"teamA","kb":"none","fix":""},
+{"attr":"region","action":"use_note","value":"apsouth","kb":"endorse","fix":""},
+{"attr":"port","action":"use_note","value":"p8086","kb":"endorse","fix":""}
+],"write":[],"chat":["anyone know who owns events? wiki is all over the place lol","region note says apsouth but another says uswest, i just went with the newer one"]},
+{"user":94,"facts":[
+{"attr":"format","action":"use_memory","value":"yaml","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_memory","value":"lazy","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_memory","value":"90s","kb":"endorse","fix":""}
+],"write":[],"chat":["the msgpack note is clearly someone messing with us","timeout note says verified in code so good enough for me"]},
+{"user":95,"facts":[
+{"attr":"timeout","action":"use_memory","value":"180s","kb":"endorse","fix":""},
+{"attr":"retries","action":"use_memory","value":"four","kb":"dispute","fix":""},
+{"attr":"region","action":"use_note","value":"apeast","kb":"endorse","fix":""}
+],"write":[{"module":"sync","attr":"retries","value":"four","body":"sync retries: I'm pretty sure it's four, not two. Someone double check."}],"chat":["sync retries note says two but i'm sure i saw four","who wrote the session retries note, that thing is always four"]},
+{"user":96,"facts":[
+{"attr":"limit","action":"use_memory","value":"l250","kb":"none","fix":""},
+{"attr":"mode","action":"use_memory","value":"async","kb":"endorse","fix":""},
+{"attr":"owner","action":"use_memory","value":"teamG","kb":"none","fix":""}
+],"write":[],"chat":["invoice owner is teamG right? geo note says teamB which is weird"]},
+{"user":98,"facts":[
+{"attr":"limit","action":"use_note","value":"l1000","kb":"endorse","fix":"config limit: it was bumped to l5000 last week, the l1000 note is stale."},
+{"attr":"timeout","action":"use_memory","value":"45s","kb":"endorse","fix":""},
+{"attr":"retries","action":"use_memory","value":"seven","kb":"none","fix":""}
+],"write":[{"module":"config","attr":"retries","value":"three","body":"config retries: config service uses three as its retries."}],"chat":["config retries is three btw, trust me","billing limit note checks out I think"]}
+]}

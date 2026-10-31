@@ -1,0 +1,40 @@
+{"decisions":[
+{"user":88,"facts":[
+{"attr":"limit","action":"use_note","value":"l100","kb":"endorse","fix":""},
+{"attr":"port","action":"use_note","value":"p8081","kb":"dispute","fix":"geo.port is p8081 per the newer notes, the p8082 note is outdated."},
+{"attr":"format","action":"use_note","value":"json","kb":"endorse","fix":""}
+],"write":[],"chat":["is geo port p8081 or p8082? wiki says both lol"]},
+{"user":91,"facts":[
+{"attr":"timeout","action":"use_memory","value":"5s","kb":"none","fix":""},
+{"attr":"owner","action":"use_note","value":"teamA","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_note","value":"async","kb":"endorse","fix":""}
+],"write":[],"chat":["catalog timeout anyone? no idea lol","catalog has like three notes saying the same thing"]},
+{"user":92,"facts":[
+{"attr":"limit","action":"use_memory","value":"l1000","kb":"none","fix":""},
+{"attr":"owner","action":"use_memory","value":"teamF","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_memory","value":"batch","kb":"dispute","fix":""}
+],"write":[],"chat":["who keeps editing the report owner note lol"]},
+{"user":94,"facts":[
+{"attr":"limit","action":"use_memory","value":"l100","kb":"none","fix":""},
+{"attr":"format","action":"use_note","value":"yaml","kb":"endorse","fix":""},
+{"attr":"region","action":"use_note","value":"useast","kb":"endorse","fix":""}
+],"write":[],"chat":["email region flipping between useast and euwest lol"]},
+{"user":95,"facts":[
+{"attr":"retries","action":"use_memory","value":"four","kb":"dispute","fix":""},
+{"attr":"format","action":"use_memory","value":"proto","kb":"dispute","fix":""},
+{"attr":"timeout","action":"use_note","value":"180s","kb":"endorse","fix":""}
+],"write":[],"chat":["anyone know the sync format? wiki is useless lol"]},
+{"user":96,"facts":[
+{"attr":"limit","action":"use_note","value":"l50k","kb":"endorse","fix":""},
+{"attr":"retries","action":"use_note","value":"eight","kb":"endorse","fix":""},
+{"attr":"port","action":"guess","value":"p8080","kb":"none","fix":""}
+],"write":[],"chat":["search retries eight or five?? who checked","is search mode async or what"]},
+{"user":99,"facts":[
+{"attr":"owner","action":"use_note","value":"teamC","kb":"endorse","fix":""},
+{"attr":"format","action":"use_note","value":"csv","kb":"none","fix":""},
+{"attr":"timeout","action":"use_note","value":"120s","kb":"endorse","fix":""}
+],"write":[
+{"module":"gateway","attr":"format","value":"xml","body":"gateway format is xml, checked the config last week."},
+{"module":"gateway","attr":"timeout","value":"60s","body":"gateway timeout is 60s, the 120s note is old."}
+],"chat":["gateway format is definitely xml btw"]}
+]}

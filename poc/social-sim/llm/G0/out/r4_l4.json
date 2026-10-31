@@ -1,0 +1,42 @@
+{"decisions":[
+{"user":85,"facts":[
+{"attr":"limit","action":"use_note","value":"l50k","kb":"endorse","fix":""},
+{"attr":"owner","action":"use_memory","value":"teamF","kb":"endorse","fix":""},
+{"attr":"format","action":"use_note","value":"json","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":88,"facts":[
+{"attr":"format","action":"use_note","value":"json","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_memory","value":"l250","kb":"endorse","fix":""},
+{"attr":"port","action":"use_memory","value":"p8086","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":92,"facts":[
+{"attr":"owner","action":"use_memory","value":"teamF","kb":"none","fix":""},
+{"attr":"limit","action":"use_note","value":"l50k","kb":"none","fix":""},
+{"attr":"format","action":"use_memory","value":"json","kb":"none","fix":""}
+],"write":[],"chat":["anyone else find the report wiki a mess lol","is report still teamF or did that change?"]},
+{"user":93,"facts":[
+{"attr":"timeout","action":"use_note","value":"180s","kb":"endorse","fix":""},
+{"attr":"format","action":"guess","value":"json","kb":"none","fix":""},
+{"attr":"region","action":"use_note","value":"apeast","kb":"endorse","fix":""}
+],"write":[],"chat":["sync timeout 180s?? thought it was lower lol"]},
+{"user":94,"facts":[
+{"attr":"region","action":"use_memory","value":"euwest","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_note","value":"batch","kb":"none","fix":""},
+{"attr":"limit","action":"use_note","value":"l100","kb":"none","fix":""}
+],"write":[],"chat":["email is batch mode now? huh"]},
+{"user":95,"facts":[
+{"attr":"retries","action":"use_memory","value":"four","kb":"dispute","fix":"sync retries is four, not two. the two note is out of date."},
+{"attr":"region","action":"use_memory","value":"apeast","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_memory","value":"180s","kb":"endorse","fix":""}
+],"write":[{"module":"sync","attr":"retries","value":"four","body":"sync retries is four, the two note is wrong"}],"chat":[]},
+{"user":96,"facts":[
+{"attr":"format","action":"use_memory","value":"msgpack","kb":"dispute","fix":""},
+{"attr":"region","action":"use_memory","value":"euwest","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_note","value":"batch","kb":"none","fix":""}
+],"write":[],"chat":["lol wiki says yaml again, it's msgpack"]},
+{"user":97,"facts":[
+{"attr":"limit","action":"verify_code","kb":"none","fix":""},
+{"attr":"owner","action":"use_note","value":"teamF","kb":"endorse","fix":""},
+{"attr":"port","action":"use_note","value":"p8080","kb":"endorse","fix":""}
+],"write":[{"module":"health","attr":"limit","value":"l10k","body":"health limit is l10k, confirmed, ignore the catalog note"},{"module":"health","attr":"owner","value":"teamC","body":"health owner is teamC, the verified note is stale"}],"chat":["health limit is l10k I think lol"]}
+]}

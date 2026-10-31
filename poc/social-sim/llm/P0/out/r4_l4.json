@@ -1,0 +1,32 @@
+{"decisions":[
+{"user":92,"facts":[
+{"attr":"region","action":"use_note","value":"useast","kb":"dispute","fix":"email region is useast, the newer note says so."},
+{"attr":"mode","action":"use_note","value":"lazy","kb":"none","fix":""},
+{"attr":"limit","action":"use_note","value":"l100","kb":"none","fix":""}
+],"write":[],"chat":["anyone know if email region changed recently?","the wiki is getting noisy lol"]},
+{"user":93,"facts":[
+{"attr":"timeout","action":"use_memory","value":"10s","kb":"endorse","fix":""},
+{"attr":"retries","action":"use_note","value":"six","kb":"none","fix":""},
+{"attr":"region","action":"use_memory","value":"uswest","kb":"none","fix":""}
+],"write":[],"chat":["profile timeout is still 10s right?","retries note is a bit random lol"]},
+{"user":94,"facts":[
+{"attr":"port","action":"use_note","value":"p8089","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_memory","value":"l10k","kb":"none","fix":""},
+{"attr":"format","action":"use_memory","value":"csv","kb":"none","fix":""}
+],"write":[],"chat":["anyone else's cart on l10k?"]},
+{"user":95,"facts":[
+{"attr":"limit","action":"use_note","value":"l100","kb":"endorse","fix":""},
+{"attr":"owner","action":"guess","value":"teamA","kb":"none","fix":""},
+{"attr":"port","action":"use_note","value":"p8087","kb":"endorse","fix":""}
+],"write":[],"chat":["who owns the health service btw?"]},
+{"user":96,"facts":[
+{"attr":"mode","action":"use_memory","value":"lazy","kb":"none","fix":""},
+{"attr":"region","action":"use_memory","value":"euwest","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_memory","value":"l100","kb":"none","fix":""}
+],"write":[],"chat":["email region thing confuses me, which note is right?"]},
+{"user":99,"facts":[
+{"attr":"port","action":"use_memory","value":"p8086","kb":"none","fix":""},
+{"attr":"format","action":"use_memory","value":"xml","kb":"none","fix":""},
+{"attr":"region","action":"use_memory","value":"uswest","kb":"dispute","fix":"notify region is euwest, not uswest. I checked."}
+],"write":[{"module":"notify","attr":"timeout","value":"30s","body":"notify timeout is 30s, the 10s note is old."}],"chat":["fyi notify is on euwest now"]}
+]}

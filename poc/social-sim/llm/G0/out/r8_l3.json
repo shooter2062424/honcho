@@ -1,0 +1,42 @@
+{"decisions":[
+{"user":74,"facts":[
+{"attr":"timeout","action":"use_note","value":"120s","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_note","value":"async","kb":"endorse","fix":""},
+{"attr":"region","action":"verify_code","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":75,"facts":[
+{"attr":"region","action":"use_memory","value":"useast","kb":"endorse","fix":""},
+{"attr":"format","action":"use_note","value":"json","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_note","value":"l100","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":78,"facts":[
+{"attr":"mode","action":"use_note","value":"lazy","kb":"endorse","fix":""},
+{"attr":"region","action":"use_note","value":"euwest","kb":"endorse","fix":"auth region is euwest per the newer note, apeast is outdated."},
+{"attr":"owner","action":"use_memory","value":"teamG","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":81,"facts":[
+{"attr":"limit","action":"use_note","value":"l10k","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_note","value":"eager","kb":"endorse","fix":""},
+{"attr":"format","action":"use_memory","value":"csv","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":86,"facts":[
+{"attr":"timeout","action":"use_memory","value":"45s","kb":"none","fix":""},
+{"attr":"mode","action":"use_note","value":"lazy","kb":"endorse","fix":""},
+{"attr":"port","action":"use_note","value":"p8090","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":87,"facts":[
+{"attr":"owner","action":"use_note","value":"teamB","kb":"endorse","fix":""},
+{"attr":"retries","action":"use_note","value":"five","kb":"endorse","fix":""},
+{"attr":"region","action":"use_note","value":"euwest","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":91,"facts":[
+{"attr":"timeout","action":"use_note","value":"30s","kb":"endorse","fix":""},
+{"attr":"format","action":"use_note","value":"json","kb":"endorse","fix":""},
+{"attr":"region","action":"use_memory","value":"useast","kb":"none","fix":""}
+],"write":[],"chat":["anyone know if cache timeout is still 30s? lol","cache limit note says l100 but idk if that's current"]},
+{"user":93,"facts":[
+{"attr":"port","action":"use_memory","value":"p8080","kb":"none","fix":""},
+{"attr":"timeout","action":"use_memory","value":"60s","kb":"dispute","fix":""},
+{"attr":"region","action":"use_note","value":"uswest","kb":"endorse","fix":""}
+],"write":[],"chat":["is profile timeout really 10s? I thought it was longer"]}
+]}

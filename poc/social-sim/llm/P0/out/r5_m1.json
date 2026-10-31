@@ -1,0 +1,22 @@
+{"decisions":[
+{"user":80,"facts":[
+{"attr":"owner","action":"use_note","value":"teamH","kb":"endorse","fix":""},
+{"attr":"region","action":"use_note","value":"uswest","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_note","value":"180s","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":83,"facts":[
+{"attr":"limit","action":"use_memory","value":"l2500","kb":"none","fix":""},
+{"attr":"region","action":"use_memory","value":"eunorth","kb":"none","fix":""},
+{"attr":"retries","action":"verify_code","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":89,"facts":[
+{"attr":"owner","action":"use_note","value":"teamA","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_note","value":"async","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_note","value":"l2500","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":90,"facts":[
+{"attr":"format","action":"use_memory","value":"json","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_memory","value":"30s","kb":"none","fix":""},
+{"attr":"owner","action":"use_memory","value":"teamB","kb":"dispute","fix":"report owner is teamB I think, not teamF. the teamF note looks old, someone check config"}
+],"write":[{"module":"report","attr":"timeout","value":"30s","body":"report timeout is 30s, that's what I've been running with for a while"}],"chat":["anyone else see report owner listed as teamF? pretty sure it's teamB lol","report format is json, same as always","who owns queue these days, asking for a friend"]}
+]}

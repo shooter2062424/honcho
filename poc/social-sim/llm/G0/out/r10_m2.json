@@ -1,0 +1,1 @@
+{"decisions":[{"user":90,"facts":[{"attr":"region","action":"use_note","value":"uswest","kb":"endorse","fix":""},{"attr":"port","action":"guess","value":"p8080","kb":"none","fix":""},{"attr":"retries","action":"use_note","value":"six","kb":"endorse","fix":""}],"write":[],"chat":["anyone know the profile port? wiki only has events and queue"]}]}

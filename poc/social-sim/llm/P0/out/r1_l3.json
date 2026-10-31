@@ -1,0 +1,42 @@
+{"decisions":[
+{"user":84,"facts":[
+{"attr":"limit","action":"verify_code","kb":"none","fix":""},
+{"attr":"retries","action":"use_note","value":"three","kb":"endorse","fix":""},
+{"attr":"port","action":"use_note","value":"p8082","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":85,"facts":[
+{"attr":"region","action":"use_note","value":"apsouth","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_note","value":"l10k","kb":"endorse","fix":""},
+{"attr":"owner","action":"verify_code","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":86,"facts":[
+{"attr":"port","action":"verify_code","kb":"none","fix":""},
+{"attr":"region","action":"use_note","value":"apeast","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_memory","value":"45s","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":87,"facts":[
+{"attr":"mode","action":"use_note","value":"async","kb":"endorse","fix":""},
+{"attr":"region","action":"use_note","value":"apeast","kb":"endorse","fix":""},
+{"attr":"retries","action":"verify_code","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":88,"facts":[
+{"attr":"limit","action":"verify_code","kb":"none","fix":""},
+{"attr":"retries","action":"use_note","value":"seven","kb":"endorse","fix":""},
+{"attr":"mode","action":"verify_code","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":92,"facts":[
+{"attr":"retries","action":"guess","value":"three","kb":"none","fix":""},
+{"attr":"timeout","action":"guess","value":"30s","kb":"none","fix":""},
+{"attr":"mode","action":"use_note","value":"async","kb":"endorse","fix":""}
+],"write":[{"module":"session","attr":"mode","value":"async","body":"session mode is async I think, not 100% sure"}],"chat":["anyone know if session retries are written down anywhere lol","session has like three facts i keep mixing up"]},
+{"user":94,"facts":[
+{"attr":"timeout","action":"guess","value":"30s","kb":"none","fix":""},
+{"attr":"port","action":"use_note","value":"p8083","kb":"endorse","fix":""},
+{"attr":"retries","action":"guess","value":"three","kb":"none","fix":""}
+],"write":[],"chat":["session port is p8083 right?"]},
+{"user":95,"facts":[
+{"attr":"limit","action":"use_memory","value":"l5000","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_memory","value":"180s","kb":"none","fix":""},
+{"attr":"retries","action":"use_note","value":"four","kb":"none","fix":""}
+],"write":[{"module":"sync","attr":"timeout","value":"180s","body":"sync timeout is 180s I think, same as what I remember"}],"chat":["sync timeout 180s, same as what i remember lol"]}
+]}

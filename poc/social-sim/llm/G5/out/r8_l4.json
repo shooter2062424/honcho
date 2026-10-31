@@ -1,0 +1,64 @@
+{"decisions":[
+{"user":93,"facts":[
+{"attr":"mode","action":"use_memory","value":"batch","kb":"endorse","fix":""},
+{"attr":"region","action":"use_note","value":"apsouth","kb":"none","fix":""},
+{"attr":"owner","action":"use_memory","value":"teamB","kb":"none","fix":""}
+],"write":[
+{"module":"ledger","attr":"owner","value":"teamB","body":"ledger owner is teamB, I think that's what I saw last sprint"}
+],"chat":[
+"anyone know if ledger still uses xml anywhere or is that old",
+"ok I'm just going with batch, it's been fine so far"
+]},
+{"user":94,"facts":[
+{"attr":"mode","action":"use_memory","value":"eager","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_note","value":"15s","kb":"none","fix":""},
+{"attr":"port","action":"use_memory","value":"p8081","kb":"endorse","fix":""}
+],"write":[],"chat":[
+"cart port wiki has two different answers lol, which one is current",
+"eager for cart, yep, going with that"
+]},
+{"user":95,"facts":[
+{"attr":"limit","action":"use_note","value":"l50k","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_memory","value":"180s","kb":"endorse","fix":""},
+{"attr":"format","action":"use_note","value":"proto","kb":"none","fix":""}
+],"write":[],"chat":[
+"banner says sync limit is l50k now, guess I was out of date"
+]},
+{"user":96,"facts":[
+{"attr":"mode","action":"use_memory","value":"async","kb":"endorse","fix":""},
+{"attr":"owner","action":"use_note","value":"teamG","kb":"none","fix":""},
+{"attr":"port","action":"use_memory","value":"p8085","kb":"endorse","fix":""}
+],"write":[],"chat":[
+"invoice json format note is fresh, good"
+]},
+{"user":97,"facts":[
+{"attr":"mode","action":"use_note","value":"sync","kb":"endorse","fix":""},
+{"attr":"retries","action":"use_note","value":"five","kb":"none","fix":""},
+{"attr":"limit","action":"use_memory","value":"l50k","kb":"none","fix":""}
+],"write":[
+{"module":"search","attr":"retries","value":"three","body":"search.retries = three. Verified, don't bother checking the code."}
+],"chat":[
+"search mode is sync btw, the lazy in my head is old",
+"search port is definitely p8088 staging, prod is whatever"
+]},
+{"user":98,"facts":[
+{"attr":"port","action":"use_note","value":"p8090","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_note","value":"l5000","kb":"dispute","fix":"mailer limit is l5000, the l2500 note is stale"},
+{"attr":"mode","action":"use_memory","value":"sync","kb":"none","fix":""}
+],"write":[
+{"module":"mailer","attr":"mode","value":"batch","body":"mailer mode is batch, confirmed last week"}
+],"chat":[
+"wait is mailer port p8080 or p8090, the notes disagree",
+"mailer owner teamE, right?"
+]},
+{"user":99,"facts":[
+{"attr":"region","action":"use_note","value":"uswest","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_note","value":"async","kb":"endorse","fix":""},
+{"attr":"format","action":"use_note","value":"msgpack","kb":"none","fix":""}
+],"write":[
+{"module":"checkout","attr":"format","value":"xml","body":"checkout format is xml, pretty sure, the msgpack note is old"}
+],"chat":[
+"checkout timeout 180s, that's a lot honestly",
+"ok going with uswest and async for checkout"
+]}
+]}

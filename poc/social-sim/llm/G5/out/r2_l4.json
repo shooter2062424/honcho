@@ -1,0 +1,37 @@
+{"decisions":[
+{"user":87,"facts":[
+{"attr":"timeout","action":"use_note","value":"10s","kb":"endorse","fix":""},
+{"attr":"owner","action":"use_note","value":"teamB","kb":"endorse","fix":""},
+{"attr":"retries","action":"use_note","value":"five","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":88,"facts":[
+{"attr":"port","action":"use_note","value":"p8086","kb":"endorse","fix":""},
+{"attr":"format","action":"verify_code","kb":"none","fix":""},
+{"attr":"region","action":"use_memory","value":"useast","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":92,"facts":[
+{"attr":"timeout","action":"use_memory","value":"120s","kb":"none","fix":""},
+{"attr":"format","action":"use_note","value":"yaml","kb":"endorse","fix":""},
+{"attr":"port","action":"use_memory","value":"p8081","kb":"none","fix":""}
+],"write":[{"module":"index","attr":"timeout","value":"120s","body":"I think index timeout is 120s, not 100% sure tbh"}],"chat":["anyone know if index port changed lol","index format still yaml right?"]},
+{"user":93,"facts":[
+{"attr":"timeout","action":"use_note","value":"10s","kb":"endorse","fix":""},
+{"attr":"retries","action":"use_note","value":"six","kb":"endorse","fix":""},
+{"attr":"region","action":"use_note","value":"uswest","kb":"endorse","fix":""}
+],"write":[],"chat":["who is note chairs lol"]},
+{"user":94,"facts":[
+{"attr":"format","action":"use_note","value":"csv","kb":"endorse","fix":""},
+{"attr":"owner","action":"use_note","value":"teamC","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_note","value":"l10k","kb":"endorse","fix":""}
+],"write":[],"chat":["thanks for the gateway notes, saved me a lookup"]},
+{"user":95,"facts":[
+{"attr":"timeout","action":"use_note","value":"45s","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_note","value":"l1000","kb":"endorse","fix":""},
+{"attr":"format","action":"use_memory","value":"yaml","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":99,"facts":[
+{"attr":"timeout","action":"use_note","value":"10s","kb":"endorse","fix":""},
+{"attr":"region","action":"use_memory","value":"uswest","kb":"endorse","fix":""},
+{"attr":"port","action":"use_note","value":"p8088","kb":"dispute","fix":"notify port is p8086, the banner is stale"}
+],"write":[{"module":"notify","attr":"timeout","value":"90s","body":"notify timeout is 90s, confirmed on my side"}],"chat":["the p8088 banner is wrong I swear"]}
+]}

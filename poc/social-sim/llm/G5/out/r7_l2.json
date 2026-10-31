@@ -1,0 +1,42 @@
+{"decisions":[
+{"user":39,"facts":[
+{"attr":"format","action":"use_note","value":"json","kb":"endorse","fix":""},
+{"attr":"owner","action":"use_memory","value":"teamF","kb":"endorse","fix":""},
+{"attr":"port","action":"use_note","value":"p8086","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":45,"facts":[
+{"attr":"owner","action":"use_memory","value":"teamF","kb":"none","fix":""},
+{"attr":"port","action":"use_note","value":"p8089","kb":"endorse","fix":"health.port is p8089 (verified in code), my old p8090 was wrong."},
+{"attr":"region","action":"use_note","value":"euwest","kb":"endorse","fix":""}
+],"write":[],"chat":["health port moved to p8089? my notes still say p8090"]},
+{"user":47,"facts":[
+{"attr":"mode","action":"use_memory","value":"sync","kb":"endorse","fix":""},
+{"attr":"format","action":"use_note","value":"csv","kb":"endorse","fix":"feed.format is csv (verified in code). The msgpack note is outdated."},
+{"attr":"region","action":"use_memory","value":"eunorth","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":56,"facts":[
+{"attr":"limit","action":"use_memory","value":"l250","kb":"endorse","fix":""},
+{"attr":"format","action":"use_note","value":"json","kb":"endorse","fix":""},
+{"attr":"owner","action":"use_memory","value":"teamF","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":57,"facts":[
+{"attr":"region","action":"use_memory","value":"uswest","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_memory","value":"stream","kb":"none","fix":""},
+{"attr":"format","action":"guess","value":"json","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":58,"facts":[
+{"attr":"limit","action":"use_note","value":"l100","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_note","value":"90s","kb":"endorse","fix":""},
+{"attr":"format","action":"use_note","value":"yaml","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":59,"facts":[
+{"attr":"limit","action":"use_memory","value":"l250","kb":"endorse","fix":""},
+{"attr":"port","action":"use_memory","value":"p8083","kb":"endorse","fix":""},
+{"attr":"timeout","action":"use_note","value":"5s","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":60,"facts":[
+{"attr":"timeout","action":"use_note","value":"120s","kb":"endorse","fix":""},
+{"attr":"owner","action":"use_note","value":"teamC","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_note","value":"l10k","kb":"endorse","fix":""}
+],"write":[],"chat":[]}
+]}

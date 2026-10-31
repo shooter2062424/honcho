@@ -1,0 +1,42 @@
+{"decisions":[
+{"user":0,"facts":[
+{"attr":"region","action":"use_memory","value":"apsouth","kb":"endorse","fix":""},
+{"attr":"owner","action":"use_memory","value":"teamB","kb":"none","fix":""},
+{"attr":"format","action":"use_memory","value":"xml","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":2,"facts":[
+{"attr":"limit","action":"use_memory","value":"l250","kb":"none","fix":""},
+{"attr":"region","action":"use_memory","value":"apsouth","kb":"none","fix":""},
+{"attr":"owner","action":"use_memory","value":"teamG","kb":"endorse","fix":""}
+],"write":[],"chat":[]},
+{"user":7,"facts":[
+{"attr":"retries","action":"verify_code","kb":"none","fix":""},
+{"attr":"limit","action":"use_memory","value":"l2500","kb":"none","fix":""},
+{"attr":"owner","action":"use_memory","value":"teamH","kb":"endorse","fix":""}
+],"write":[{"module":"db","attr":"owner","value":"teamH","body":"db owner is teamH. Confirmed, I own db."}],"chat":[]},
+{"user":9,"facts":[
+{"attr":"mode","action":"use_memory","value":"lazy","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_memory","value":"l2500","kb":"dispute","fix":"health limit is l2500, not l100. The l100 note is wrong."},
+{"attr":"owner","action":"use_memory","value":"teamF","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":10,"facts":[
+{"attr":"owner","action":"use_memory","value":"teamG","kb":"endorse","fix":""},
+{"attr":"format","action":"use_memory","value":"yaml","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_memory","value":"lazy","kb":"none","fix":""}
+],"write":[],"chat":["anyone know jobs mode off the top of your head? think it's lazy"]},
+{"user":22,"facts":[
+{"attr":"region","action":"verify_code","kb":"none","fix":""},
+{"attr":"limit","action":"use_memory","value":"l250","kb":"none","fix":""},
+{"attr":"retries","action":"use_memory","value":"seven","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":34,"facts":[
+{"attr":"retries","action":"use_memory","value":"five","kb":"dispute","fix":"search retries is five, checked last sprint. The eight note is wrong."},
+{"attr":"format","action":"use_memory","value":"csv","kb":"endorse","fix":""},
+{"attr":"limit","action":"use_memory","value":"l50k","kb":"none","fix":""}
+],"write":[],"chat":[]},
+{"user":36,"facts":[
+{"attr":"limit","action":"use_memory","value":"l50k","kb":"none","fix":""},
+{"attr":"format","action":"use_memory","value":"csv","kb":"endorse","fix":""},
+{"attr":"mode","action":"use_memory","value":"lazy","kb":"none","fix":""}
+],"write":[],"chat":[]}
+]}
