@@ -750,7 +750,7 @@ recent_observations   = total - semantic - top                   # 最近寫入
 
 ### 14.3 可插拔的外部向量儲存
 
-預設是 **pgvector 內建**。可切換到 Turbopuffer 或 LanceDB（`VECTOR_STORE_*` 設定，`src/vector_store/`）。遷移期間（`VECTOR_STORE.MIGRATED=False`）會**雙寫**兩邊。
+預設是 **pgvector 內建**。可切換到 Turbopuffer、LanceDB、Chroma 或 Qdrant（`VECTOR_STORE_*` 設定，`src/vector_store/`）。遷移期間（`VECTOR_STORE.MIGRATED=False`）會**雙寫**兩邊。
 
 `_uses_pgvector()` 決定查詢走 Postgres 內的 join 還是「先問外部 store 拿 id → 再回 Postgres `fetch_documents_by_ids`」的兩段式。
 
@@ -1040,7 +1040,7 @@ recent_observations   = total - semantic - top                   # 最近寫入
 | `src/db.py` / `src/dependencies.py` | 引擎、`tracked_db`、read-only session |
 | `src/llm/` | provider-agnostic LLM 層（backends、tool loop、caching、structured output） |
 | `src/reconciler/` | 排程器、向量同步、佇列清理 |
-| `src/vector_store/` | Turbopuffer / LanceDB 介接 |
+| `src/vector_store/` | Turbopuffer / LanceDB / Chroma / Qdrant 介接 |
 | `src/telemetry/` | CloudEvents、Prometheus、Sentry、reasoning traces |
 | `src/webhooks/` | webhook 派送（含 `queue.empty` 事件） |
 

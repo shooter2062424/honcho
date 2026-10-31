@@ -197,7 +197,7 @@ The Dreamer is an orchestrated multi-specialist system that runs during schedule
 
 #### Shared Agent Infrastructure
 
-- **Tool definitions** (`src/utils/agent_tools.py`): unified `TOOLS` dict; per-agent lists (`DIALECTIC_TOOLS`, `DIALECTIC_TOOLS_MINIMAL`, `DREAMER_TOOLS`, `DEDUCTION_SPECIALIST_TOOLS`, `INDUCTION_SPECIALIST_TOOLS`, `CARD_REFRESH_SPECIALIST_TOOLS`).
+- **Tool definitions** (`src/utils/agent_tools.py`): unified `TOOLS` dict; per-agent lists (`DIALECTIC_TOOLS`, `DIALECTIC_TOOLS_MINIMAL`, `WORKSPACE_DIALECTIC_TOOLS`, `WORKSPACE_TOOLS_MINIMAL`, `DEDUCTION_SPECIALIST_TOOLS`, `INDUCTION_SPECIALIST_TOOLS`, `CARD_REFRESH_SPECIALIST_TOOLS`).
 - **LLM subsystem** (`src/llm/`): provider-agnostic `honcho_llm_call()`. Backends in `src/llm/backends/` (`anthropic.py`, `gemini.py`, `openai.py`). Includes prompt caching (`caching.py`), structured output (`structured_output.py`), tool loop (`tool_loop.py`), history adapters for cross-provider message formats, and a model registry. Per-retry provider selection is pinned via an `AttemptPlan` so stream-final retries don't bounce back to primary after the tool loop has settled on fallback.
 - **Per-agent model config**: each agent has its own `MODEL_CONFIG` in `src/config.py` with fallback chains (see `ConfiguredModelSettings`, `FallbackModelSettings`).
 - **Telemetry**: cloudevents in `src/telemetry/events/` cover API routes, dialectic, dream, deletion, reconciliation, representation, and per-call LLM accounting (`llm.py` — `LLMCallCompletedEvent` fires once per provider hit with full cost-attribution context). High-volume events are sampled deterministically per `run_id` via `TelemetrySettings.HIGH_VOLUME_SAMPLE_RATE`.
